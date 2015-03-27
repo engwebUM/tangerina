@@ -32,10 +32,10 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 # Use Capistrano for deployment
 # gem 'capistrano-rails', group: :development
 
-group :test do
-  gem 'rubocop', require: false
-  gem 'rspec-rails'
-end
+#group :test do
+gem 'rubocop', require: false
+gem 'rspec-rails'
+#end
 
 gem "codeclimate-test-reporter", group: :test
 
