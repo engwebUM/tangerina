@@ -39,6 +39,8 @@ gem 'rspec-rails'
 
 gem "codeclimate-test-reporter", group: :test
 
+gem 'ruby-progressbar', '~> 1.7.4'
+
 group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug'
