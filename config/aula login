@@ -1,0 +1,18 @@
+1 copiar os next steps
+2 migrate
+3 --- rails c => User.All ele mostra-nos os utilizadores
+
+--Na app controller criar este metodo (cria um metodo para todos os controllers)
+def current_user 
+	@_current_user ||= super || Guest.new
+end
+||= é caso a variavel @current_user for null ele faz o super e devolve o valor do super
+
+
+-- No modells podemos criar classes em vez de base dados.
+def Guest
+	
+end
+
+-- _article na views serve para ler html e depois no index.hmtl.erb pomos
+<%render @articles%>
