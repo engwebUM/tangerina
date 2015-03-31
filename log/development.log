@@ -2746,3 +2746,39 @@ Completed 200 OK in 60ms (Views: 59.3ms | ActiveRecord: 0.0ms)
             FROM sqlite_temp_master
             WHERE name='index_users_on_email' AND type='index'
 
+
+
+Started GET "/" for ::1 at 2015-03-31 14:55:59 +0100
+  [1m[36mActiveRecord::SchemaMigration Load (16.6ms)[0m  [1mSELECT "schema_migrations".* FROM "schema_migrations"[0m
+Processing by HomeController#index as HTML
+Redirected to http://localhost:3000/sign_in
+Filter chain halted as :require_login rendered or redirected
+Completed 302 Found in 52ms (ActiveRecord: 0.0ms)
+
+
+Started GET "/sign_in" for ::1 at 2015-03-31 14:56:00 +0100
+Processing by Clearance::SessionsController#new as HTML
+  Rendered /Users/Lipe_Pereira/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/clearance-1.8.1/app/views/sessions/_form.html.erb (36.4ms)
+  Rendered /Users/Lipe_Pereira/.rbenv/versions/2.2.0/lib/ruby/gems/2.2.0/gems/clearance-1.8.1/app/views/sessions/new.html.erb within layouts/application (166.9ms)
+Completed 200 OK in 438ms (Views: 437.5ms | ActiveRecord: 0.0ms)
+
+
+Started GET "/assets/jquery-87424c3c19e96d4fb033c10ebe21ec40.js?body=1" for ::1 at 2015-03-31 14:56:00 +0100
+
+
+Started GET "/assets/application-5266d2988799ecc8fe6e81eaab412e7d.css?body=1" for ::1 at 2015-03-31 14:56:00 +0100
+
+
+Started GET "/assets/jquery_ujs-e27bd20a10d28155845a22d71ef94f2f.js?body=1" for ::1 at 2015-03-31 14:56:00 +0100
+
+
+Started GET "/assets/home-fcec5b5a277ac7c20cc9f45a209a3bcd.js?body=1" for ::1 at 2015-03-31 14:56:00 +0100
+
+
+Started GET "/assets/turbolinks-f87b3583ca50adb0488b031297f5580d.js?body=1" for ::1 at 2015-03-31 14:56:00 +0100
+
+
+Started GET "/assets/home-64e62ddc273c2f5847f30d698ca14b67.css?body=1" for ::1 at 2015-03-31 14:56:00 +0100
+
+
+Started GET "/assets/application-001948a807d6467a657420955d9f0c1c.js?body=1" for ::1 at 2015-03-31 14:56:00 +0100
