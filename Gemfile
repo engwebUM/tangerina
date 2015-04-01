@@ -32,7 +32,7 @@ gem 'progressbar'
 
 gem 'coffee-script-source', '~> 1.8.0'
 gem 'clearance'
-
+gem 'acts-as-taggable-on', '~> 3.4'
 
 gem 'tzinfo-data', platforms: [:x64_mingw, :mingw, :mswin]
 
