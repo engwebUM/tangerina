@@ -1,4 +1,11 @@
 Rails.application.routes.draw do
+
+  resources :articles do
+    resources :comments
+  end
+
+  resources :themes
+
   resources :passwords, controller: 'clearance/passwords', only: [:create, :new]
   resource :session, controller: 'clearance/sessions', only: [:create]
 
@@ -13,9 +20,10 @@ Rails.application.routes.draw do
   # get '/sign_up' => 'clearance/users#new', as: 'sign_up'
 
   #get 'home/index'
+  get 'tags/:tag', to: 'articles#index', as: :tag
+  root to: "articles#index"
 
-  root to: "home#index"
-  
+
 
   # constraints Clearance::Constraints::SignedIn.new do
   #   root to: 'home#index', as: :signed_in_root

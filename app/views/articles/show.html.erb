@@ -1,0 +1,40 @@
+<p id="notice"><%= notice %></p>
+<%= link_to 'Edit', edit_article_path(@article) %> |
+<%= link_to 'Back', articles_path %>
+<p>
+  <strong>Title:</strong>
+  <%= @article.title %>
+</p>
+
+<p>
+  <strong>Description:</strong>
+  <%= @article.description %>
+</p>
+
+<p>
+  <strong>Theme:</strong>
+  <%= @article.theme.name %>
+</p>
+
+<p>
+  <strong>Abstract:</strong>
+  <%= @article.abstract %>
+</p>
+
+<p>
+  <strong>User:</strong>
+  <%= @article.user.email %>
+</p>
+
+<h2>Comments</h2>
+<div id="comments">
+  <%= render :partial => @article.comments.reverse %>
+</div>
+
+<%= form_for([@article, Comment.new], remote: true) do |f| %>
+  <p><%= f.label :body, "New Comment" %><br />
+    <%= f.text_area :body %>
+  </p>
+  <%= f.hidden_field :user_id, value: current_user.id %>
+  <p><%= f.submit "Add Comment" %></p>
+<% end %>
