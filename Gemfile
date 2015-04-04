@@ -25,7 +25,7 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 
 gem 'rubocop', require: false
 gem 'rspec-rails'
-
+gem "paperclip"
 gem "codeclimate-test-reporter", group: :test
 
 gem 'progressbar'
