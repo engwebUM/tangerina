@@ -10,8 +10,8 @@
           <div class="collapse navbar-collapse">
               <ul class="nav navbar-nav navbar-color">
                   <li><a href="/">Home</a></li>
-                  <li><a href="/articles">Articles</a></li>
-                  <li><a href="/articles/new">Add Articles</a></li>
+                  <li><%= link_to 'Articles', articles_path %></li>
+                  <li><%= link_to 'New Article', new_article_path %></li>
                 </ul>
                 <ul class="nav navbar-nav navbar-color navbar-right">
                   <li><%= link_to  sign_out_path, method: :delete do %>
