@@ -1,6 +1,12 @@
-<%= div_for comment do %>
+<%= div_for comment, class: "media" do %>
+<a class="pull-left" href="#">
+  <img class="media-object" src="http://placehold.it/64x64" alt="">
+</a>
+<div class="media-body">
+  <h4 class="media-heading"><%= h(comment.user.email) %>
+      <small><%= time_ago_in_words(comment.created_at) %></small>
+  </h4>
   <p>
-    <strong>Posted <%= h(comment.user.email) %> at <%= time_ago_in_words(comment.created_at) %></strong><br/>
     <%= h(comment.body) %>
   </p>
 <% end %>
