@@ -8,8 +8,7 @@
 </head>
 <body>
   <% if signed_in? %>
-    Signed in as: <%= current_user.email %>
-    <%= button_to 'Sign out', sign_out_path, method: :delete %>
+    <%= render partial: 'shared/navbar' %>
   <% else %>
     <%= link_to 'Sign in', sign_in_path %>
   <% end %>
@@ -19,10 +18,8 @@
       <div class="flash <%= key %>"><%= value %></div>
     <% end %>
   </div>
-    <%= render "shared/navbar" %>
-    <div class="container">
-  <%= yield %>
-</div>
+
+<%= yield %>
 
 </body>
 </html>

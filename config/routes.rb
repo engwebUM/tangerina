@@ -12,7 +12,7 @@ Rails.application.routes.draw do
   resources :users, controller: 'clearance/users', only: [:create] do
     resource :password,
       controller: 'clearance/passwords',
-      only: [:create, :edit, :update]
+      only: [:index, :show, :create, :edit, :update]
   end
 
   #get '/sign_in' => 'clearance/sessions#new', as: 'sign_in'
@@ -29,9 +29,9 @@ Rails.application.routes.draw do
   #   root to: 'home#index', as: :signed_in_root
   # end
 
-  # constraints Clearance::Constraints::SignedOut.new do
-  #   root to: 'home#index'
-  # end
+#  constraints Clearance::Constraints::SignedOut.new do
+#     root to: 'articles#index'
+#   end
 
 
 
