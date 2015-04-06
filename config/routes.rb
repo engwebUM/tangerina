@@ -21,8 +21,8 @@ Rails.application.routes.draw do
 
   #get 'home/index'
   get 'tags/:tag', to: 'articles#index', as: :tag
-  root to: "articles#index"
 
+  resources :articles
 
 
   # constraints Clearance::Constraints::SignedIn.new do

@@ -13,11 +13,7 @@
     <%= link_to 'Sign in', sign_in_path %>
   <% end %>
 
-  <div id="flash">
-    <% flash.each do |key, value| %>
-      <div class="flash <%= key %>"><%= value %></div>
-    <% end %>
-  </div>
+  <%= render partial: "shared/flash_messages", flash: flash %> 
   <div class="container">
     <%= yield %>
   </div>
