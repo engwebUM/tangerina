@@ -21,8 +21,7 @@ Rails.application.routes.draw do
   #get 'sign_up',  to: 'clearance/users#new'
 
   #get 'home/index'
-  get 'sign_up' => 'clearance/users#new'
-  #get 'tags/:tag', to: 'articles#index', as: :tag
+  get 'tags/:tag', to: 'articles#index', as: :tag
 
   resources :articles
 
