@@ -23,8 +23,6 @@ module Tangerina
     # Do not swallow errors in after_commit/after_rollback callbacks.
     config.active_record.raise_in_transactional_callbacks = true
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
-    ActsAsTaggableOn.delimiter = ' '
-    ActsAsTaggableOn.force_lowercase = true
-    ActsAsTaggableOn.force_parameterize = true
+
   end
 end
