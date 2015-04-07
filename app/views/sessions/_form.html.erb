@@ -12,7 +12,7 @@
               <div class="other-links">
                 <%= link_to t('.forgot_password'), new_password_path %>
               </div>
-              <%= f.submit "Sign In", class: "btn btn-lg btn-primary btn-block btn-signin" %>
+              <%= f.submit "Sign In", class: "btn btn-lg btn-block btn-signin" %>
 
           <% end %>
 
@@ -29,8 +29,8 @@
                     </div>
 
                     <% if Clearance.configuration.allow_sign_up? %>
-		                  <%= link_to  sign_up_path, class: "btn btn-lg btn-primary btn-block btn-signin" do %>
-                        <span class="top-center">Sign Up</span>
+		                  <%= link_to  sign_up_path, class: "btn btn-lg  btn-block btn-signin" do %>
+                        <span>Sign Up</span>
                       <% end %>
 
 	                  <% end %>

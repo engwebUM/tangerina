@@ -1,14 +1,4 @@
-<div class="text_field">
-  <%= form.label :username %>
-  <%= form.text_field :username %>
-</div>
 
-<div class="text-field">
-  <%= form.label :email %>
-  <%= form.text_field :email, type: 'email' %>
-</div>
-
-<div class="password_field">
-  <%= form.label :password %>
-  <%= form.password_field :password %>
-</div>
+<%=form.text_field :username, class: "form-control", placeholder: "Username", required: true, autofocus: true %>
+<%=form.text_field :email, type: 'email', class: "form-control", placeholder: "Email address", required: true, autofocus: true %>
+<%=form.password_field :password, class: "form-control", placeholder: "Password", required: true, autofocus: true %>
