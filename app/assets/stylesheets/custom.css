@@ -154,7 +154,7 @@ p {
     width: 400px;
 
  }
- 
+
  .create {
    margin-top: 110px;
  }
@@ -268,4 +268,18 @@ p {
 .alert{
   height: 205px;
   color:white;
+}
+
+.emotion{
+  position: absolute;
+   top: 50%;
+   left: 50%;
+   margin-left: -(X/2)px;
+   margin-top: -(Y/2)px;
+}
+.no-articles{
+  position: absolute;
+   top: 40%;
+
+   left: 45%;
 }

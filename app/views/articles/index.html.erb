@@ -1,3 +1,8 @@
 <div id="articles">
   <%= render :partial => @articles.reverse %>
+  <% if @articles.count==0 %>
+    <h1 class="no-articles">NO ARTICLES</h1>
+
+    <img class="emotion" src="/assets/emotion.png" >
+    <% end %>
 </div>
