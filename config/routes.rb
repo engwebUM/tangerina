@@ -24,6 +24,7 @@ Rails.application.routes.draw do
 
   resources :articles
 
+  root to: 'articles#index'
 
   # constraints Clearance::Constraints::SignedIn.new do
   #   root to: 'home#index', as: :signed_in_root
