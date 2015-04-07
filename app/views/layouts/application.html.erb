@@ -11,8 +11,6 @@
 
   <% if signed_in? %>
     <%= render partial: 'shared/navbar' %>
-  <% else %>
-    <%= link_to 'Sign in', sign_in_path %>
   <% end %>
 
   <%= render partial: "shared/flash_messages", flash: flash %>
