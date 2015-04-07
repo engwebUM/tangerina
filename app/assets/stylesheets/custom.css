@@ -40,9 +40,7 @@ p {
     min-width: 100%;
 }
 
-.form-control{
-  resize:none;
-}
+
 
 .tagline-divider {
     margin: 15px auto 3px;
@@ -146,6 +144,17 @@ p {
     height: 365px;
 
  }
+
+ .card-container2.card {
+    /*width: 350px;*/
+  /*  padding: 40px 40px;*/
+
+    position: relative;
+    height: 400px;
+    width: 400px;
+
+ }
+ 
  .create {
    margin-top: 110px;
  }
@@ -242,14 +251,15 @@ p {
     border-radius: 3px;
     border: none;
     transition: all 0.218s;
+    color: white;
 }
 
 .btn-signin:hover,
 .btn-signin:active,
 .btn-signin:focus {
     background-color: #FF3300;
+    color: white;
 }
-
 
 .forgot-password {
     color: rgb(104, 145, 162);
@@ -257,8 +267,5 @@ p {
 
 .alert{
   height: 205px;
-  color:black;
-}
-.top-center{
-  vertical-align: -10px;
+  color:white;
 }

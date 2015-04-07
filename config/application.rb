@@ -21,12 +21,6 @@ module Tangerina
     # config.i18n.default_locale = :de
 
     # Do not swallow errors in after_commit/after_rollback callbacks.
-    config.active_record.raise_in_transactional_callbacks = true
-    config.assets.paths << "#{Rails}/vendor/assets/fonts"
-<<<<<<< HEAD
-
-=======
-	config.assets.initialize_on_precompile = false
->>>>>>> b7b757dd79317cd11b135eb5d7f5fc345a528a86
+  
   end
 end
