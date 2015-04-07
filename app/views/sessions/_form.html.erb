@@ -29,7 +29,10 @@
                     </div>
 
                     <% if Clearance.configuration.allow_sign_up? %>
-		                  <%= button_to t('.sign_up'), sign_up_path, class: "btn btn-lg btn-primary btn-block btn-signin" %>
+		                  <%= link_to  sign_up_path, class: "btn btn-lg btn-primary btn-block btn-signin" do %>
+                        <span class="top-center">Sign Up</span>
+                      <% end %>
+
 	                  <% end %>
                 </div>
           </div>

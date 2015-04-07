@@ -259,3 +259,6 @@ p {
   height: 205px;
   color:black;
 }
+.top-center{
+  vertical-align: -10px;
+}
