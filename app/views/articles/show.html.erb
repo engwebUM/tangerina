@@ -50,8 +50,8 @@
                         Edit
                       <% end %>
 
-                      <%= link_to article_path(@article), class: "btn btn-default btn-lg", method: :delete, data: { confirm: 'Are you sure?' } do %>
-                        <span class="glyphicon glyphicon-remove" aria-hidden="true"></span>
+                      <%= link_to @article, class: "btn btn-default btn-lg ", method: :delete do %>
+                        <span class="glyphicon glyphicon-remove"></span>
                         Destroy
                       <% end %>
                     </p>
@@ -59,7 +59,7 @@
                     <br>
                     <div class="well">
                       <h4>Leave a Comment:</h4>
-                      <%= form_for([@article, Comment.new], remote: true) do |f| %>
+                      <%= form_for([@article, Comment.new]) do |f| %>
 
                         <div class="form-group">
                             <%= f.text_area :body, class: "form-control", rows: 3 %>

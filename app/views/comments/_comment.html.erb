@@ -3,10 +3,11 @@
   <img class="media-object" src="http://placehold.it/64x64" alt="">
 </a>
 <div class="media-body">
-  <h4 class="media-heading"><%= h(comment.user.email) %>
+  <h4 class="media-heading"><%= h(comment.user.username) %>
       <small><%= time_ago_in_words(comment.created_at) %></small>
   </h4>
   <p>
     <%= h(comment.body) %>
   </p>
+</div>
 <% end %>

@@ -4,7 +4,7 @@ Rails.application.routes.draw do
     resources :comments
   end
 
-  #resources :themes
+resources :themes
 
   resources :passwords, controller: 'clearance/passwords', only: [:create, :new]
   resource :session, controller: 'clearance/sessions', only: [:create]
@@ -22,7 +22,7 @@ Rails.application.routes.draw do
   #get 'home/index'
   get 'tags/:tag', to: 'articles#index', as: :tag
 
-  resources :articles
+  #resources :articles
 
   root to: 'articles#index'
 
