@@ -24,7 +24,7 @@
                          1 Files
                       </p>
                       <p>
-                        <%= raw @article.tag_list.map { |t| link_to content_tag(:span, t, { class: "label label-info"}), tag_path(t) }.join(' ') %>
+                        <%= raw @article.tag_list.map { |t| link_to content_tag(:span, t, { class: "label label-info"}), tag_path(t) }.join(', ') %>
                       </p>
                     </div>
                 </div>
