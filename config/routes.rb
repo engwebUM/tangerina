@@ -26,6 +26,7 @@ resources :themes
 
   root to: 'articles#index'
 
+  resources :reviews
   # constraints Clearance::Constraints::SignedIn.new do
   #   root to: 'home#index', as: :signed_in_root
   # end

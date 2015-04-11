@@ -29,6 +29,9 @@ class ArticlesController < ApplicationController
     @themes = Theme.all
   end
 
+  def review
+  end
+
   # POST /articles
   # POST /articles.json
   def create
@@ -77,7 +80,7 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :description, :theme_id, :abstract, :user_id, :tag_list, :file)
+      params.require(:article).permit(:title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :revised)
     end
 
 
