@@ -16,6 +16,16 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+
+    if !@article.versions.last.nil?
+      if @article.versions.last.event == 'create'
+
+        @article = nil
+      else
+        @article = @article.version.last.reify
+      end
+    end
+
   end
 
   # GET /articles/new
@@ -29,8 +39,6 @@ class ArticlesController < ApplicationController
     @themes = Theme.all
   end
 
-  def review
-  end
 
   # POST /articles
   # POST /articles.json
@@ -83,5 +91,14 @@ class ArticlesController < ApplicationController
       params.require(:article).permit(:title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :revised)
     end
 
-
+    def article_versions
+      if @article.versions.last.nil?
+        @article
+      elsif @article.versions.last.event == 'create'
+        @article = nil
+      else
+        @article = @article.versions.last.reify
+        #@article.save
+      end
+    end
 end

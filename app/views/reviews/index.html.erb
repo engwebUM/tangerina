@@ -1,6 +1,3 @@
 <h1>reviews#index</h1>
-<% if @articles.present? %>
-  <% @articles.each do |article| %>
-    <%=article.title %>
-  <% end %>
-<% end %>
+
+<%= render 'versions', article: @article %>
