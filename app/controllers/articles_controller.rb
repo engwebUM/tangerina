@@ -17,15 +17,13 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
 
-    if !@article.versions.last.nil?
-      if @article.versions.last.event == 'create'
-
+    if @article.versions.last.nil?
+      set_article
+    elsif @article.versions.last.event == 'create'
         @article = nil
-      else
-        @article = @article.version.last.reify
-      end
+    else
+      @article = @article.versions.last.reify
     end
-
   end
 
   # GET /articles/new
@@ -81,6 +79,20 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+    def articles_all
+      articles = Article.all
+      @tempart = []
+      articles.each do |a|
+        if article_correct?(a)
+          @tempart << a
+        end
+      end
+    end
+
+    def article_correct?(a)
+      a.status == "accept" || (a.versions.last.event != "create"  && a.versions.last.reify.status == "accept")
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])

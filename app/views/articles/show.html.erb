@@ -3,7 +3,9 @@
         <div class="row">
             <div class="box">
 
-              <% if !@article == nil   %>
+              <% if @article == nil   %>
+                <h1>This article is new please Wait for review!</h1>
+              <% else %>
 
 
               <div class="theme-icon">
@@ -78,8 +80,6 @@
                     </div>
                 </div>
 
-                <% else %>
-                <h1>No article</h1>
                   <% end %>
             </div>
         </div>
