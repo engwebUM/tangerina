@@ -21,7 +21,7 @@ resources :themes
 
   #get 'home/index'
   get 'tags/:tag', to: 'articles#index', as: :tag
-
+  
   #resources :articles
 
   root to: 'articles#index'

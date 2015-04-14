@@ -4,14 +4,14 @@ class ReviewsController < ApplicationController
   def index
     #@versions = PaperTrail::Version.all
     #@article = Article.find(params[:id])
-    @versions = PaperTrail::Version.all.where(event: 'update')
+    @updates = PaperTrail::Version.all.where(event: 'update')
+    @destroys = PaperTrail::Version.all.where(event: 'destroy')
+    @creates = PaperTrail::Version.all.where(event: 'create')
   end
 
   def show
-    @article = Article.find(params[:item_id])
-    @versions = @article.versions
-    @article = @article.versions[params[:version].to_i].reify if params[:version]
-    show!
+    @article = Article.find(params[:id])
+
   end
   private
     # Use callbacks to share common setup or constraints between actions.

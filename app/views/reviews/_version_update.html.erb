@@ -1,4 +1,15 @@
+<h2>Updates</h2>
+<table class='table'>
+  <thead>
+    <tr>
+      <th>Article ID</th>
+      <th>Created</th>
+      <th>Updated</th>
+      <th>Author</th>
+    </tr>
+  </thead>
 
+  <tbody>
 <% versions.reverse.each do |v| %>
 <tr>
     <td><%= Article.find(v.item_id).id %></td>
@@ -7,3 +18,5 @@
     <td><%= find_version_author_name(v) %></td>
  </tr>
 <% end %>
+</tbody>
+</table>
