@@ -21,12 +21,17 @@ resources :themes
 
   #get 'home/index'
   get 'tags/:tag', to: 'articles#index', as: :tag
-  
+
   #resources :articles
 
   root to: 'articles#index'
 
-  resources :reviews
+  resources :reviews do
+    member do
+      get :reject
+    end
+  end
+
   # constraints Clearance::Constraints::SignedIn.new do
   #   root to: 'home#index', as: :signed_in_root
   # end

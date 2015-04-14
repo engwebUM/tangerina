@@ -1,5 +1,5 @@
 class ReviewsController < ApplicationController
-  before_action :set_article, only: :show
+  before_action  only: :show
   before_action :require_login
   def index
     #@versions = PaperTrail::Version.all
@@ -11,11 +11,15 @@ class ReviewsController < ApplicationController
 
   def show
     @article = Article.find(params[:id])
-
   end
-  private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find(params[:id])
-    end
+
+  def reject
+    a = Article.find(params[:id])
+    a = a.versions.last.reify
+    a.save
+    PaperTrail::Version.all.where(item_id: params[:id]).delete_all
+    a.status = "reject"
+    a.save
+    redirect_to root_path, notice: 'The object was successfully brought back!'
+  end
 end
