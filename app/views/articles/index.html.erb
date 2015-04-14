@@ -11,7 +11,6 @@
 		      <li>
 		      	<%= f.label :theme_id_eq, "Select the category:" %>
 		      	<%= f.select :theme_id_eq, content_tag(:option,'select one...',:value=>"")+options_from_collection_for_select(Theme.all, "id", "name") %>
-
 		      </li>
 		      <li>
 		      	<%= f.submit "Search" %>
