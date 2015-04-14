@@ -1,13 +1,17 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
   before_action :require_login
+  before_filter :set_search
 
   # GET /articles
   # GET /articles.json
   def index
 
-    if params[:tag]
+    if params[:tag].present?
       @articles = Article.tagged_with(params[:tag])
+    elsif params[:q].present?
+      @q = Article.search(params[:q])
+      @articles = @q.result
     else
       @articles = Article.all
     end
@@ -69,6 +73,15 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def advanced_search
+    # put any code here that you need 
+    # (although for a static view you probably won't have any)
+  end
+  
+  def set_search
+    @q=Article.search(params[:q])
+  end
+  
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
@@ -79,6 +92,7 @@ class ArticlesController < ApplicationController
     def article_params
       params.require(:article).permit(:title, :description, :theme_id, :abstract, :user_id, :tag_list, :file)
     end
+  
 
 
 end

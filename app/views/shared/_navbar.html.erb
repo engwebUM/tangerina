@@ -12,6 +12,15 @@
                   <li><a href="/">Home</a></li>
                   <li><%= link_to 'Articles', articles_path %></li>
                   <li><%= link_to 'New Article', new_article_path %></li>
+                  <li><%= link_to 'Advanced Search', '/advanced_search' %></li>
+                  <li>
+                    <div class="navbar-search-aligh">
+                      <%= search_form_for @q do |f| %>
+                        <%= f.text_field :title_or_description_cont_all %>
+                        <%= f.submit "Search" %>
+                      <% end %>
+                    </div>
+                  </li>
                 </ul>
                 <ul class="nav navbar-nav navbar-color navbar-right">
                   <li><%= link_to  sign_out_path, method: :delete do %>

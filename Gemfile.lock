@@ -1,3 +1,14 @@
+GIT
+  remote: git://github.com/activerecord-hackery/ransack.git
+  revision: b36bdc23b1458b4dd4c66b91a3f982753c496afd
+  specs:
+    ransack (1.6.6)
+      actionpack (>= 3.0)
+      activerecord (>= 3.0)
+      activesupport (>= 3.0)
+      i18n
+      polyamorous (~> 1.2)
+
 GEM
   remote: https://rubygems.org/
   specs:
@@ -111,7 +122,10 @@ GEM
       mime-types
     parser (2.2.0.3)
       ast (>= 1.1, < 3.0)
+    pg (0.18.1)
     pg (0.18.1-x86-mingw32)
+    polyamorous (1.2.0)
+      activerecord (>= 3.0)
     powerpack (0.1.0)
     progressbar (0.21.0)
     rack (1.6.0)
@@ -238,6 +252,7 @@ DEPENDENCIES
   progressbar
   rails (= 4.2.0)
   rails_12factor
+  ransack!
   rspec-rails
   rubocop
   sass-rails (~> 5.0)

@@ -3,8 +3,22 @@
  * Copyright 2011-2015 Twitter, Inc.
  * Licensed under MIT (https://github.com/twbs/bootstrap/blob/master/LICENSE)
  */
-
 /*! normalize.css v3.0.2 | MIT License | git.io/normalize */
+
+.navbar-search-aligh {
+  margin-top: 10px;
+}
+
+#advanced-search-aligh ul{
+  text-align: center;
+  list-style: none;
+}
+
+#advanced-search-aligh li{
+  display:inline;
+  padding: 10px 30px;
+}
+
 html {
   font-family: sans-serif;
   -webkit-text-size-adjust: 100%;
@@ -264,6 +278,7 @@ th {
     border: 1px solid #ddd !important;
   }
 }
+
 @font-face {
   font-family: 'Glyphicons Halflings';
   src: url('/assets/glyphicons-halflings-regular.eot');
