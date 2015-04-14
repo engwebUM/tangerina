@@ -44,6 +44,8 @@ gem 'acts-as-taggable-on', '~> 3.4'
 
 gem 'tzinfo-data', platforms: [:x64_mingw, :mingw, :mswin]
 
+gem 'ransack', github: 'activerecord-hackery/ransack'
+
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

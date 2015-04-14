@@ -9,5 +9,7 @@ class Article < ActiveRecord::Base
   validates_presence_of :tag_list
   has_attached_file :file
 
+  validates_presence_of :theme_id
+
   validates_attachment_content_type :file, :content_type => [ 'application/pdf','text/plain']
 end
