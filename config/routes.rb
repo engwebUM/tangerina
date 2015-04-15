@@ -32,6 +32,8 @@ resources :themes
     end
   end
 
+  get '/advanced_search' => 'articles#advanced_search'
+
   # constraints Clearance::Constraints::SignedIn.new do
   #   root to: 'home#index', as: :signed_in_root
   # end

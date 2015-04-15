@@ -1,4 +1,27 @@
 <div id="articles">
+  <% if params[:q].present? %>
+	<%= search_form_for @q do |f| %>
+	  <div class="box">
+	  	<div id="advanced-search-aligh">
+		    <ul>
+		      <li>
+		      	<%= f.label :title_or_description_cont_all, "Keywords:" %>
+		      	<%= f.text_field :title_or_description_cont_all %>
+		      </li>
+		      <li>
+		      	<%= f.label :theme_id_eq, "Select the category:" %>
+		      	<%= f.select :theme_id_eq, content_tag(:option,'select one...',:value=>"")+options_from_collection_for_select(Theme.all, "id", "name") %>
+		      </li>
+		      <li>
+		      	<%= f.submit "Search" %>
+		      </li>
+		    </ul>
+	    </div>
+	  </div>
+	<% end %>
+  <% end %>
+
+  <p>&nbsp;</p>
   <%= render :partial => @articles.reverse %>
   <% if @articles.count==0 %>
     <h1 class="no-articles">NO ARTICLES</h1>
