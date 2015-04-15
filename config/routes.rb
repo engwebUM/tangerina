@@ -36,6 +36,10 @@ resources :themes
   end
 
 
+<<<<<<< HEAD
+=======
+
+>>>>>>> subscriptions
   get '/advanced_search' => 'articles#advanced_search'
 
 
