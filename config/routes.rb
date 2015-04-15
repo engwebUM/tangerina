@@ -29,13 +29,15 @@ resources :themes
   root to: 'articles#index'
 
 
-
-
   resources :reviews do
     member do
       get :reject
     end
   end
+
+
+
+  get '/advanced_search' => 'articles#advanced_search'
 
 
   # constraints Clearance::Constraints::SignedIn.new do

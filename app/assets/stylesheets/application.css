@@ -43,6 +43,20 @@
      color: #000;
  }
 
+ .navbar-search-aligh {
+  margin-top: 10px;
+}
+
+#advanced-search-aligh ul{
+  text-align: center;
+  list-style: none;
+}
+
+#advanced-search-aligh li{
+  display:inline;
+  padding: 10px 30px;
+}
+
  .hr-post {
      max-width: 400px;
      border-color: #999999;
