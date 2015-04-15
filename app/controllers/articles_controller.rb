@@ -20,6 +20,14 @@ class ArticlesController < ApplicationController
   # GET /articles/1
   # GET /articles/1.json
   def show
+
+    if @article.versions.last.nil?
+      set_article
+    elsif @article.versions.last.event == 'create'
+        @article = nil
+    else
+      @article = @article.versions.last.reify
+    end
   end
 
   # GET /articles/new
@@ -31,7 +39,9 @@ class ArticlesController < ApplicationController
   # GET /articles/1/edit
   def edit
     @themes = Theme.all
+
   end
+
 
   # POST /articles
   # POST /articles.json
@@ -52,6 +62,7 @@ class ArticlesController < ApplicationController
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
   def update
+    @article.status = "pending"
     respond_to do |format|
       if @article.update(article_params)
         format.html { redirect_to @article, notice: 'Article was successfully updated.' }
@@ -83,6 +94,20 @@ class ArticlesController < ApplicationController
   end
   
   private
+
+    def articles_all
+      articles = Article.all
+      @tempart = []
+      articles.each do |a|
+        if article_correct?(a)
+          @tempart << a
+        end
+      end
+    end
+
+    def article_correct?(a)
+      a.status == "accept" || (a.versions.last.event != "create"  && a.versions.last.reify.status == "accept")
+    end
     # Use callbacks to share common setup or constraints between actions.
     def set_article
       @article = Article.find(params[:id])
@@ -90,9 +115,18 @@ class ArticlesController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def article_params
-      params.require(:article).permit(:title, :description, :theme_id, :abstract, :user_id, :tag_list, :file)
+      params.require(:article).permit(:title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :revised)
     end
   
 
-
+    def article_versions
+      if @article.versions.last.nil?
+        @article
+      elsif @article.versions.last.event == 'create'
+        @article = nil
+      else
+        @article = @article.versions.last.reify
+        #@article.save
+      end
+    end
 end

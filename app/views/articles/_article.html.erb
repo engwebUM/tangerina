@@ -1,6 +1,8 @@
 <%= div_for article do %>
+  <% if article.status == "accept" || (article.versions.last.event != "create"  && article.versions.last.reify.status == "accept" ) %>
   <div class="row">
     <div class="box">
+
       <div class="theme-icon">
         <img src='/assets/<%= article.theme.name %>.png' alt="">
       </div>
@@ -27,6 +29,9 @@
         <hr class="hr-comments">
         <p><%= simple_format article.description %></p>
       </div>
+
+
     </div>
   </div>
+  <% end %>
 <% end %>

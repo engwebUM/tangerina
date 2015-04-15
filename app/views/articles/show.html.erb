@@ -3,6 +3,10 @@
         <div class="row">
             <div class="box">
 
+              <% if @article == nil   %>
+                <h1>This article is new please Wait for review!</h1>
+              <% else %>
+
 
               <div class="theme-icon">
                 <img src='/assets/<%= @article.theme.name %>.png' alt="">
@@ -75,5 +79,7 @@
 
                     </div>
                 </div>
+
+                  <% end %>
             </div>
         </div>

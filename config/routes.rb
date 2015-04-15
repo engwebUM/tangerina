@@ -26,7 +26,15 @@ resources :themes
 
   root to: 'articles#index'
 
+<<<<<<< HEAD
   get '/advanced_search' => 'articles#advanced_search'
+=======
+  resources :reviews do
+    member do
+      get :reject
+    end
+  end
+>>>>>>> origin/user-reviser
 
   # constraints Clearance::Constraints::SignedIn.new do
   #   root to: 'home#index', as: :signed_in_root

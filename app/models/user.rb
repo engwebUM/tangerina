@@ -5,5 +5,8 @@ class User < ActiveRecord::Base
   has_many :comments
 
   accepts_nested_attributes_for :articles
-  
+
+  def self.find_version_author(version)
+    find(version.terminator)
+  end
 end
