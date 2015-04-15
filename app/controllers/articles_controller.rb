@@ -17,13 +17,7 @@ class ArticlesController < ApplicationController
   # GET /articles/1.json
   def show
 
-    if @article.versions.last.nil?
-      set_article
-    elsif @article.versions.last.event == 'create'
-        @article = nil
-    else
-      @article = @article.versions.last.reify
-    end
+
   end
 
   # GET /articles/new

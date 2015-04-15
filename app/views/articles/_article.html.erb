@@ -1,5 +1,5 @@
 <%= div_for article do %>
-  <% if article.status == "accept" || (article.versions.last.event != "create"  && article.versions.last.reify.status == "accept" ) %>
+
   <div class="row">
     <div class="box">
 
@@ -34,4 +34,3 @@
     </div>
   </div>
   <% end %>
-<% end %>
