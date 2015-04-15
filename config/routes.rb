@@ -36,6 +36,7 @@ resources :themes
   end
 
 
+
   get '/advanced_search' => 'articles#advanced_search'
 
 
