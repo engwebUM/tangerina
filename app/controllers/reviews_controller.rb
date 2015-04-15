@@ -4,9 +4,11 @@ class ReviewsController < ApplicationController
   def index
     #@versions = PaperTrail::Version.all
     #@article = Article.find(params[:id])
-    @updates = PaperTrail::Version.all.where(event: 'update')
+    #@updates = PaperTrail::Version.all.where(event: 'update')
+    @updates = Article.all.where(status: "pending").joins(:versions).where({versions: {event: "update"}})
     @destroys = PaperTrail::Version.all.where(event: 'destroy')
     @creates = PaperTrail::Version.all.where(event: 'create')
+
   end
 
   def show
