@@ -13,14 +13,20 @@ class ArticlesController < ApplicationController
       @q = Article.search(params[:q])
       @articles = @q.result
     else
-      @articles = Article.all
+      versions = ArticleVersion.updates
+      @articles = Article.accept
+      if !versions.nil?
+        versions.each do |v|
+          @articles << v.reify
+        end
+      end
+      @articles = @articles.sort{|a,b| b[:updated_at] <=> a[:updated_at]}
     end
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
-
 
   end
 
@@ -79,14 +85,14 @@ class ArticlesController < ApplicationController
   end
 
   def advanced_search
-    # put any code here that you need 
+    # put any code here that you need
     # (although for a static view you probably won't have any)
   end
-  
-  
-  
+
+
+
   def set_search
-  end  
+  end
 
     def articles_all
       articles = Article.all
@@ -110,7 +116,7 @@ class ArticlesController < ApplicationController
     def article_params
       params.require(:article).permit(:title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :revised)
     end
-  
+
 
     def article_versions
       if @article.versions.last.nil?

@@ -15,5 +15,13 @@ class Article < ActiveRecord::Base
 
   validates_attachment_content_type :file, :content_type => [ 'application/pdf','text/plain']
 
-  has_paper_trail
+  has_paper_trail class_name: 'ArticleVersion', on: [:update, :create], class_name: 'ArticleVersion'
+
+  scope :reviews_creates, -> { joins(:versions).where({versions: {event: 'create'}, articles: {status: 'pending'}}) }
+  scope :reviews_updates, -> { joins(:versions).where({versions: {event: 'update'}, articles: {status: 'pending'}}) }
+
+  #scope :articles_accepts, -> { joins(:versions).where( {versions: {event: 'update'}, articles: {status: 'accept'}}) }
+  #scope :versions_update, -> { PaperTrail::Version.where(event: 'update') }
+  scope :accept, -> {where(status: 'accept')}
+  #scope :order, -> {order(updated_at: :desc)}
 end

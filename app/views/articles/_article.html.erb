@@ -15,7 +15,7 @@
             <i class="icon-user"></i><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
             <a href="#"><%= article.user.username %></a>
             | <i class="icon-calendar"></i> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-              <%= article.created_at.strftime("%d %b. %Y") %>
+              <%= article.updated_at %>
             | <i class="icon-comment"></i><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
              <%= article.comments.count %> Comments
             | <i class="icon-file"></i>

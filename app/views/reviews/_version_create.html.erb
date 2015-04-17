@@ -4,7 +4,6 @@
     <tr>
       <th>Article ID</th>
       <th>Created</th>
-      <th>Updated</th>
       <th>Author</th>
     </tr>
   </thead>
@@ -12,10 +11,9 @@
   <tbody>
 <% versions.reverse.each do |v| %>
 <tr>
-    <td><%= Article.find(v.item_id).id %></td>
-    <td><%= Article.find(v.item_id).created_at %></td>
-    <td><%= Article.find(v.item_id).updated_at %></td>
-    <td><%= find_version_author_name(v) %></td>
+    <td><%= link_to v.id, { action: 'show', id: v.id } %></td>
+    <td><%= v.created_at %></td>
+    <td><%= User.find(v.user_id).username %></td>
  </tr>
 <% end %>
 </tbody>

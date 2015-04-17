@@ -32,6 +32,7 @@ resources :themes
   resources :reviews do
     member do
       get :reject
+      get :accept
     end
   end
 

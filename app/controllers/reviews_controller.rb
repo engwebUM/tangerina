@@ -2,13 +2,8 @@ class ReviewsController < ApplicationController
   before_action  only: :show
   before_action :require_login
   def index
-    #@versions = PaperTrail::Version.all
-    #@article = Article.find(params[:id])
-    #@updates = PaperTrail::Version.all.where(event: 'update')
-    @updates = Article.all.where(status: "pending").joins(:versions).where({versions: {event: "update"}})
-    @destroys = PaperTrail::Version.all.where(event: 'destroy')
-    @creates = PaperTrail::Version.all.where(event: 'create')
-
+    @updates = Article.reviews_updates
+    @creates = Article.reviews_creates
   end
 
   def show
@@ -22,6 +17,14 @@ class ReviewsController < ApplicationController
     PaperTrail::Version.all.where(item_id: params[:id]).delete_all
     a.status = "reject"
     a.save
-    redirect_to root_path, notice: 'The object was successfully brought back!'
+    redirect_to root_path
+  end
+
+  def accept
+    a = Article.find(params[:id])
+    a.status = "accept"
+    a.save
+    PaperTrail::Version.all.where(item_id: params[:id]).delete_all
+    redirect_to root_path
   end
 end
