@@ -44,6 +44,7 @@ class ArticlesController < ApplicationController
 
     respond_to do |format|
       if @article.save
+        get_users_subscriptions(@article)        
         format.html { redirect_to @article}
         format.json { render :show, status: :created, location: @article }
       else
@@ -122,4 +123,25 @@ class ArticlesController < ApplicationController
         #@article.save
       end
     end
+
+    def get_users_subscriptions(article)
+      @subscriptions = Subscription.all
+
+
+      @subscriptions.each do |subscription|
+        if article.theme.id == subscription.theme.id
+          notifie_users(subscription.user)
+        end
+      end   
+    end 
+
+    def notifie_users(users)
+      #users.each do |user|
+      #@user = params[:user]
+
+        UserMailer.users_notified(users).deliver
+      #end
+    end   
+
+    
 end

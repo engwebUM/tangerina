@@ -35,10 +35,7 @@ resources :themes
     end
   end
 
-<<<<<<< HEAD
-=======
 
->>>>>>> 99da5f66ece1c97cd6456c56237be25ca5378bbb
   get '/advanced_search' => 'articles#advanced_search'
 
 

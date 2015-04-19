@@ -26,6 +26,17 @@ module Tangerina
     config.assets.paths << "#{Rails}/vendor/assets/fonts"
 	config.assets.initialize_on_precompile = false
     config.server_static_assets = true
+    
+    config.action_mailer.delivery_method = :smtp
+    config.action_mailer.smtp_settings = {
+        :address              => "smtp.gmail.com",  
+        :port                 => 587,  
+        :domain               => "gmail.com",  
+        :user_name            => "tangerina",  
+        :password             => "tangerinaess",  
+        :authentication       => "plain",  
+        :enable_starttls_auto => true  
+    }
 	
   end
 end
