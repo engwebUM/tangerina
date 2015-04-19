@@ -126,21 +126,15 @@ class ArticlesController < ApplicationController
 
     def get_users_subscriptions(article)
       @subscriptions = Subscription.all
-
-
       @subscriptions.each do |subscription|
         if article.theme.id == subscription.theme.id
-          notifie_users(subscription.user)
+          notify_users(subscription.user)
         end
       end   
     end 
 
-    def notifie_users(users)
-      #users.each do |user|
-      #@user = params[:user]
-
-        UserMailer.users_notified(users).deliver
-      #end
+    def notify_users(users)
+      UserMailer.users_notified(users).deliver
     end   
 
     
