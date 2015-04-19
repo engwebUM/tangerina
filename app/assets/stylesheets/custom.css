@@ -143,7 +143,12 @@
      height: 365px;
 }
 
+<<<<<<< HEAD
+<<<<<<< HEAD
+=======
+=======
 
+>>>>>>> subscriptions
 body {
     font-family: "Open Sans","Helvetica Neue",Helvetica,Arial,sans-serif;
     background-color: #993300;
@@ -288,7 +293,6 @@ p {
 @media (min-width: 1200px){
   .col-lg-12.header{
     float: none;
-
 
   }
 
