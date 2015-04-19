@@ -84,11 +84,12 @@ class ArticlesController < ApplicationController
     # (although for a static view you probably won't have any)
   end
   
-  
-  
   def set_search
-  end  
-
+    @q=Article.search(params[:q])
+  end
+  
+  private
+  
     def articles_all
       articles = Article.all
       @tempart = []
@@ -139,3 +140,5 @@ class ArticlesController < ApplicationController
 
     
 end
+
+
