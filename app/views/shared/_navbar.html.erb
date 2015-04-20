@@ -11,9 +11,10 @@
               <ul class="nav navbar-nav navbar-color">
                   <li><a href="/">Home</a></li>
                   <li><%= link_to 'Articles', articles_path %></li>
+                  <li><%= link_to 'Reviews', reviews_path %></li>
                   <li><%= link_to 'New Article', new_article_path %></li>
                   <li><%= link_to 'Subscriptions', subscriptions_path %></li>
-                  
+
                 </ul>
                 <ul class="nav navbar-nav navbar-color navbar-right">
                   <li><%= link_to  sign_out_path, method: :delete do %>

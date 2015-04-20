@@ -3,9 +3,9 @@
 class Article < ActiveRecord::Base
   belongs_to :theme
   belongs_to :user
-
+  has_many :article_review, dependent: :destroy
   has_many :comments, dependent: :destroy
-#  register PaperTrail::Sinatra
+#  register PaperTreail::Sinatra
   acts_as_taggable
   acts_as_taggable_on :tags
   validates_presence_of :tag_list
@@ -15,7 +15,7 @@ class Article < ActiveRecord::Base
 
   validates_attachment_content_type :file, :content_type => [ 'application/pdf','text/plain']
 
-  has_paper_trail class_name: 'ArticleVersion', on: [:update, :create], class_name: 'ArticleVersion'
+  #has_paper_trail class_name: 'ArticleVersion', on: [:update, :create]
 
   scope :reviews_creates, -> { joins(:versions).where({versions: {event: 'create'}, articles: {status: 'pending'}}) }
   scope :reviews_updates, -> { joins(:versions).where({versions: {event: 'update'}, articles: {status: 'pending'}}) }

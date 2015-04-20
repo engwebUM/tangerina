@@ -4,7 +4,7 @@
             <hr class="hr-post">
             <h2 class="intro-text text-center">Add Article</h2>
             <hr class="hr-post">
-            <%= form_for @article, url: articles_path, role: "form", :html => { :multipart => true } do |f| %>
+            <%= form_for @article_review, url: url_for(controller: 'articles', action: 'create'), role: "form", :html => { :multipart => true } do |f| %>
               <%= render :partial => 'form',  :locals => {:f => f} %>
             <% end %>
         </div>

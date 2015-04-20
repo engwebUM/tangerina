@@ -1,10 +1,9 @@
-<h2>Updates</h2>
+<h2>CREATES</h2>
 <table class='table'>
   <thead>
     <tr>
-      <th>Article ID</th>
+      <th>ID</th>
       <th>Created</th>
-      <th>Updated</th>
       <th>Author</th>
     </tr>
   </thead>
@@ -14,7 +13,6 @@
 <tr>
     <td><%= link_to v.id, { action: 'show', id: v.id } %></td>
     <td><%= v.created_at %></td>
-    <td><%= v.updated_at %></td>
     <td><%= User.find(v.user_id).username %></td>
  </tr>
 <% end %>

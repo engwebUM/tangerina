@@ -1,5 +1,7 @@
 class Theme < ActiveRecord::Base
   has_many :articles
+  has_many :article_reviews
+
   has_many :users
   validates_presence_of :name
 

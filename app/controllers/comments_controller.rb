@@ -14,7 +14,7 @@ class CommentsController < ApplicationController
 
   # GET /comments/new
   def new
-    
+
   end
 
   # GET /comments/1/edit
@@ -24,7 +24,7 @@ class CommentsController < ApplicationController
   # POST /comments
   # POST /comments.json
   def create
-    @article = Article.find(params[:article_id])
+    @article = ArticlePublished.find(params[:article_id])
     @comment = @article.comments.create(comment_params)
 
     respond_to do |format|

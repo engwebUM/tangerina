@@ -2,6 +2,7 @@ class User < ActiveRecord::Base
   include Clearance::User
 
   has_many :articles
+  has_many :article_reviews
   has_many :comments
   belongs_to :theme
 
