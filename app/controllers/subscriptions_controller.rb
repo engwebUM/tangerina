@@ -66,6 +66,7 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  
   def themes_subscribed
     @subscriptions = Subscription.all
     themes = []
