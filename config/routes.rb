@@ -1,9 +1,12 @@
 Rails.application.routes.draw do
 
+  resources :favorites
+
   resources :subscriptions
 
   resources :articles do
     resources :comments
+    resources :favorites
   end
 
   resources :themes

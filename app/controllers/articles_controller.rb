@@ -82,6 +82,10 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def favorite_user(id)
+    @article.favorite_user(id)
+  end
+
   def advanced_search
     # put any code here that you need
     # (although for a static view you probably won't have any)
