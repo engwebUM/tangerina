@@ -2,10 +2,6 @@
 
         <div class="row">
             <div class="box">
-
-            
-
-
               <div class="theme-icon">
                 <img src='/assets/<%= @article.theme.name %>.png' alt="">
               </div>
@@ -20,7 +16,7 @@
                         | <i class="icon-calendar"></i> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
                         <%= @article.created_at.strftime("%d %b. %Y") %>
                         | <i class="icon-comment"></i><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-                        <%= @article.comments.count %> Comments
+                        <%=  %> Comments
                         | <i class="icon-file"></i>
                         <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                          1 Files
@@ -52,7 +48,7 @@
                         Edit
                       <% end %>
 
-                      <%= link_to @article, class: "btn btn-default btn-lg ", method: :delete do %>
+                      <%= link_to  class: "btn btn-default btn-lg ", method: :delete do %>
                         <span class="glyphicon glyphicon-remove"></span>
                         Destroy
                       <% end %>
@@ -61,23 +57,21 @@
                     <br>
                     <div class="well">
                       <h4>Leave a Comment:</h4>
+
                       <%= form_for([@article, Comment.new]) do |f| %>
 
-                        <div class="form-group">
-                            <%= f.text_area :body, class: "form-control", rows: 3 %>
-                        </div>
-                        <%= f.hidden_field :user_id, value: current_user.id %>
-                        <%= f.submit class: "btn btn-primary" %>
-                      <% end %>
+                       <div class="form-group">
+                           <%= f.text_area :body, class: "form-control", rows: 3 %>
+                       </div>
+                       <%= f.hidden_field :user_id, value: current_user.id %>
+                       <%= f.submit class: "btn btn-primary" %>
+                     <% end %>
 
-                      <hr class="hr-comments">
-                      <div id="comments">
-                        <%= render :partial => @article.comments.reverse %>
-                      </div>
-
+                     <hr class="hr-comments">
+                     <div id="comments">
+                       <%= render :partial => @article.comments.reverse %>
+                     </div>
                     </div>
                 </div>
-
-
             </div>
         </div>
