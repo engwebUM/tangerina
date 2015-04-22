@@ -32,9 +32,6 @@ Style/PredicateName:
     - is_
     - have_
  
-Style/RegexpLiteral:
-  MaxSlashes: 0
- 
 Style/NumericLiterals:
   Enabled: false
  
