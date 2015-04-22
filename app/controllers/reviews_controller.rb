@@ -17,6 +17,7 @@ class ReviewsController < ApplicationController
   def accept
     @article_review.status = 'accept'
     article_new(@article_review)
+    get_users_subscriptions(Article.find(@article_review.article_id))
     ArticleReview.removes(@article_review.article_id)
     redirect_to root_path
   end
@@ -51,4 +52,18 @@ class ReviewsController < ApplicationController
     def set_article_review
       @article_review = ArticleReview.find(params[:id])
     end
+
+    def get_users_subscriptions(article)
+      @subscriptions = Subscription.all
+      @subscriptions.each do |subscription|
+        if article.theme.id == subscription.theme.id
+          notify_users(subscription.user)
+        end
+      end
+    end
+
+    def notify_users(users)
+      UserMailer.users_notified(users).deliver
+    end
+
 end
