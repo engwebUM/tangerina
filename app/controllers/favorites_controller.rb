@@ -1,60 +1,30 @@
 class FavoritesController < ApplicationController
-  before_action :set_favorite, only: [:show, :edit, :update, :destroy]
+  before_action :set_favorite, only: :destroy
 
-  # GET /favorites
-  # GET /favorites.json
   def index
-    @favorites = Favorite.all
   end
 
-  # GET /favorites/1
-  # GET /favorites/1.json
-  def show
-  end
-
-  # GET /favorites/new
-  def new
-    #@favorite = Favorite.new
-  end
-
-  # GET /favorites/1/edit
-  def edit
-  end
-
-  # POST /favorites
-  # POST /favorites.json
   def create
+    puts "ola"
+    @favorite = Favorite.new
     @article = Article.find(params[:article_id])
-    @favorite = @article.favorites.create(favorite_params)
+    @favorite.user_id = current_user.id
+    @favorite.article_id = @article.id
+    #@article = Article.find(params[:article_id])
+    #@user = User.find(params[:user_id])
+  #@article.favorites.user_id = current_users
+  #  @articles.favorite = Favorite.new
+  #  @article.favorites.user_id = current_user.id
+    #@favorite = @article.favorites.create(favorite_params)
+    if @favorite.save
 
-    respond_to do |format|
-      if @favorite.save
-        format.html { redirect_to :back, notice: 'Favorite was successfully created.' }
-        format.json { render :show, status: :created, location: @favorite }
-      else
-        format.html { render :new }
-        format.json { render json: @favorite.errors, status: :unprocessable_entity }
-      end
+      redirect_to :back, notice: 'Favorite was successfully created.'
+    else
+      redirect_to :back
     end
+
   end
 
-  # PATCH/PUT /favorites/1
-  # PATCH/PUT /favorites/1.json
-  def update
-    respond_to do |format|
-      if @favorite.update(favorite_params)
-        redirect_to :back
-        format.html { redirect_to :back, notice: 'Favorite was successfully updated.' }
-        format.json { render :show, status: :ok, location: @favorite }
-      else
-        format.html { render :edit }
-        format.json { render json: @favorite.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # DELETE /favorites/1
-  # DELETE /favorites/1.json
   def destroy
     @favorite.destroy
     respond_to do |format|
@@ -64,7 +34,6 @@ class FavoritesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
     def set_favorite
       @favorite = Favorite.find(params[:id])
     end

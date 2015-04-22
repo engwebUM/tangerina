@@ -9,7 +9,7 @@ class User < ActiveRecord::Base
 
   accepts_nested_attributes_for :articles
 
-  def self.find_version_author(version)
-    find(version.terminator)
+  def recommend?(article)
+    favorites.where(article_id: article).present?
   end
 end
