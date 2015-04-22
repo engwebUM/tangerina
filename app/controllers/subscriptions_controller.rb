@@ -1,16 +1,20 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
 
+
   # GET /subscriptions
   # GET /subscriptions.json
   def index
     @subscriptions = Subscription.all
     @themes = Theme.all
+    @articles = Article.subscribed(current_user.id)
+
   end
 
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
+    #@subscriptions = SubscriptionsSearch.new(Subscription.find(params[:id]))
   end
 
   # GET /subscriptions/new
@@ -64,6 +68,9 @@ class SubscriptionsController < ApplicationController
     end
   end
 
+  
+
+ 
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_subscription
@@ -74,4 +81,6 @@ class SubscriptionsController < ApplicationController
     def subscription_params
       params.require(:subscription).permit(:theme_id, :user_id,themes_attributes: [ :name ])
     end
+
+    
 end

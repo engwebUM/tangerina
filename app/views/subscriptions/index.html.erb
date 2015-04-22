@@ -1,29 +1,55 @@
 <p id="notice"><%= notice %></p>
 
-<h1>Listing Subscriptions</h1>
+<div class="subscriptions-page">
+  <h1>Listing Subscriptions</h1>
 
-<table>
-  <thead>
-    <tr>
-      <th>Theme</th>
-      <th>User</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @subscriptions.each do |subscription| %>
+  <table>
+    <thead>
       <tr>
-        <td><%= subscription.theme.name %></td>
-        <td><%= subscription.user.username %></td>
-        <td><%= link_to 'Show', subscription %></td>
-        <td><%= link_to 'Edit', edit_subscription_path(subscription) %></td>
-        <td><%= link_to 'Destroy', subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+        <th>Theme</th>
+        <th>User</th>
+        <th colspan="3"></th>
       </tr>
-    <% end %>
-  </tbody>
-</table>
+    </thead>
 
-<br>
+    <tbody>
+      <% @subscriptions.each do |subscription| %>
+        <tr>
+          <%if subscription.user.id == current_user.id %>
+            <td><%= subscription.theme.name %></td>
+            <td><%= subscription.user.username %></td>
+            <td><%= link_to 'Show', subscription %></td>
+            <td><%= link_to 'Edit', edit_subscription_path(subscription) %></td>
+            <td><%= link_to 'Destroy', subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
+          <%end%>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
 
-<%= link_to 'New Subscription', new_subscription_path %>
+  <br>
+
+  <%= link_to 'New Subscription', new_subscription_path %>
+</div>  
+
+<div class="body-subscriptions">
+
+
+  <p>&nbsp;</p>
+  <%= render :partial => @articles.reverse %>
+  <% if @articles.count==0 %>
+    <h1 class="no-articles">NO ARTICLES</h1>
+
+    <img class="emotion" src="/assets/emotion.png" >
+  <% end %>
+</div>
+
+</div>  
+
+
+
+
+
+
+
+

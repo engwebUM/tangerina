@@ -44,6 +44,9 @@ class ArticlesController < ApplicationController
     respond_to do |format|
       if @article_review.save
         format.html { redirect_to articles_url, notice: 'This article is new please Wait for review!' }
+      if @article.save
+        get_users_subscriptions(@article)
+        format.html { redirect_to @article}
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new }
@@ -92,6 +95,7 @@ class ArticlesController < ApplicationController
   end
 
   def set_search
+    @q=Article.search(params[:q])
   end
 
 
@@ -109,4 +113,19 @@ class ArticlesController < ApplicationController
     def article_review_params
       params.require(:article_review).permit(:article_id, :title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :status, :event)
     end
+
+    def get_users_subscriptions(article)
+      @subscriptions = Subscription.all
+      @subscriptions.each do |subscription|
+        if article.theme.id == subscription.theme.id
+          notify_users(subscription.user)
+        end
+      end
+    end
+
+    def notify_users(users)
+      UserMailer.users_notified(users).deliver
+    end
+
+
 end

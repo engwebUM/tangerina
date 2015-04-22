@@ -6,7 +6,8 @@ class User < ActiveRecord::Base
   has_many :comments
   has_many :favorites
   belongs_to :theme
-
+  #belongs_to :theme
+  has_many :subscriptions
   accepts_nested_attributes_for :articles
 
   def recommend?(article)

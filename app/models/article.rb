@@ -25,6 +25,8 @@ class Article < ActiveRecord::Base
   #scope :versions_update, -> { PaperTrail::Version.where(event: 'update') }
   scope :accept, -> {where(status: 'accept')}
   #scope :order, -> {order(updated_at: :desc)}
-
+  
   scope :favorite_user, lambda { |id| favorites.where(user_id: id) }
+  has_paper_trail
+  scope :subscribed, lambda { |id| joins(theme: {subscriptions: :user}).where(subscriptions: {user_id: id })}
 end
