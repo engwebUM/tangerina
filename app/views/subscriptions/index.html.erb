@@ -33,7 +33,23 @@
 </div>  
 
 <div class="body-subscriptions">
-  <% @themes_subscribed.each do |theme|%>
-    <h1><%= theme %><h1>
-  <%end%>    
+
+
+  <p>&nbsp;</p>
+  <%= render :partial => @articles.reverse %>
+  <% if @articles.count==0 %>
+    <h1 class="no-articles">NO ARTICLES</h1>
+
+    <img class="emotion" src="/assets/emotion.png" >
+  <% end %>
+</div>
+
 </div>  
+
+
+
+
+
+
+
+

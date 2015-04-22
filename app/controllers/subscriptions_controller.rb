@@ -1,12 +1,15 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
 
+
   # GET /subscriptions
   # GET /subscriptions.json
   def index
     @subscriptions = Subscription.all
     @themes = Theme.all
-    @themes_subscribed = themes_subscribed
+    @themes_subscribed = Subscription.select("theme_id").where(user_id:current_user)
+    @articles = Article.joins(:theme).where(:theme_id => @themes_subscribed)
+
   end
 
   # GET /subscriptions/1
