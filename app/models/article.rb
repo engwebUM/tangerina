@@ -16,4 +16,7 @@ class Article < ActiveRecord::Base
   validates_attachment_content_type :file, :content_type => [ 'application/pdf','text/plain']
 
   has_paper_trail
+
+  scope :subscribed, lambda { |id| joins(theme: {subscriptions: :user}).where(subscriptions: {user_id: id })}
+
 end

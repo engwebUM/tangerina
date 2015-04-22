@@ -3,7 +3,8 @@ class User < ActiveRecord::Base
 
   has_many :articles
   has_many :comments
-  belongs_to :theme
+  #belongs_to :theme
+  has_many :subscriptions
 
   accepts_nested_attributes_for :articles
 

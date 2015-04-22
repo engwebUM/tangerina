@@ -7,8 +7,7 @@ class SubscriptionsController < ApplicationController
   def index
     @subscriptions = Subscription.all
     @themes = Theme.all
-    @themes_subscribed = Subscription.select("theme_id").where(user_id:current_user)
-    @articles = Article.joins(:theme).where(:theme_id => @themes_subscribed)
+    @articles = Article.subscribed(current_user.id)
 
   end
 
