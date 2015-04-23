@@ -3,7 +3,10 @@ Rails.application.routes.draw do
   resources :subscriptions
 
   resources :articles do
-    resources :comments
+    #resources :comments
+    member do
+      get :create_review
+    end
   end
 
   resources :themes

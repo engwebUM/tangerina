@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150418134329) do
+ActiveRecord::Schema.define(version: 20150422203033) do
 
   create_table "article_reviews", force: :cascade do |t|
     t.integer  "article_id"
@@ -33,24 +33,22 @@ ActiveRecord::Schema.define(version: 20150418134329) do
   end
 
   create_table "articles", force: :cascade do |t|
-    t.string   "title"
-    t.text     "description"
-    t.integer  "theme_id"
-    t.text     "abstract"
-    t.integer  "user_id"
-    t.datetime "created_at",                            null: false
-    t.datetime "updated_at",                            null: false
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
-    t.string   "status",            default: "pending"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "article_review_id"
   end
 
   create_table "comments", force: :cascade do |t|
     t.integer  "article_id"
     t.integer  "user_id"
     t.text     "body"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "favorites", force: :cascade do |t|
+    t.integer  "article_id"
+    t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end

@@ -15,20 +15,21 @@ class ReviewsController < ApplicationController
   end
 
   def accept
-    @article_review.status = 'accept'
-    article_new(@article_review)
-    ArticleReview.removes(@article_review.article_id)
+    @article_review.update(status: 'accept')
+    new_article(@article_review)
+    #ArticleReview.removes(@article_review.article_id)
     redirect_to root_path
   end
 
   private
 
-    def article_new(article_review)
+    def new_article(article_review)
       article = Article.find(article_review.article_id) rescue nil
       if article.nil?
         article = Article.new
       end
-      passing_values(article, article_review)
+      article.article_review_id = article_review.id
+      #passing_values(article, article_review)
       article.save
     end
 

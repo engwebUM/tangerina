@@ -1,11 +1,11 @@
 class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_publish, only: [:show, :edit]
   before_action :require_login
   before_filter :set_search
   # GET /articles
   # GET /articles.json
   def index
-
     if params[:tag].present?
       @articles = Article.tagged_with(params[:tag])
     elsif params[:q].present?
@@ -33,14 +33,9 @@ class ArticlesController < ApplicationController
     @themes = Theme.all
   end
 
+  def create_review
+    values_article_review
 
-  # POST /articles
-  # POST /articles.json
-  def create
-    @article_review = ArticleReview.new(article_review_params)
-    @article_review.event = 'create'
-    @article_review.status = 'pending'
-    @article_review.user_id = current_user.id
     respond_to do |format|
       if @article_review.save
         format.html { redirect_to articles_url, notice: 'This article is new please Wait for review!' }
@@ -52,25 +47,26 @@ class ArticlesController < ApplicationController
     end
   end
 
+
   # PATCH/PUT /articles/1
   # PATCH/PUT /articles/1.json
-  def update
-    ArticleReview.removes(params[:id])
-    @article_review = ArticleReview.new(article_params)
-    @article_review.article_id = params[:id]
-    @article_review.event = 'update'
-    @article_review.status = 'pending'
-    @article_review.user_id = current_user.id
-    respond_to do |format|
-      if @article_review.save
-        format.html { redirect_to articles_url, notice: 'Article was successfully updated.' }
-        format.json { render :show, status: :ok, location: @article_view }
-      else
-        format.html { render :edit }
-        format.json { render json: @article_view.errors, status: :unprocessable_entity }
-      end
-    end
-  end
+#  def update
+    #ArticleReview.removes(params[:id])
+    #@article_review = ArticleReview.new(article_review_params)
+    #@article_review.article_id = params[:id]
+    #@article_review.event = 'update'
+    #@article_review.status = 'pending'
+    #@article_review.user_id = current_user.id
+    #respond_to do |format|
+    #  if @article_review.save
+    #    format.html { redirect_to articles_url, notice: 'Article was successfully updated.' }
+    #    format.json { render :show, status: :ok, location: @article_view }
+    #  else
+    #    format.html { render :edit }
+    #    format.json { render json: @article_view.errors, status: :unprocessable_entity }
+    #  end
+  #  end
+  #end
 
   # DELETE /articles/1
   # DELETE /articles/1.json
@@ -97,10 +93,26 @@ class ArticlesController < ApplicationController
       @article = Article.find(params[:id])
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def article_params
-      params.require(:article).permit(:title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :status)
+    def set_publish
+      @publish = @article.article_review
     end
+
+    def values_article_review
+      @article_review = ArticleReview.new(article_review_params)
+      @article_review.status = 'pending'
+      @article_review.user_id = current_user.id
+
+      if !@article.nil?
+        @article_review.article_id = params[:id]
+        @article_review.event = 'update'
+      else
+        @article_review.event = 'create'
+      end
+    end
+    # Never trust parameters from the scary internet, only allow the white list through.
+    #def article_params
+    #  params.require(:article).permit(:title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :status)
+    #end
 
     def article_review_params
       params.require(:article_review).permit(:article_id, :title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :status, :event)
