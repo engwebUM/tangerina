@@ -20,6 +20,20 @@
                         | <i class="icon-file"></i>
                         <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                          1 Files
+                         | <i class="icon-star"></i>
+                         <%= "#{@article.favorites.count} recommendation".pluralize(@article.favorites.count) %>
+                           <% if !current_user.recommend?(@article.id)  %>
+                               <%= form_for([@article, Favorite.new], html: {  id: 'form_recommend'}) do |f| %>
+                                 <%= link_to "javascript:document.getElementById('form_recommend').submit();" do %>
+                                   <span class="glyphicon glyphicon-star-empty"></span>
+                                 <% end %>
+                               <% end %>
+                           <% else %>
+                               <%= link_to Favorite.find_by(article_id: @article.id, user_id: current_user), controller: :favorites, method: :delete do %>
+                                 <span class="glyphicon glyphicon-star"></span>
+                               <% end %>
+                           <% end %>
+
                       </p>
                       <p>
                         <%= raw @publish.tag_list.map { |t| link_to content_tag(:span, t, { class: "label label-info"}), tag_path(t) }.join(', ') %>
