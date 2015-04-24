@@ -1,6 +1,6 @@
 <div id="articles">
   <% if params[:q].present? %>
-	<%= search_form_for @q do |f| %>
+	<%= search_form_for @q, url: url_for(controller: :articles) do |f| %>
 	  <div class="box">
 	  	<div id="advanced-search-aligh">
 		    <ul>

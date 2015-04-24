@@ -11,7 +11,7 @@ class ApplicationController < ActionController::Base
   end
 
   def set_search
-    @q=Article.search(params[:q])
+    @q=ArticleReview.joins(:articles).search(params[:q])
   end
 
 

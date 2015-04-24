@@ -4,22 +4,17 @@ Rails.application.routes.draw do
 
   resources :articles do
     resources :comments
-    #get :create_review, to: 'articles#new'
-    #post :create_review, to: 'articles#create_review'
-  #  collection do
-  #    post :create_review
-  #    patch :create_review
-  #  end
     member do
       get :create_review
       patch :create_review
     end
     collection do
       post :create_review
+      match 'search' => 'articles#search', via: [:get, :post], as: :search
     end
-    #patch 'articles/:id' => 'articles#create_review'
+
   end
-  #patch 'articles/:id' => 'articles#create_view'
+
   resources :themes
 
   resources :passwords, controller: 'clearance/passwords', only: [:create, :new]

@@ -17,7 +17,7 @@
                   <li><%= link_to 'Advanced Search', '/advanced_search' %></li>
                   <li>
                     <div class="navbar-search-aligh">
-                      <%= search_form_for @q do |f| %>
+                      <%= search_form_for @q, url: url_for(controller: :articles, action: :index) do |f| %>
                         <%= f.text_field :title_or_description_cont_all %>
                         <%= f.submit "Search" %>
                       <% end %>

@@ -2,17 +2,17 @@ class ArticlesController < ApplicationController
   before_action :set_article, only: [:show, :create_review, :edit, :destroy]
   before_action :set_publish, only: [:show, :create_review, :edit]
   before_action :require_login
-  before_filter :set_search
+
   # GET /articles
   # GET /articles.json
   def index
     if params[:tag].present?
-      @articles = Article.tagged_with(params[:tag])
+      @articles = ArticleReview.joins(:articles).tagged_with(params[:tag])
     elsif params[:q].present?
-      @q = Article.search(params[:q])
+      @q = ArticleReview.joins(:articles).search(params[:q])
       @articles = @q.result
     else
-      @articles = Article.all
+      @articles = ArticleReview.joins(:articles).all
     end
 
   end
@@ -64,17 +64,10 @@ class ArticlesController < ApplicationController
     # (although for a static view you probably won't have any)
   end
 
-  def set_search
-  end
-
-  def set_search
-    @q=Article.search(params[:q])
-  end
-
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.find(params[:id]) rescue nil
+      @article = Article.find_by(article_review_id: params[:id]) rescue nil
     end
 
     def set_publish
