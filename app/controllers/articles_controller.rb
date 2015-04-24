@@ -83,9 +83,6 @@ class ArticlesController < ApplicationController
       @article_review.user_id = current_user.id
 
       if @publish.present?
-        #ArticleReview.where(article_id: @article.id).destroy_all
-        #@article_review = ArticleReview.find(@publish.id)
-        #@article_review.id = @publish.id
         @article_review.article_id = @article.id
         @article_review.event = 'update'
       else
