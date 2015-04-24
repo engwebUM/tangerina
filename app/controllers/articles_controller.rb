@@ -78,18 +78,16 @@ class ArticlesController < ApplicationController
     end
 
     def values_article_review
-      @article_review = ArticleReview.new(article_review_params)
-      @article_review.status = 'pending'
-      @article_review.user_id = current_user.id
-
       if @publish.present?
-        @article_review.id = @publish.id
+        @article_review = ArticleReview.find(@publish.id)
         @article_review.article_id = @article.id
         @article_review.event = 'update'
+        @article_review.status = 'pending'
       else
-
+        @article_review = ArticleReview.new(article_review_params)
         @article_review.event = 'create'
       end
+      @article_review.user_id = current_user.id
     end
 
     def article_review_params
