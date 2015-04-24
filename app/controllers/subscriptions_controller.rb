@@ -6,11 +6,14 @@ class SubscriptionsController < ApplicationController
   def index
     @subscriptions = Subscription.all
     @themes = Theme.all
+    @articles = Article.subscribed(current_user.id)
+
   end
 
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
+    #@subscriptions = SubscriptionsSearch.new(Subscription.find(params[:id]))
   end
 
   # GET /subscriptions/new
