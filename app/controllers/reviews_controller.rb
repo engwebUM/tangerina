@@ -15,6 +15,7 @@ class ReviewsController < ApplicationController
   end
 
   def accept
+    ArticleReview.where(article_id: @article_review.article_id, status: 'accept').destroy_all
     @article_review.update(status: 'accept')
     new_article(@article_review)
     redirect_to root_path
@@ -29,6 +30,9 @@ class ReviewsController < ApplicationController
       end
       article.article_review_id = article_review.id
       article.save
+      if Article.last.article_review.event =='create'
+        Article.last.article_review.update(article_id: Article.last.id)
+      end
     end
 
     def set_article_review
