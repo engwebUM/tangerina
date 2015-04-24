@@ -6,7 +6,7 @@ class SubscriptionsController < ApplicationController
   def index
     @subscriptions = Subscription.all
     @themes = Theme.all
-    @articles = Article.subscribed(current_user.id)
+    @articles = ArticleReview.subscribed(current_user.id)
 
   end
 

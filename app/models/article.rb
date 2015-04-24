@@ -16,5 +16,5 @@ class Article < ActiveRecord::Base
   #scope :versions_update, -> { PaperTrail::Version.where(event: 'update') }
   scope :accept, -> {where(status: 'accept')}
   #scope :order, -> {order(updated_at: :desc)}
-  scope :subscribed, lambda { |id| joins(theme: {subscriptions: :user}).where(subscriptions: {user_id: id })}
+  
 end
