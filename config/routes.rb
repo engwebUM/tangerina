@@ -3,12 +3,20 @@ Rails.application.routes.draw do
   resources :subscriptions
 
   resources :articles do
-    #resources :comments
+    resources :comments
+    #get :create_review, to: 'articles#new'
+    #post :create_review, to: 'articles#create_review'
+  #  collection do
+  #    post :create_review
+  #    patch :create_review
+  #  end
     member do
       get :create_review
+      patch :create_review
     end
+    patch 'articles/:id' => 'articles#create_review'
   end
-
+  #patch 'articles/:id' => 'articles#create_view'
   resources :themes
 
   resources :passwords, controller: 'clearance/passwords', only: [:create, :new]
@@ -36,7 +44,9 @@ Rails.application.routes.draw do
     member do
       get :reject
       get :accept
+
     end
+
   end
 
 

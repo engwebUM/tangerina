@@ -1,6 +1,6 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
-  before_action :set_publish, only: [:show, :edit]
+  before_action :set_article, only: [:show, :create_review, :edit, :destroy]
+  before_action :set_publish, only: [:show, :create_review, :edit]
   before_action :require_login
   before_filter :set_search
   # GET /articles
@@ -14,6 +14,7 @@ class ArticlesController < ApplicationController
     else
       @articles = Article.all
     end
+
   end
 
   # GET /articles/1
@@ -102,13 +103,16 @@ class ArticlesController < ApplicationController
       @article_review.status = 'pending'
       @article_review.user_id = current_user.id
 
-      if !@article.nil?
-        @article_review.article_id = params[:id]
+      if @publish.present?
+
+        @article_review.article_id = @article.id
         @article_review.event = 'update'
       else
+
         @article_review.event = 'create'
       end
     end
+
     # Never trust parameters from the scary internet, only allow the white list through.
     #def article_params
     #  params.require(:article).permit(:title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :status)
