@@ -7,6 +7,15 @@ Rails.application.routes.draw do
   resources :articles do
     resources :comments
     resources :favorites
+    member do
+      get :create_review
+      patch :create_review
+    end
+    collection do
+      post :create_review
+      match 'search' => 'articles#search', via: [:get, :post], as: :search
+    end
+
   end
 
   resources :themes

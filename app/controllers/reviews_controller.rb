@@ -18,35 +18,24 @@ class ReviewsController < ApplicationController
     @article_review.status = 'accept'
     article_new(@article_review)
     get_users_subscriptions(Article.find(@article_review.article_id))
-    ArticleReview.removes(@article_review.article_id)
+    ArticleReview.where(article_id: @article_review.article_id, status: 'accept').destroy_all
+    @article_review.update(status: 'accept')
+    new_article(@article_review)
     redirect_to root_path
   end
 
   private
 
-    def article_new(article_review)
+    def new_article(article_review)
       article = Article.find(article_review.article_id) rescue nil
       if article.nil?
         article = Article.new
       end
-      passing_values(article, article_review)
+      article.article_review_id = article_review.id
       article.save
-    end
-
-    def passing_values(article, article_review)
-      article.title = article_review.title
-      article.description = article_review.description
-      article.theme_id = article_review.theme_id
-      article.abstract = article_review.abstract
-      article.user_id = article_review.user_id
-      article.status = article_review.status
-      article.created_at = article_review.created_at
-      article.updated_at = article_review.updated_at
-      article.tag_list = article_review.tag_list
-      article.file_file_name = article_review.file_file_name
-      article.file_content_type = article_review.file_content_type
-      article.file_file_size = article_review.file_file_size
-      article.file_updated_at = article_review.file_updated_at
+      if Article.last.article_review.event =='create'
+        Article.last.article_review.update(article_id: Article.last.id)
+      end
     end
 
     def set_article_review
