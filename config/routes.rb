@@ -14,7 +14,10 @@ Rails.application.routes.draw do
       get :create_review
       patch :create_review
     end
-    patch 'articles/:id' => 'articles#create_review'
+    collection do
+      post :create_review
+    end
+    #patch 'articles/:id' => 'articles#create_review'
   end
   #patch 'articles/:id' => 'articles#create_view'
   resources :themes

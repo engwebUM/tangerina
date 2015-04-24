@@ -48,27 +48,6 @@ class ArticlesController < ApplicationController
     end
   end
 
-
-  # PATCH/PUT /articles/1
-  # PATCH/PUT /articles/1.json
-#  def update
-    #ArticleReview.removes(params[:id])
-    #@article_review = ArticleReview.new(article_review_params)
-    #@article_review.article_id = params[:id]
-    #@article_review.event = 'update'
-    #@article_review.status = 'pending'
-    #@article_review.user_id = current_user.id
-    #respond_to do |format|
-    #  if @article_review.save
-    #    format.html { redirect_to articles_url, notice: 'Article was successfully updated.' }
-    #    format.json { render :show, status: :ok, location: @article_view }
-    #  else
-    #    format.html { render :edit }
-    #    format.json { render json: @article_view.errors, status: :unprocessable_entity }
-    #  end
-  #  end
-  #end
-
   # DELETE /articles/1
   # DELETE /articles/1.json
   def destroy
@@ -91,11 +70,11 @@ class ArticlesController < ApplicationController
   private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.find(params[:id])
+      @article = Article.find(params[:id]) rescue nil
     end
 
     def set_publish
-      @publish = @article.article_review
+      @publish = @article.article_review rescue nil
     end
 
     def values_article_review
@@ -104,7 +83,7 @@ class ArticlesController < ApplicationController
       @article_review.user_id = current_user.id
 
       if @publish.present?
-
+        @article_review.id = @publish.id
         @article_review.article_id = @article.id
         @article_review.event = 'update'
       else
@@ -112,11 +91,6 @@ class ArticlesController < ApplicationController
         @article_review.event = 'create'
       end
     end
-
-    # Never trust parameters from the scary internet, only allow the white list through.
-    #def article_params
-    #  params.require(:article).permit(:title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :status)
-    #end
 
     def article_review_params
       params.require(:article_review).permit(:article_id, :title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :status, :event)
