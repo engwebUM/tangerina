@@ -1,6 +1,28 @@
-<p id="notice"><%= notice %></p>
+<!--p id="notice"><%= notice %></p-->
 
-<div class="subscriptions-page">
+<div  class='row'>
+  <div class='box'>
+    <div class='col-lg-12 header'>
+      <hr class='hr-post'>
+      <h2 class='intro-text text-center'>Subscriptions</h2>
+      <hr class='hr-post'>
+      <div class='span8'>
+        <p class='link_recommend'>
+            <% @subscriptions.each do |subscription| %>
+              <p><%= subscription.theme.name %>
+              <%= link_to 'Destroy', subscription, method: :delete %></p>
+            <% end %>
+            <%= link_to 'New', new_subscription_path, {class: "btn btn-default btn-lg"}  %>
+        </p>
+      </div>
+      <hr class='hr-comments'>
+      <p>
+      </p>
+    </div>
+  </div>
+</div>
+
+<!--div class="subscriptions-page">
   <h1>Listing Subscriptions</h1>
 
   <table>
@@ -30,18 +52,13 @@
   <br>
 
   <%= link_to 'New Subscription', new_subscription_path %>
-</div>
+</div-->
 
-<div class="body-subscriptions">
 
 
   <p>&nbsp;</p>
   <%= render partial: 'articles/article', object: @articles %>
   <% if @articles.count==0 %>
-    <h1 class="no-articles">NO ARTICLES</h1>
-
-    <img class="emotion" src="/assets/emotion.png" >
+    <h1 class="text-center">NO ARTICLES</h1>
+    <p class='text-center'><img class="" src="/assets/emotion.png" ></p>
   <% end %>
-</div>
-
-</div>

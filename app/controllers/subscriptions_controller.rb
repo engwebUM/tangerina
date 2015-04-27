@@ -6,7 +6,7 @@ class SubscriptionsController < ApplicationController
   def index
     @subscriptions = Subscription.all
     @themes = Theme.all
-    @articles = ArticleReview.subscribed(current_user.id)
+    @articles = ArticleReview.joins(:articles).subscribed(current_user.id)
 
   end
 
@@ -14,6 +14,7 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions/1.json
   def show
     #@subscriptions = SubscriptionsSearch.new(Subscription.find(params[:id]))
+    #redirect_to :back
   end
 
   # GET /subscriptions/new
@@ -34,7 +35,7 @@ class SubscriptionsController < ApplicationController
 
     respond_to do |format|
       if @subscription.save
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully created.' }
+        format.html { redirect_to subscriptions_url, notice: 'Subscription was successfully created.' }
         format.json { render :show, status: :created, location: @subscription }
       else
         format.html { render :new }
@@ -48,7 +49,7 @@ class SubscriptionsController < ApplicationController
   def update
     respond_to do |format|
       if @subscription.update(subscription_params)
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully updated.' }
+        format.html { redirect_to subscriptions_url, notice: 'Subscription was successfully updated.' }
         format.json { render :show, status: :ok, location: @subscription }
       else
         format.html { render :edit }
