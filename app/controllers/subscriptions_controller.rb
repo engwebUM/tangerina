@@ -77,6 +77,6 @@ class SubscriptionsController < ApplicationController
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def subscription_params
-      params.require(:subscription).permit(:theme_id, :user_id,themes_attributes: [ :name ])
+      params.require(:subscription).permit(:theme_id, :user_id, :subject, :notify)
     end
 end

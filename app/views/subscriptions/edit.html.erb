@@ -1,6 +1,12 @@
-<h1>Editing Subscription</h1>
-
-<%= render 'form' %>
-
-<%= link_to 'Show', @subscription %> |
-<%= link_to 'Back', subscriptions_path %>
+<div class="row">
+    <div class="box">
+        <div class="col-lg-12">
+            <hr class="hr-post">
+            <h2 class="intro-text text-center">Editing Subscription</h2>
+            <hr class="hr-post">
+            <%= form_for(@subscription) do |f| %>
+              <%= render partial: 'form', locals: { f: f } %>
+            <% end %>
+        </div>
+    </div>
+</div>
