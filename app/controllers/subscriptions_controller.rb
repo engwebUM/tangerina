@@ -38,8 +38,9 @@ class SubscriptionsController < ApplicationController
         format.html { redirect_to subscriptions_url, notice: 'Subscription was successfully created.' }
         format.json { render :show, status: :created, location: @subscription }
       else
+        new
         format.html { render :new }
-        format.json { render json: @subscription.errors, status: :unprocessable_entity }
+        format.json { render json: @subscription.errors }
       end
     end
   end
