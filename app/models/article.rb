@@ -13,7 +13,7 @@ class Article < ActiveRecord::Base
 
   validates_presence_of :theme_id
 
-  validates_attachment_content_type :file, :content_type => [ 'application/pdf','text/plain']
+  validates_attachment_content_type :file, content_type: [ 'application/pdf','text/plain']
 
   has_paper_trail
 end
