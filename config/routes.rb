@@ -1,12 +1,24 @@
 Rails.application.routes.draw do
 
+  resources :favorites
+
   resources :subscriptions
 
   resources :articles do
     resources :comments
+    resources :favorites
+    member do
+      get :create_review
+      patch :create_review
+    end
+    collection do
+      post :create_review
+      match 'search' => 'articles#search', via: [:get, :post], as: :search
+    end
+
   end
 
-resources :themes
+  resources :themes
 
   resources :passwords, controller: 'clearance/passwords', only: [:create, :new]
   resource :session, controller: 'clearance/sessions', only: [:create]
@@ -32,6 +44,7 @@ resources :themes
   resources :reviews do
     member do
       get :reject
+      get :accept
     end
   end
 
