@@ -21,7 +21,7 @@ class ReviewsController < ApplicationController
     ArticleReview.where(article_id: @article_review.article_id, status: 'accept').destroy_all
     @article_review.update(status: 'accept')
     new_article(@article_review)
-    #get_users_subscriptions(Article.find(@article_review.article_id))
+    get_users_subscriptions(Article.find(@article_review.article_id))
     redirect_to root_path
   end
 
@@ -46,7 +46,7 @@ class ReviewsController < ApplicationController
     def get_users_subscriptions(article)
       @subscriptions = Subscription.all
       @subscriptions.each do |subscription|
-        if article.theme.id == subscription.theme.id
+        if article.theme_id == subscription.theme_id
           notify_users(subscription.user)
         end
       end

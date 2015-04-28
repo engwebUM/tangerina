@@ -4,10 +4,8 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions
   # GET /subscriptions.json
   def index
-    @subscriptions = Subscription.all
-    @themes = Theme.all
+    @subscriptions = Subscription.where(user_id: current_user.id)
     @articles = ArticleReview.joins(:articles).subscribed(current_user.id)
-
   end
 
   # GET /subscriptions/1
