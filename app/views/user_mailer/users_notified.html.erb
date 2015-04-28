@@ -1,1 +1,10 @@
-teste
+<p>Dear <%= @user.username %>,</p>
+
+<% if @subtxt == 'New' %>
+  <p>New article, <%= link_to @article.title, controller: :articles, action: :show, id: @article.id  %> has been published in accordance with your subscription.</p>
+<% elsif @subtxt == 'Update' %>
+  <p> An article, <%= link_to @article.title, controller: :articles, action: :show, id: @article.id  %> according to your subscription has been updated!</p>
+<% end %>
+
+<p>Thanks!</p>
+<img  src="http://s29.postimg.org/4ikij7uir/tangerina.png" />
