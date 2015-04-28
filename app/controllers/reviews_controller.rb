@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :set_article_review, only: [:show, :accept, :reject]
   before_action :require_login
+
   def index
     @creates = ArticleReview.creates
     @updates = ArticleReview.updates
@@ -22,7 +23,7 @@ class ReviewsController < ApplicationController
   end
 
   private
-  
+
   def new_article(article_review)
     article = Article.find(article_review.article_id) rescue nil
     if article.nil?
@@ -30,7 +31,7 @@ class ReviewsController < ApplicationController
     end
     article.article_review_id = article_review.id
     article.save
-    if Article.last.article_review.event =='create'
+    if Article.last.article_review.event == 'create'
       Article.last.article_review.update(article_id: Article.last.id)
     end
   end

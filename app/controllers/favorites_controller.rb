@@ -5,7 +5,6 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    puts "ola"
     @favorite = Favorite.new
     @article = Article.find(params[:article_id])
     @favorite.user_id = current_user.id
@@ -26,7 +25,7 @@ class FavoritesController < ApplicationController
   end
 
   private
-  
+
   def set_favorite
     @favorite = Favorite.find(params[:id])
   end

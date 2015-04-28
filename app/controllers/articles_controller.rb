@@ -12,7 +12,6 @@ class ArticlesController < ApplicationController
     else
       @articles = ArticleReview.joins(:articles).all
     end
-
   end
 
   def show
@@ -58,7 +57,7 @@ class ArticlesController < ApplicationController
   end
 
   private
-  
+
   def set_article
     @article = Article.find_by(article_review_id: params[:id]) rescue nil
   end
@@ -78,13 +77,9 @@ class ArticlesController < ApplicationController
     else
       @article_review.event = 'create'
     end
-
   end
 
   def article_review_params
     params.require(:article_review).permit(:article_id, :title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :status, :event)
   end
-
-
-
 end

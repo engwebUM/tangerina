@@ -17,12 +17,11 @@ class CommentsController < ApplicationController
   def create
     @article = Article.find(params[:article_id])
     @comment = @article.comments.create(comment_params)
-
     respond_to do |format|
       if @comment.save
         format.html { redirect_to :back, notice: 'Comment was successfully created.' }
         format.json { render :show, status: :created, location: @comment }
-        format.js { render inline: "location.reload();"}
+        format.js { render inline: 'location.reload();' }
       else
         format.html { render :new }
         format.json { render json: @comment.errors, status: :unprocessable_entity }
@@ -51,7 +50,7 @@ class CommentsController < ApplicationController
   end
 
   private
-  
+
   def set_comment
     @comment = Comment.find(params[:id])
   end

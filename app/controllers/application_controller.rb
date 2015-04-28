@@ -1,7 +1,7 @@
 class ApplicationController < ActionController::Base
   include Clearance::Controller
 
- 	before_filter :set_search
+  before_filter :set_search
   protect_from_forgery with: :exception
 
   def permit_params
@@ -9,6 +9,6 @@ class ApplicationController < ActionController::Base
   end
 
   def set_search
-    @q=ArticleReview.joins(:articles).search(params[:q])
+    @q = ArticleReview.joins(:articles).search(params[:q])
   end
 end

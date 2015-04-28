@@ -12,7 +12,7 @@ class ThemesController < ApplicationController
       if @theme.save
         format.html { redirect_to action: :index }
         format.json { render action: :index, location: @themes }
-        format.js { render inline: "location.reload();"}
+        format.js { render inline: 'location.reload();' }
       else
         format.html { render :new }
         format.json { render json: @theme.errors, status: :unprocessable_entity }
@@ -29,7 +29,7 @@ class ThemesController < ApplicationController
   end
 
   private
-  
+
   def set_theme
     @theme = Theme.find(params[:id])
   end

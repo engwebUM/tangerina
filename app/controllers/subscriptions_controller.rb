@@ -5,7 +5,6 @@ class SubscriptionsController < ApplicationController
     @subscriptions = Subscription.all
     @themes = Theme.all
     @articles = ArticleReview.subscribed(current_user.id)
-
   end
 
   def show
@@ -54,12 +53,12 @@ class SubscriptionsController < ApplicationController
   end
 
   private
-  
+
   def set_subscription
     @subscription = Subscription.find(params[:id])
   end
 
   def subscription_params
-    params.require(:subscription).permit(:theme_id, :user_id,themes_attributes: [ :name ])
+    params.require(:subscription).permit(:theme_id, :user_id)
   end
 end
