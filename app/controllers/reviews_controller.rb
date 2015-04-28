@@ -15,13 +15,10 @@ class ReviewsController < ApplicationController
   end
 
   def accept
-    #@article_review.status = 'accept'
-    #article_new(@article_review)
-
     ArticleReview.where(article_id: @article_review.article_id, status: 'accept').destroy_all
     @article_review.update(status: 'accept')
     new_article(@article_review)
-    get_users_subscriptions(Article.find(@article_review.article_id))
+    get_users_subscriptions(@article_review)
     redirect_to root_path
   end
 
@@ -52,8 +49,8 @@ class ReviewsController < ApplicationController
       end
     end
 
-    def notify_users(users)
-      UserMailer.users_notified(users).deliver
+    def notify_users(user)
+      UserMailer.users_notified(user).deliver
     end
 
 end
