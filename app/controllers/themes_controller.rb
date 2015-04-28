@@ -1,19 +1,13 @@
 class ThemesController < ApplicationController
   before_action :require_login, :set_theme, only: [:destroy]
 
-  # GET /themes
-  # GET /themes.json
   def index
     @themes = Theme.all
     @theme = Theme.new
   end
 
-
-  # POST /themes
-  # POST /themes.json
   def create
     @theme = Theme.new(theme_params)
-
     respond_to do |format|
       if @theme.save
         format.html { redirect_to action: :index }
@@ -26,9 +20,6 @@ class ThemesController < ApplicationController
     end
   end
 
-
-  # DELETE /themes/1
-  # DELETE /themes/1.json
   def destroy
     @theme.destroy
     respond_to do |format|
@@ -38,13 +29,12 @@ class ThemesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_theme
-      @theme = Theme.find(params[:id])
-    end
+  
+  def set_theme
+    @theme = Theme.find(params[:id])
+  end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def theme_params
-      params.require(:theme).permit(:name)
-    end
+  def theme_params
+    params.require(:theme).permit(:name)
+  end
 end
