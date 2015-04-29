@@ -8,6 +8,7 @@ AllCops:
     - 'script/**/*'
     - 'bin/**/*'
     - 'vendor/**/*'
+    - 'spec/**/*'
  
 Metrics/LineLength:
   Enabled: false
@@ -31,9 +32,6 @@ Style/PredicateName:
   NamePrefixBlacklist:
     - is_
     - have_
- 
-Style/RegexpLiteral:
-  MaxSlashes: 0
  
 Style/NumericLiterals:
   Enabled: false

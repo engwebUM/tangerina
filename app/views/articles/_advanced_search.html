@@ -7,8 +7,12 @@
 		  <%= f.text_field :title_or_description_cont_all %>
 		</li>
 		<li>
-		  <%= f.label :theme_id_eq, "Select the category:" %>
-		  <%= f.select :theme_id_eq, content_tag(:option,'select one...',:value=>"")+options_from_collection_for_select(Theme.all, "id", "name") %>
+          
+          <% @themes.each do |theme| %>
+            <%= check_box_tag 'q[theme_id_in][]', theme.id %> 
+            <%= theme.name %>
+          <% end %>
+          
 		</li>
 		<li>
 		  <%= f.submit "Search" %>

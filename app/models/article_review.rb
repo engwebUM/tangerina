@@ -14,5 +14,6 @@ class ArticleReview < ActiveRecord::Base
   scope :creates, -> { where(event: 'create', status: 'pending') }
   scope :updates, -> { where(event: 'update', status: 'pending') }
   scope :removes, ->(id) { where(article_id: id).destroy_all }
-  scope :subscribed, ->(id) { joins(theme: { subscriptions: :user }).where(subscriptions: { user_id: id }).joins(:articles) }
+  scope :subscribed, ->(id) { includes(theme: { subscriptions: :user }).where(users: { id: id }).joins(:articles) }
+
 end

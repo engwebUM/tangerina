@@ -2,9 +2,8 @@ class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
 
   def index
-    @subscriptions = Subscription.all
-    @themes = Theme.all
-    @articles = ArticleReview.subscribed(current_user.id)
+    @subscriptions = Subscription.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 2)
+    @articles = ArticleReview.joins(:articles).subscribed(current_user.id).paginate(:page => params[:page], :per_page => 2)
   end
 
   def show
@@ -23,11 +22,12 @@ class SubscriptionsController < ApplicationController
     @subscription = Subscription.new(subscription_params)
     respond_to do |format|
       if @subscription.save
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully created.' }
+        format.html { redirect_to subscriptions_url, notice: 'Subscription was successfully created.' }
         format.json { render :show, status: :created, location: @subscription }
       else
+        new
         format.html { render :new }
-        format.json { render json: @subscription.errors, status: :unprocessable_entity }
+        format.json { render json: @subscription.errors }
       end
     end
   end
@@ -35,7 +35,7 @@ class SubscriptionsController < ApplicationController
   def update
     respond_to do |format|
       if @subscription.update(subscription_params)
-        format.html { redirect_to @subscription, notice: 'Subscription was successfully updated.' }
+        format.html { redirect_to subscriptions_url, notice: 'Subscription was successfully updated.' }
         format.json { render :show, status: :ok, location: @subscription }
       else
         format.html { render :edit }
@@ -59,6 +59,6 @@ class SubscriptionsController < ApplicationController
   end
 
   def subscription_params
-    params.require(:subscription).permit(:theme_id, :user_id)
+    params.require(:subscription).permit(:theme_id, :user_id, :subject, :notify)
   end
 end

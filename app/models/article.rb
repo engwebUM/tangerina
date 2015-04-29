@@ -4,6 +4,6 @@ class Article < ActiveRecord::Base
   has_many :favorites, dependent: :destroy
 
   scope :accept, -> { where(status: 'accept') }
-  # scope :order, -> {order(updated_at: :desc)}
-  scope :favorite_user, ->(id) { favorites.where(user_id: id) }
+  scope :favorite_user, -> (id) { favorites.where(user_id: id) }
+
 end
