@@ -56,6 +56,7 @@ gem 'sunspot_solr'
 gem 'paper_trail'
 
 gem 'ransack'
+gem 'will_paginate', '~> 3.0.6'
 
 
 # Use ActiveModel has_secure_password
