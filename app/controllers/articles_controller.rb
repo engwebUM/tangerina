@@ -60,9 +60,8 @@ class ArticlesController < ApplicationController
 
   def set_article
     @article = Article.find_by(article_review_id: params[:id])
-    rescue
-      nil
-    end
+      rescue
+        nil
   end
 
   def set_publish
@@ -73,7 +72,6 @@ class ArticlesController < ApplicationController
     @article_review = ArticleReview.new(article_review_params)
     @article_review.status = 'pending'
     @article_review.user_id = current_user.id
-
     if @publish.present?
       @article_review.article_id = @article.id
       @article_review.event = 'update'

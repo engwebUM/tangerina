@@ -19,12 +19,15 @@ class CommentsController < ApplicationController
     @comment = @article.comments.create(comment_params)
     respond_to do |format|
       if @comment.save
-        format.html { redirect_to :back, notice: 'Comment was successfully created.' }
-        format.json { render :show, status: :created, location: @comment }
-        format.js { render inline: 'location.reload();' }
+        redirect_to :back
+        # respond_with :show, location: @comment
+        # format.html { redirect_to :back, notice: 'Comment was successfully created.' }
+        # format.json { render :show, status: :created, location: @comment }
+        # format.js { render inline: 'location.reload();' }
       else
-        format.html { render :new }
-        format.json { render json: @comment.errors, status: :unprocessable_entity }
+        # format.html { render :new }
+        # format.json { render json: @comment.errors, status: :unprocessable_entity }
+        redirect_to :back
       end
     end
   end
