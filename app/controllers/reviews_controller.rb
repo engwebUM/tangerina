@@ -25,19 +25,21 @@ class ReviewsController < ApplicationController
 
   private
 
-  def new_article(article_review)
-    article = Article.find(article_review.article_id)
+  def rescue_article(article_review)
+    Article.find(article_review.article_id)
     rescue
       nil
-    end
-    
+  end
+
+  def new_article(article_review)
+    article = rescue_article(article_review)
+
     if article.nil?
       article = Article.new
     end
     article.article_review_id = article_review.id
     article.save
-    if Article.last.article_review.event == 'create'
-      Article.last.article_review.update(article_id: Article.last.id)
+    Article.last.article_review.update(article_id: Article.last.id) if Article.last.article_review.event == 'create'
     end
   end
 
