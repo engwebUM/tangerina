@@ -27,7 +27,7 @@ class SubscriptionsController < ApplicationController
       else
         new
         format.html { render :new }
-        format.json { render json: @subscription.errors }
+        # format.json { render json: @subscription.errors }
       end
     end
   end
