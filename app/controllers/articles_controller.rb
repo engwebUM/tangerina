@@ -10,11 +10,11 @@ class ArticlesController < ApplicationController
 
   def list_articles
     if params[:tag].present?
-      return ArticleReview.joins(:articles).tag_page
+      return articles_publish.tag_page
     elsif params[:q].present?
-      return ArticleReview.joins(:articles).search_page
+      return articles_publish.search_page
     else
-      return ArticleReview.joins(:articles).all.paginate(page: params[:page], per_page: 2)
+      return articles_publish.all.paginated
     end
   end
 
@@ -61,6 +61,10 @@ class ArticlesController < ApplicationController
   end
 
   private
+
+  def articles_publish
+    ArticleReview.joins(:articles)
+  end
 
   def set_article
     @article = Article.find_by(article_review_id: params[:id])
