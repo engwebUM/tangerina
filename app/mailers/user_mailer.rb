@@ -1,12 +1,12 @@
 class UserMailer < ActionMailer::Base
-  default from: "tangerina.ess@gmail.com"
+  default from: 'tangerina.ess@gmail.com'
 
   def users_notified(user, article)
     @user = user
     @article = article
-    @subtxt = ""
+    @subtxt = ''
 
-    if (article.event =='create')
+    if (article.event == 'create')
       @subtxt = 'New'
     else
       @subtxt = 'Update'

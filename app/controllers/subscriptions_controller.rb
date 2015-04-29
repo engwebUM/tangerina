@@ -4,15 +4,15 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions
   # GET /subscriptions.json
   def index
-    @subscriptions = Subscription.where(user_id: current_user.id)
-    @articles = ArticleReview.joins(:articles).subscribed(current_user.id)
+    @subscriptions = Subscription.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 2)
+    @articles = ArticleReview.joins(:articles).subscribed(current_user.id).paginate(:page => params[:page], :per_page => 2)
   end
 
   # GET /subscriptions/1
   # GET /subscriptions/1.json
   def show
-    #@subscriptions = SubscriptionsSearch.new(Subscription.find(params[:id]))
-    #redirect_to :back
+    # @subscriptions = SubscriptionsSearch.new(Subscription.find(params[:id]))
+    # redirect_to :back
   end
 
   # GET /subscriptions/new
@@ -68,13 +68,14 @@ class SubscriptionsController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_subscription
-      @subscription = Subscription.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def subscription_params
-      params.require(:subscription).permit(:theme_id, :user_id, :subject, :notify)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_subscription
+    @subscription = Subscription.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def subscription_params
+    params.require(:subscription).permit(:theme_id, :user_id, :subject, :notify)
+  end
 end

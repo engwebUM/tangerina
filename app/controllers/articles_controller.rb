@@ -7,14 +7,14 @@ class ArticlesController < ApplicationController
   # GET /articles.json
   def index
     if params[:tag].present?
-      @articles = ArticleReview.joins(:articles).tagged_with(params[:tag])
+      @articles = ArticleReview.joins(:articles).tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 2) if params[:tag]
     elsif params[:q].present?
       @q = ArticleReview.joins(:articles).search(params[:q])
-      @articles = @q.result
+      @articles = @q.result.paginate(:page => params[:page], :per_page => 2) if params[:q]
     else
-      @articles = ArticleReview.joins(:articles).all
+      @articles = ArticleReview.joins(:articles).all.paginate(:page => params[:page], :per_page => 2)
     end
-
+    @themes = Theme.all
   end
 
   # GET /articles/1
