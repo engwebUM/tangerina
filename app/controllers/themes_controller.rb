@@ -8,7 +8,6 @@ class ThemesController < ApplicationController
     @theme = Theme.new
   end
 
-
   # POST /themes
   # POST /themes.json
   def create
@@ -18,14 +17,13 @@ class ThemesController < ApplicationController
       if @theme.save
         format.html { redirect_to action: :index }
         format.json { render action: :index, location: @themes }
-        format.js { render inline: "location.reload();"}
+        format.js { render inline: 'location.reload( );' }
       else
         format.html { render :new }
         format.json { render json: @theme.errors, status: :unprocessable_entity }
       end
     end
   end
-
 
   # DELETE /themes/1
   # DELETE /themes/1.json
@@ -38,13 +36,14 @@ class ThemesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_theme
-      @theme = Theme.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def theme_params
-      params.require(:theme).permit(:name)
-    end
+  # Use callbacks to share common setup or constraints between actions.
+  def set_theme
+    @theme = Theme.find(params[:id])
+  end
+
+  # Never trust parameters from the scary internet, only allow the white list through.
+  def theme_params
+    params.require(:theme).permit(:name)
+  end
 end
