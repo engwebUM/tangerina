@@ -15,13 +15,10 @@ class ReviewsController < ApplicationController
   end
 
   def accept
-    #@article_review.status = 'accept'
-    #article_new(@article_review)
-
     ArticleReview.where(article_id: @article_review.article_id, status: 'accept').destroy_all
     @article_review.update(status: 'accept')
     new_article(@article_review)
-    #get_users_subscriptions(Article.find(@article_review.article_id))
+    get_users_subscriptions(@article_review)
     redirect_to root_path
   end
 
@@ -39,21 +36,14 @@ class ReviewsController < ApplicationController
       end
     end
 
-    def set_article_review
-      @article_review = ArticleReview.find(params[:id])
-    end
-
     def get_users_subscriptions(article)
-      @subscriptions = Subscription.all
+      @subscriptions = Subscription.where(theme_id: article.theme_id, notify: true)
       @subscriptions.each do |subscription|
-        if article.theme.id == subscription.theme.id
-          notify_users(subscription.user)
-        end
+          UserMailer.users_notified(subscription.user, article).deliver
       end
     end
 
-    def notify_users(users)
-      UserMailer.users_notified(users).deliver
+    def set_article_review
+      @article_review = ArticleReview.find(params[:id])
     end
-
 end

@@ -7,8 +7,6 @@ class Article < ActiveRecord::Base
   has_many :favorites, dependent: :destroy
 
 
-  scope :reviews_creates, -> { joins(:versions).where({versions: {event: 'create'}, articles: {status: 'pending'}}) }
-  scope :reviews_updates, -> { joins(:versions).where({versions: {event: 'update'}, articles: {status: 'pending'}}) }
 
   #scope :articles_accepts, -> { joins(:versions).where( {versions: {event: 'update'}, articles: {status: 'accept'}}) }
   #scope :versions_update, -> { PaperTrail::Version.where(event: 'update') }

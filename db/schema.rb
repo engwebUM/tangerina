@@ -11,7 +11,8 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150422203033) do
+ActiveRecord::Schema.define(version: 20150427215910) do
+
   create_table "article_reviews", force: :cascade do |t|
     t.integer  "article_id"
     t.string   "title"
@@ -57,6 +58,8 @@ ActiveRecord::Schema.define(version: 20150422203033) do
     t.integer  "user_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.string   "subject"
+    t.boolean  "notify"
   end
 
   add_index "subscriptions", ["theme_id"], name: "index_subscriptions_on_theme_id"
