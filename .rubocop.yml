@@ -8,6 +8,7 @@ AllCops:
     - 'script/**/*'
     - 'bin/**/*'
     - 'vendor/**/*'
+    - 'spec/**/*'
  
 Metrics/LineLength:
   Enabled: false
