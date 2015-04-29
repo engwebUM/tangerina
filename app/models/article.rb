@@ -5,5 +5,5 @@ class Article < ActiveRecord::Base
 
   scope :accept, -> { where(status: 'accept') }
   # scope :order, -> {order(updated_at: :desc)}
-  scope :favorite_user, lambda { |id| favorites.where(user_id: id) }
+  scope :favorite_user, ->(id) { favorites.where(user_id: id) }
 end

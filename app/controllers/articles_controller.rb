@@ -59,11 +59,14 @@ class ArticlesController < ApplicationController
   private
 
   def set_article
-    @article = Article.find_by(article_review_id: params[:id]) rescue nil
+    @article = Article.find_by(article_review_id: params[:id])
+    rescue
+      nil
+    end
   end
 
   def set_publish
-    @publish = @article.article_review rescue nil
+    @publish = @article.article_review
   end
 
   def values_article_review

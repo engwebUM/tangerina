@@ -25,7 +25,11 @@ class ReviewsController < ApplicationController
   private
 
   def new_article(article_review)
-    article = Article.find(article_review.article_id) rescue nil
+    article = Article.find(article_review.article_id)
+    rescue
+      nil
+    end
+
     if article.nil?
       article = Article.new
     end
