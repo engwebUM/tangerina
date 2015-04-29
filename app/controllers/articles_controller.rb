@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
     elsif params[:q].present?
       return ArticleReview.joins(:articles).search_page
     else
-      return ArticleReview.joins(:articles).all.paginated
+      return ArticleReview.joins(:articles).all.paginate(page: params[:page], per_page: 2)
     end
   end
 
