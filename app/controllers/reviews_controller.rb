@@ -39,8 +39,7 @@ class ReviewsController < ApplicationController
     end
     article.article_review_id = article_review.id
     article.save
-    Article.last.article_review.update(article_id: Article.last.id) if Article.last.article_review.event == 'create'
-    end
+    Article.end.update(article_id: Article.last.id) if Article.end.event == 'create'
   end
 
   def get_users_subscriptions(article)
