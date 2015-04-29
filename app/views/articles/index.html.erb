@@ -3,6 +3,9 @@
   <%= render partial: 'advanced_search' %>
 
   <p>&nbsp;</p>
+  <div class="pagination">
+    <%= will_paginate @articles %>
+  </div>
   <%= render partial: 'article' %>
   <% if @articles.count==0 %>
     <h1 class="no-articles">NO ARTICLES</h1>
