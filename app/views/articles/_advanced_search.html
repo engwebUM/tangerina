@@ -7,14 +7,12 @@
 		  <%= f.text_field :title_or_description_cont_all %>
 		</li>
 		<li>
-
-		  <%= check_box_tag 'q[theme_id_in][]', '1' %>Informatica
- 		  <%= check_box_tag 'q[theme_id_in][]', '2' %>Matematica
-          <%= check_box_tag 'q[theme_id_in][]', '3' %>Ciencias
-
-
-
-		  
+          
+          <% @themes.each do |theme| %>
+            <%= check_box_tag 'q[theme_id_in][]', theme.id %> 
+            <%= theme.name %>
+          <% end %>
+          
 		</li>
 		<li>
 		  <%= f.submit "Search" %>

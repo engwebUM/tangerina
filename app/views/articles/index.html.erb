@@ -3,10 +3,12 @@
   <%= render partial: 'advanced_search' %>
 
   <p>&nbsp;</p>
-  <div class="pagination">
-    <%= will_paginate @articles %>
-  </div>
+  
   <%= render partial: 'article' %>
+  <div class="pagination">
+    <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
+  </div>
+  
   <% if @articles.count==0 %>
     <h1 class="no-articles">NO ARTICLES</h1>
 

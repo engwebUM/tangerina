@@ -14,7 +14,7 @@ class ArticlesController < ApplicationController
     else
       @articles = ArticleReview.joins(:articles).all.paginate(:page => params[:page], :per_page => 2)
     end
-
+    @themes = Theme.all
   end
 
   # GET /articles/1

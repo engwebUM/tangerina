@@ -4,8 +4,8 @@ class SubscriptionsController < ApplicationController
   # GET /subscriptions
   # GET /subscriptions.json
   def index
-    @subscriptions = Subscription.where(user_id: current_user.id)
-    @articles = ArticleReview.joins(:articles).subscribed(current_user.id)
+    @subscriptions = Subscription.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 2)
+    @articles = ArticleReview.joins(:articles).subscribed(current_user.id).paginate(:page => params[:page], :per_page => 2)
   end
 
   # GET /subscriptions/1

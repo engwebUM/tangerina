@@ -22,42 +22,11 @@
   </div>
 </div>
 
-<!--div class="subscriptions-page">
-  <h1>Listing Subscriptions</h1>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Theme</th>
-        <th>User</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <% @subscriptions.each do |subscription| %>
-        <tr>
-          <%if subscription.user.id == current_user.id %>
-            <td><%= subscription.theme.name %></td>
-            <td><%= subscription.user.username %></td>
-            <td><%= link_to 'Show', subscription %></td>
-            <td><%= link_to 'Edit', edit_subscription_path(subscription) %></td>
-            <td><%= link_to 'Destroy', subscription, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-          <%end%>
-        </tr>
-      <% end %>
-    </tbody>
-  </table>
-
-  <br>
-
-  <%= link_to 'New Subscription', new_subscription_path %>
-</div-->
-
-
-
   <p>&nbsp;</p>
   <%= render partial: 'articles/article', object: @articles %>
+  <div class="pagination">
+    <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
+  </div>
   <% if @articles.count==0 %>
     <h1 class="text-center">NO ARTICLES</h1>
     <p class='text-center'><img class="" src="/assets/emotion.png" ></p>
