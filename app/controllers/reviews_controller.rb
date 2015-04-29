@@ -30,7 +30,7 @@ class ReviewsController < ApplicationController
     rescue
       nil
     end
-
+    
     if article.nil?
       article = Article.new
     end

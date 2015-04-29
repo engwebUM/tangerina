@@ -2,8 +2,8 @@ class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
 
   def index
-    @subscriptions = Subscription.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 2)
-    @articles = ArticleReview.joins(:articles).subscribed(current_user.id).paginate(:page => params[:page], :per_page => 2)
+    @subscriptions = Subscription.where(user_id: current_user.id).paginate(page: params[:page], per_page: 2)
+    @articles = ArticleReview.joins(:articles).subscribed(current_user.id).paginate(page: params[:page], per_page: 2)
   end
 
   def show

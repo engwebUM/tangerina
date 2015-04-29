@@ -8,15 +8,10 @@ class ThemesController < ApplicationController
 
   def create
     @theme = Theme.new(theme_params)
-    respond_to do |format|
-      if @theme.save
-        format.html { redirect_to action: :index }
-        format.json { render action: :index, location: @themes }
-        format.js { render inline: 'location.reload( );' }
-      else
-        format.html { render :new }
-        format.json { render json: @theme.errors, status: :unprocessable_entity }
-      end
+    if @theme.save
+      redirect_to action: :index
+    else
+      render :new
     end
   end
 
