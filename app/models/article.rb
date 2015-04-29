@@ -8,7 +8,6 @@ class Article < ActiveRecord::Base
 
 
 
-  validates_attachment_content_type :file, content_type: [ 'application/pdf','text/plain']
   #scope :articles_accepts, -> { joins(:versions).where( {versions: {event: 'update'}, articles: {status: 'accept'}}) }
   #scope :versions_update, -> { PaperTrail::Version.where(event: 'update') }
   scope :accept, -> {where(status: 'accept')}
