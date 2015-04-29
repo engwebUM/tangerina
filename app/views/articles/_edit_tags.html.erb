@@ -1,0 +1,8 @@
+<% @publish.tag_types.each do |tag| %>
+  <div class="form-group col-lg-4">
+    <strong><%= f.label tag.to_s.titleize %></strong><br />
+    <% tag_sym = "#{tag.to_s.singularize}_list".to_sym %>
+    <% tag_list = "#{tag.to_s.singularize}_list" %>
+    <%= f.text_field tag_sym, value: @publish.send(tag_list).to_s, :placeholder => "Comma-separated list of #{tag.to_s}", class: 'form-control' %>
+  </div>
+<% end %>

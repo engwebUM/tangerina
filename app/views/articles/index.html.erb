@@ -1,8 +1,9 @@
 <div id="articles">
+
   <%= render partial: 'advanced_search' %>
 
   <p>&nbsp;</p>
-  <%= render :partial => @articles.reverse %>
+  <%= render partial: 'article' %>
   <% if @articles.count==0 %>
     <h1 class="no-articles">NO ARTICLES</h1>
 

@@ -1,69 +1,47 @@
 class ArticlesController < ApplicationController
-  before_action :set_article, only: [:show, :edit, :update, :destroy]
+  before_action :set_article, only: [:show, :create_review, :edit, :destroy]
+  before_action :set_publish, only: [:show, :create_review, :edit]
   before_action :require_login
-  before_filter :set_search
 
   # GET /articles
   # GET /articles.json
   def index
-
     if params[:tag].present?
-      @articles = Article.tagged_with(params[:tag])
+      @articles = ArticleReview.joins(:articles).tagged_with(params[:tag])
     elsif params[:q].present?
-      @q = Article.search(params[:q])
+      @q = ArticleReview.joins(:articles).search(params[:q])
       @articles = @q.result
     else
-      @articles = Article.all
+      @articles = ArticleReview.joins(:articles).all
     end
+
   end
 
   # GET /articles/1
   # GET /articles/1.json
   def show
 
-
   end
 
   # GET /articles/new
   def new
-    @article = Article.new
+    @article_review = ArticleReview.new
     @themes = Theme.all
   end
 
   # GET /articles/1/edit
   def edit
     @themes = Theme.all
-
   end
 
-
-  # POST /articles
-  # POST /articles.json
-  def create
-    @article = Article.new(article_params)
-
+  def create_review
+    values_article_review
     respond_to do |format|
-      if @article.save
-        get_users_subscriptions(@article)        
-        format.html { redirect_to @article}
+      if @article_review.save
+        format.html { redirect_to articles_url, notice: 'This article is new please Wait for review!' }
         format.json { render :show, status: :created, location: @article }
       else
         format.html { render :new }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
-    end
-  end
-
-  # PATCH/PUT /articles/1
-  # PATCH/PUT /articles/1.json
-  def update
-    @article.status = "pending"
-    respond_to do |format|
-      if @article.update(article_params)
-        format.html { redirect_to @article, notice: 'Article was successfully updated.' }
-        format.json { render :show, status: :ok, location: @article }
-      else
-        format.html { render :edit }
         format.json { render json: @article.errors, status: :unprocessable_entity }
       end
     end
@@ -79,66 +57,43 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def favorite_user(id)
+    @article.favorite_user(id)
+  end
+
   def advanced_search
-    # put any code here that you need 
+    # put any code here that you need
     # (although for a static view you probably won't have any)
   end
-  
-  def set_search
-    @q=Article.search(params[:q])
-  end
-  
-  private
-  
-    def articles_all
-      articles = Article.all
-      @tempart = []
-      articles.each do |a|
-        if article_correct?(a)
-          @tempart << a
-        end
-      end
-    end
 
-    def article_correct?(a)
-      a.status == "accept" || (a.versions.last.event != "create"  && a.versions.last.reify.status == "accept")
-    end
+  private
     # Use callbacks to share common setup or constraints between actions.
     def set_article
-      @article = Article.find(params[:id])
+      @article = Article.find_by(article_review_id: params[:id]) rescue nil
     end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def article_params
-      params.require(:article).permit(:title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :revised)
+    def set_publish
+      @publish = @article.article_review rescue nil
     end
-  
 
-    def article_versions
-      if @article.versions.last.nil?
-        @article
-      elsif @article.versions.last.event == 'create'
-        @article = nil
+    def values_article_review
+      @article_review = ArticleReview.new(article_review_params)
+      @article_review.status = 'pending'
+      @article_review.user_id = current_user.id
+
+      if @publish.present?
+        @article_review.article_id = @article.id
+        @article_review.event = 'update'
       else
-        @article = @article.versions.last.reify
-        #@article.save
+        @article_review.event = 'create'
       end
+
     end
 
-    def get_users_subscriptions(article)
-      @subscriptions = Subscription.all
-      @subscriptions.each do |subscription|
-        if article.theme.id == subscription.theme.id
-          notify_users(subscription.user)
-        end
-      end   
-    end 
+    def article_review_params
+      params.require(:article_review).permit(:article_id, :title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :status, :event)
+    end
 
-    def notify_users(users)
-      UserMailer.users_notified(users).deliver
-    end   
 
-    
+
 end
-
-

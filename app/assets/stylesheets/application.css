@@ -14,11 +14,7 @@
  *= require_self
  *= require bootstrap.min
  *= require bootstrap
-<<<<<<< HEAD
-
-=======
- *= 
->>>>>>> 703dd235492d59c603cd587b2686f20166da0dc5
+ *=
  */
 
 
@@ -322,6 +318,6 @@
     left: 45%;
  }
 
-
-
-
+ .link_recommend{
+   display: inline
+ }
