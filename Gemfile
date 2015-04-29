@@ -44,16 +44,7 @@ gem 'acts-as-taggable-on', '~> 3.4'
 
 gem 'tzinfo-data', platforms: [:x64_mingw, :mingw, :mswin]
 
-
-
-
-
-
-gem 'paper_trail'
-gem 'sunspot_rails'
-gem 'sunspot_solr'
-
-gem 'paper_trail'
+gem 'bootstrap-sass', '~> 3.3.4'
 
 gem 'ransack'
 gem 'will_paginate', '~> 3.0.6'
