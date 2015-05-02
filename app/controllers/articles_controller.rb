@@ -4,17 +4,19 @@ class ArticlesController < ApplicationController
   before_action :require_login
 
   def index
-    @articles = list_articles
+    @articles = if params[:tag].blank? || params[:q].blank?
+                  articles_publish
+                else
+                  list_articles.paginated(params[:page])
+                end
     @themes = Theme.all
   end
 
   def list_articles
     if params[:tag].present?
-      return articles_publish.tag_page
+      articles_publish.tag_page(params[:tag])
     elsif params[:q].present?
-      return articles_publish.search_page
-    else
-      return articles_publish.all.paginated
+      articles_publish.search_page(params[:q])
     end
   end
 
@@ -63,7 +65,7 @@ class ArticlesController < ApplicationController
   private
 
   def articles_publish
-    ArticleReview.joins(:articles)
+    ArticleReview.joins(:articles).all.paginated(params[:page])
   end
 
   def set_article
