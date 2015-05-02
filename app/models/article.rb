@@ -5,4 +5,5 @@ class Article < ActiveRecord::Base
 
   scope :accept, -> { where(status: 'accept') }
   scope :favorite_user, -> (id) { favorites.where(user_id: id) }
+  scope :ends, -> { last.article_review }
 end

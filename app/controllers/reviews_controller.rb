@@ -33,13 +33,10 @@ class ReviewsController < ApplicationController
 
   def new_article(article_review)
     article = rescue_article(article_review)
-
-    if article.nil?
-      article = Article.new
-    end
+    article = Article.new if article.nil?
     article.article_review_id = article_review.id
     article.save
-    Article.end.update(article_id: Article.last.id) if Article.end.event == 'create'
+    Article.ends.update(article_id: Article.last.id) if Article.ends.event == 'create'
   end
 
   def get_users_subscriptions(article)
