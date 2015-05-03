@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :set_article_review, only: [:show, :accept, :reject]
   before_action :require_login
+
   def index
     @creates = ArticleReview.creates
     @updates = ArticleReview.updates
@@ -24,16 +25,18 @@ class ReviewsController < ApplicationController
 
   private
 
+  def rescue_article(article_review)
+    Article.find(article_review.article_id)
+    rescue
+      nil
+  end
+
   def new_article(article_review)
-    article = Article.find(article_review.article_id) rescue nil
-    if article.nil?
-      article = Article.new
-    end
+    article = rescue_article(article_review)
+    article = Article.new if article.nil?
     article.article_review_id = article_review.id
     article.save
-    if Article.last.article_review.event == 'create'
-      Article.last.article_review.update(article_id: Article.last.id)
-    end
+    Article.ends.update(article_id: Article.last.id) if Article.ends.event == 'create'
   end
 
   def get_users_subscriptions(article)

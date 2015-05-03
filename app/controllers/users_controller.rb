@@ -7,6 +7,10 @@ class UsersController < Clearance::UsersController
     username = user_params.delete(:username)
     reviser = user_params.delete(:reviser)
 
+    clearance_configuration(email, password, username, reviser)
+  end
+
+  def clearance_configuration(email, password, username, reviser)
     Clearance.configuration.user_model.new(user_params).tap do |user|
       user.email = email
       user.password = password

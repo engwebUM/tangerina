@@ -5,24 +5,15 @@ class FavoritesController < ApplicationController
   end
 
   def create
-    puts "ola"
     @favorite = Favorite.new
     @article = Article.find(params[:article_id])
     @favorite.user_id = current_user.id
     @favorite.article_id = @article.id
-    #@article = Article.find(params[:article_id])
-    #@user = User.find(params[:user_id])
-  #@article.favorites.user_id = current_users
-  #  @articles.favorite = Favorite.new
-  #  @article.favorites.user_id = current_user.id
-    #@favorite = @article.favorites.create(favorite_params)
     if @favorite.save
-
       redirect_to :back, notice: 'Favorite was successfully created.'
     else
       redirect_to :back
     end
-
   end
 
   def destroy
@@ -34,12 +25,12 @@ class FavoritesController < ApplicationController
   end
 
   private
-    def set_favorite
-      @favorite = Favorite.find(params[:id])
-    end
 
-    # Never trust parameters from the scary internet, only allow the white list through.
-    def favorite_params
-      params.require(:favorite).permit(:article_id, :user_id)
-    end
+  def set_favorite
+    @favorite = Favorite.find(params[:id])
+  end
+
+  def favorite_params
+    params.require(:favorite).permit(:article_id, :user_id)
+  end
 end

@@ -1,36 +1,25 @@
 class SubscriptionsController < ApplicationController
   before_action :set_subscription, only: [:show, :edit, :update, :destroy]
 
-  # GET /subscriptions
-  # GET /subscriptions.json
   def index
-    @subscriptions = Subscription.where(user_id: current_user.id).paginate(:page => params[:page], :per_page => 2)
-    @articles = ArticleReview.joins(:articles).subscribed(current_user.id).paginate(:page => params[:page], :per_page => 2)
+    @subscriptions = Subscription.where(user_id: current_user.id).paginate(page: params[:page], per_page: 2)
+    @articles = ArticleReview.joins(:articles).subscribed(current_user.id).paginate(page: params[:page], per_page: 2)
   end
 
-  # GET /subscriptions/1
-  # GET /subscriptions/1.json
   def show
-    # @subscriptions = SubscriptionsSearch.new(Subscription.find(params[:id]))
-    # redirect_to :back
   end
 
-  # GET /subscriptions/new
   def new
     @subscription = Subscription.new
     @themes = Theme.all
   end
 
-  # GET /subscriptions/1/edit
   def edit
     @themes = Theme.all
   end
 
-  # POST /subscriptions
-  # POST /subscriptions.json
   def create
     @subscription = Subscription.new(subscription_params)
-
     respond_to do |format|
       if @subscription.save
         format.html { redirect_to subscriptions_url, notice: 'Subscription was successfully created.' }
@@ -38,13 +27,11 @@ class SubscriptionsController < ApplicationController
       else
         new
         format.html { render :new }
-        format.json { render json: @subscription.errors }
+        # format.json { render json: @subscription.errors }
       end
     end
   end
 
-  # PATCH/PUT /subscriptions/1
-  # PATCH/PUT /subscriptions/1.json
   def update
     respond_to do |format|
       if @subscription.update(subscription_params)
@@ -57,8 +44,6 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  # DELETE /subscriptions/1
-  # DELETE /subscriptions/1.json
   def destroy
     @subscription.destroy
     respond_to do |format|
@@ -69,12 +54,10 @@ class SubscriptionsController < ApplicationController
 
   private
 
-  # Use callbacks to share common setup or constraints between actions.
   def set_subscription
     @subscription = Subscription.find(params[:id])
   end
 
-  # Never trust parameters from the scary internet, only allow the white list through.
   def subscription_params
     params.require(:subscription).permit(:theme_id, :user_id, :subject, :notify)
   end

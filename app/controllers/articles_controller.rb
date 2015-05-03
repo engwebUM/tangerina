@@ -3,33 +3,31 @@ class ArticlesController < ApplicationController
   before_action :set_publish, only: [:show, :create_review, :edit]
   before_action :require_login
 
-  # GET /articles
-  # GET /articles.json
   def index
-    if params[:tag].present?
-      @articles = ArticleReview.joins(:articles).tagged_with(params[:tag]).paginate(:page => params[:page], :per_page => 2) if params[:tag]
-    elsif params[:q].present?
-      @q = ArticleReview.joins(:articles).search(params[:q])
-      @articles = @q.result.paginate(:page => params[:page], :per_page => 2) if params[:q]
-    else
-      @articles = ArticleReview.joins(:articles).all.paginate(:page => params[:page], :per_page => 2)
-    end
+    @articles = if params[:tag].blank? && params[:q].blank?
+                  articles_publish.paginated(params[:page])
+                else
+                  list_articles
+                end
     @themes = Theme.all
   end
 
-  # GET /articles/1
-  # GET /articles/1.json
-  def show
-
+  def list_articles
+    if params[:tag].present?
+      articles_publish.tag_page(params[:tag])
+    elsif params[:q].present?
+      articles_publish.search_page(params[:q])
+    end
   end
 
-  # GET /articles/new
+  def show
+  end
+
   def new
     @article_review = ArticleReview.new
     @themes = Theme.all
   end
 
-  # GET /articles/1/edit
   def edit
     @themes = Theme.all
   end
@@ -47,8 +45,6 @@ class ArticlesController < ApplicationController
     end
   end
 
-  # DELETE /articles/1
-  # DELETE /articles/1.json
   def destroy
     @article.destroy
     respond_to do |format|
@@ -67,33 +63,39 @@ class ArticlesController < ApplicationController
   end
 
   private
-    # Use callbacks to share common setup or constraints between actions.
-    def set_article
-      @article = Article.find_by(article_review_id: params[:id]) rescue nil
+
+  def articles_publish
+    ArticleReview.joins(:articles).all.paginated(params[:page])
+  end
+
+  def set_article
+    @article = Article.find_by(article_review_id: params[:id])
+                rescue
+                  nil
+  end
+
+  def set_publish
+    @publish =
+              if @article.nil?
+                @article
+              else
+                @article.article_review
+              end
+  end
+
+  def values_article_review
+    @article_review = ArticleReview.new(article_review_params)
+    @article_review.status = 'pending'
+    @article_review.user_id = current_user.id
+    if @publish.present?
+      @article_review.article_id = @article.id
+      @article_review.event = 'update'
+    else
+      @article_review.event = 'create'
     end
+  end
 
-    def set_publish
-      @publish = @article.article_review rescue nil
-    end
-
-    def values_article_review
-      @article_review = ArticleReview.new(article_review_params)
-      @article_review.status = 'pending'
-      @article_review.user_id = current_user.id
-
-      if @publish.present?
-        @article_review.article_id = @article.id
-        @article_review.event = 'update'
-      else
-        @article_review.event = 'create'
-      end
-
-    end
-
-    def article_review_params
-      params.require(:article_review).permit(:article_id, :title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :status, :event)
-    end
-
-
-
+  def article_review_params
+    params.require(:article_review).permit(:article_id, :title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :status, :event)
+  end
 end
