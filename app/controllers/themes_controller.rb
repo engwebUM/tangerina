@@ -9,7 +9,7 @@ class ThemesController < ApplicationController
   def create
     @theme = Theme.new(theme_params)
     if @theme.save
-      #redirect_to action: :index
+      # redirect_to action: :index
       index
     else
       render :new
@@ -19,10 +19,10 @@ class ThemesController < ApplicationController
   def destroy
     @theme.destroy
     redirect_to themes_url
-    #respond_to do |format|
-    #  format.html { redirect_to themes_url }
-    #  format.json { head :no_content }
-    #end
+    # respond_to do |format|
+    # format.html { redirect_to themes_url }
+    # format.json { head :no_content }
+    # end
   end
 
   private
