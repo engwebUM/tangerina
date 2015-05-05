@@ -62,7 +62,7 @@
                         Edit
                       <% end %>
 
-                      <%= link_to  @article, class: "btn btn-default btn-lg ", method: :delete do %>
+                      <%= link_to article_path(@publish), class: "btn btn-default btn-lg ",  method: :delete do %>
                         <span class="glyphicon glyphicon-remove"></span>
                         Destroy
                       <% end %>
