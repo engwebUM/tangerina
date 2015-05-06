@@ -1,0 +1,7 @@
+<% @favorites.each do |article| %>
+
+  <%= link_to article.title, controller: :articles, action: 'show', id: article.id  %>
+  <%= article.updated_at %>
+  <%= article.status %>
+
+<% end %>
