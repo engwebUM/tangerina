@@ -100,7 +100,7 @@ ActiveRecord::Schema.define(version: 20150505235930) do
     t.string   "remember_token",     limit: 128,                 null: false
     t.string   "username"
     t.boolean  "reviser",                        default: false
-    t.integer  "user_type"
+    t.integer  "user_type",                      default: 3
   end
 
   add_index "users", ["email"], name: "index_users_on_email"
