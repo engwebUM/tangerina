@@ -21,7 +21,7 @@ class UsersController < Clearance::UsersController
     clearance_configuration(email, password, username, reviser, user_type)
   end
 
-  def clearance_configuration(email, password, username, reviser)
+  def clearance_configuration(email, password, username, reviser, user_type)
     Clearance.configuration.user_model.new(user_params).tap do |user|
       user.email = email
       user.password = password
