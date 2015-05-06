@@ -1,12 +1,9 @@
 class UsersController < Clearance::UsersController
-  
-
   def index
     @users = User.all
   end
 
   def show
-    
   end
 
   private
