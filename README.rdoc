@@ -1,4 +1,5 @@
 {<img src="https://codeclimate.com/repos/5547e7d7e30ba0607d000bcc/badges/a8837ace8c5e80c689c0/gpa.svg" />}[https://codeclimate.com/repos/5547e7d7e30ba0607d000bcc/feed]
+{<img src="https://codeclimate.com/repos/5547e7d7e30ba0607d000bcc/badges/a8837ace8c5e80c689c0/coverage.svg" />}[https://codeclimate.com/repos/5547e7d7e30ba0607d000bcc/coverage]
 {<img src="https://travis-ci.org/engwebUM/tangerina.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/engwebUM/tangerina]
 
 @ TANGERINA @
