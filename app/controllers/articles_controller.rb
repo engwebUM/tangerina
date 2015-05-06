@@ -34,23 +34,26 @@ class ArticlesController < ApplicationController
 
   def create_review
     values_article_review
-    respond_to do |format|
-      if @article_review.save
-        format.html { redirect_to articles_url, notice: 'This article is new please Wait for review!' }
-        format.json { render :show, status: :created, location: @article }
-      else
-        format.html { render :new }
-        format.json { render json: @article.errors, status: :unprocessable_entity }
-      end
+    # respond_to do |format|
+    if @article_review.save
+      redirect_to articles_url
+      # format.html { redirect_to articles_url, notice: 'This article is new please Wait for review!' }
+      # format.json { render :show, status: :created, location: @article }
+    else
+      render :new
+      # format.html { render :new }
+      # format.json { render json: @article.errors, status: :unprocessable_entity }
     end
+    # end
   end
 
   def destroy
     @article.destroy
-    respond_to do |format|
-      format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
-      format.json { head :no_content }
-    end
+    redirect_to articles_url
+    # respond_to do |format|
+    # format.html { redirect_to articles_url, notice: 'Article was successfully destroyed.' }
+    # format.json { head :no_content }
+    # end
   end
 
   def favorite_user(id)

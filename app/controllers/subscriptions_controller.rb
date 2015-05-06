@@ -20,16 +20,17 @@ class SubscriptionsController < ApplicationController
 
   def create
     @subscription = Subscription.new(subscription_params)
-    respond_to do |format|
-      if @subscription.save
-        format.html { redirect_to subscriptions_url, notice: 'Subscription was successfully created.' }
-        format.json { render :show, status: :created, location: @subscription }
-      else
-        new
-        format.html { render :new }
-        # format.json { render json: @subscription.errors }
-      end
+    # respond_to do |format|
+    if @subscription.save
+      redirect_to subscriptions_url
+      # format.html { redirect_to subscriptions_url, notice: 'Subscription was successfully created.' }
+      # format.json { render :show, status: :created, location: @subscription }
+    else
+      new
+      # format.html { render :new }
+      # format.json { render json: @subscription.errors }
     end
+    # end
   end
 
   def update
