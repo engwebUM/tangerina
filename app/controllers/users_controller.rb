@@ -1,9 +1,12 @@
 class UsersController < Clearance::UsersController
+  before_action :set_user, only: :show
   def index
     @users = User.all
   end
 
   def show
+    @posts = ArticleReview.where(user_id: @user.id)
+    @favorites = ArticleReview.joins(articles: :favorites).where(user_id: @user.id)
   end
 
   private
@@ -16,6 +19,10 @@ class UsersController < Clearance::UsersController
     user_type = user_params.delete(:user_type)
 
     clearance_configuration(email, password, username, reviser, user_type)
+  end
+
+  def set_user
+    @user = User.find(params[:id])
   end
 
   def clearance_configuration(email, password, username, reviser, user_type)
