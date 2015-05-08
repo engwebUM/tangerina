@@ -12,9 +12,15 @@ class ContentsController < ApplicationController
     end
   end
 
+  def update
+    if @content.update(content_params)
+      redirect_to @content.article_review
+    end
+  end
+
   private
 
   def content_params
-    params.require(:content).permit(:file)
+    params.require(:content).permit(:file, :article_review_id)
   end
 end

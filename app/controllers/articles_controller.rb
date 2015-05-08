@@ -104,7 +104,6 @@ class ArticlesController < ApplicationController
   end
 
   def article_review_params
-    params.require(:article_review).permit(:article_id, :title, :description, :theme_id, :abstract, :user_id, :tag_list, :status, :event,
-                                              contents_attributes: [:id, :article_review_id, :file])
+    params.require(:article_review).permit(:article_id, :title, :description, :theme_id, :abstract, :user_id, :tag_list, :status, :event, contents_attributes: [:id, :article_review_id, :file])
   end
 end
