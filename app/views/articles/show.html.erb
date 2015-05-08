@@ -46,9 +46,15 @@
                     <br>
                     <div class="text-center">
                       <h4><strong>Files </strong>
-                        <%= link_to @publish.file.url do %>
-                          <%= image_tag 'pdf.png' %>
+                        <% @files.each do |f| %>
+                          <!--%= image_tag f.avatar_url %-->
+                          <%= link_to f.file.url %>
+                          <!--%= link_to "Edit Attachment", edit_post_attachment_path(f) %-->
                         <% end %>
+
+                        <!--%= link_to @publish.file.url do %>
+                          <%= image_tag 'pdf.png' %>
+                        <% end %-->
                     </h4>
                     </div>
                     <hr class="hr-comments">

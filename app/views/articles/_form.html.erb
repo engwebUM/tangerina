@@ -40,9 +40,12 @@
         </div>
 
         <div class="form-group col-lg-12">
-          <%= f.label :file %>
-          <%= f.file_field :file, class: "form-control" %>
+          <%= f.fields_for :contents do |c| %>
+            <%= c.label :file %><br>
+            <%= c.file_field :file, multiple: true, name: "content[file][]", class: 'dropzone' %>
+          <% end %>
         </div>
+        
         <div class="form-group col-lg-12 text-center">
             <input type="hidden" name="save" value="contact">
             <%= f.submit "Save", class: "btn btn-default" %>
