@@ -26,7 +26,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article_review = ArticleReview.new
-    @file = @article_review.contents.build
+    #@file = @article_review.contents.build
     @themes = Theme.all
   end
 
@@ -38,8 +38,10 @@ class ArticlesController < ApplicationController
     values_article_review
     # respond_to do |format|
     if @article_review.save
-      params[:contents]['file'].each do |f|
-        @file = @article_review.contents.create!(file: f, article_review_id: @article_review.id)
+
+      params[:contents].each do |f|
+        #@file = @article_review.contents.create!(file: f, article_review_id: @article_review.id)
+        @article_review.contents.create(file: f, article_review_id: @article_review.id)
       end
       redirect_to articles_url
       # format.html { redirect_to articles_url, notice: 'This article is new please Wait for review!' }
@@ -104,6 +106,6 @@ class ArticlesController < ApplicationController
   end
 
   def article_review_params
-    params.require(:article_review).permit(:article_id, :title, :description, :theme_id, :abstract, :user_id, :tag_list, :status, :event, contents_attributes: [:id, :article_review_id, :file])
+    params.require(:article_review).permit(:article_id, :title, :description, :theme_id, :abstract, :user_id, :tag_list, :status, :event, :contents)
   end
 end

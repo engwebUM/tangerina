@@ -1,4 +1,6 @@
 class ContentsController < ApplicationController
+  before_action :set_content, only: :destroy
+
   def new
     @content = Content.new
   end
@@ -18,9 +20,21 @@ class ContentsController < ApplicationController
     end
   end
 
+  def destroy
+    if @content.destroy
+      render json: { message: 'File deleted from server' }
+    else
+      render json: { message: @upload.erros.full_messagens.join(',') }
+    end
+  end
+
   private
 
+  def set_content
+    @content = Content.find(params[:id])
+  end
+
   def content_params
-    params.require(:content).permit(:file, :article_review_id)
+    params.require(:content).permit(:file)
   end
 end

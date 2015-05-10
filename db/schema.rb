@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150508144252) do
+ActiveRecord::Schema.define(version: 20150508183006) do
 
   create_table "article_reviews", force: :cascade do |t|
     t.integer  "article_id"
@@ -24,12 +24,8 @@ ActiveRecord::Schema.define(version: 20150508144252) do
     t.string   "tag_list"
     t.string   "event"
     t.text     "comment"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "articles", force: :cascade do |t|
@@ -115,16 +111,5 @@ ActiveRecord::Schema.define(version: 20150508144252) do
 
   add_index "users", ["email"], name: "index_users_on_email"
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
-
-  create_table "versions", force: :cascade do |t|
-    t.string   "item_type",  null: false
-    t.integer  "item_id",    null: false
-    t.string   "event",      null: false
-    t.string   "whodunnit"
-    t.text     "object"
-    t.datetime "created_at"
-  end
-
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
 
 end
