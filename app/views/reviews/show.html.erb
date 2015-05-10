@@ -35,18 +35,26 @@
             <br>
             <div class="text-center">
               <h4><strong>Files </strong>
-                <%= link_to @article_review.file.url do %>
-                  <%= image_tag 'pdf.png' %>
-                <% end %>
-            </h4>
-            </div>
-            <hr class="hr-comments">
-            <p class="text-center">
+                <a href="http://www.youtube.com/watch?v=k6mFF3VmVAs" class="fancybox-media">Ghostpoet - Cash and Carry Me Home</a>
 
-              <%= link_to controller: "reviews", action: "accept" do %>
-                <span class="glyphicon glyphicon-ok"></span>
-                Accept
-              <% end %>
+                  <% @contents.each do |c| %>
+
+                    <% if c.file.content_type == 'application/pdf' %>
+
+                      <%= link_to c.file.url, class: "fancybox fancybox.iframe" do %>
+                        <%= image_tag 'pdf.png' %>
+                      <% end %>
+                    <% end %>
+                  <% end %>
+              </h4>
+              </div>
+              <hr class="hr-comments">
+              <p class="text-center">
+
+                <%= link_to controller: "reviews", action: "accept" do %>
+                  <span class="glyphicon glyphicon-ok"></span>
+                  Accept
+                <% end %>
 
               <%= link_to  controller: "reviews", action: 'reject' do %>
                 <span class="glyphicon glyphicon-remove"></span>
@@ -55,7 +63,5 @@
 
             </p>
         </div>
-
-
     </div>
 </div>

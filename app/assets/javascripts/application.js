@@ -15,4 +15,5 @@
 //= require turbolinks
 //= require bootstrap
 //= require fileinput.min
+//= require fancybox
 //= require_tree .
