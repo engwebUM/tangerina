@@ -15,9 +15,7 @@ class ContentsController < ApplicationController
   end
 
   def update
-    if @content.update(content_params)
-      redirect_to @content.article_review
-    end
+    redirect_to @content.article_review if @content.update(content_params)
   end
 
   def destroy
