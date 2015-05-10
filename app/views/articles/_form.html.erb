@@ -38,14 +38,24 @@
             <%= f.label :abstract %>
             <%= f.text_area :abstract, class: "form-control", rows: 8 %>
         </div>
-
-        <div class="form-group col-lg-12 ">
-          <%= f.label :contents %>
-          <%= f.file_field "files[]", type: :file, multiple: true %>
-        </div>
+        <%= f.fields_for :contents do |c| %>
+          <div class="form-group col-lg-12 ">
+            <%= c.label :contents %>
+            <%= c.file_field :file, multiple: true, name: 'contents[file][]', class: 'file', id: 'file-1' %>
+          </div>
+        <% end %>
 
         <div class="form-group col-lg-12 text-center">
             <%= f.submit "Save", class: "btn btn-default" %>
 
         </div>
       </div>
+
+      <script>
+        $('#file-1').fileinput({
+          showUpload: false,
+          showCaption: false,
+          allowedFileExtensions: ['jpg', 'png', 'pdf'],
+
+        });
+      </script>
