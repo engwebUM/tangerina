@@ -25,6 +25,7 @@ class ArticlesController < ApplicationController
 
   def new
     @article_review = ArticleReview.new
+    @article_review.videos.build
     @themes = Theme.all
   end
 
@@ -36,6 +37,11 @@ class ArticlesController < ApplicationController
     values_article_review
     # respond_to do |format|
     if @article_review.save
+      if params[:videos].present?
+        params[:videos]['link'].each do |v|
+          @article_review.videos.create!(link: v, article_review_id: @article_review.id)
+        end
+      end
       redirect_to articles_url
       # format.html { redirect_to articles_url, notice: 'This article is new please Wait for review!' }
       # format.json { render :show, status: :created, location: @article }
@@ -99,6 +105,6 @@ class ArticlesController < ApplicationController
   end
 
   def article_review_params
-    params.require(:article_review).permit(:article_id, :title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :status, :event)
+    params.require(:article_review).permit(:article_id, :title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :status, :event, :videos)
   end
 end

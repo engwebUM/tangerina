@@ -2,7 +2,8 @@ class ArticleReview < ActiveRecord::Base
   has_many :articles
   belongs_to :theme
   belongs_to :user
-
+  has_many :videos, dependent: :destroy
+  accepts_nested_attributes_for :videos
   acts_as_taggable
   acts_as_taggable_on :tags
   validates_presence_of :tag_list
