@@ -38,9 +38,7 @@ class ArticlesController < ApplicationController
     # respond_to do |format|
     if @article_review.save
       if params[:videos].present?
-        params[:videos]['link'].each do |v|
-          @article_review.videos.create!(link: v, article_review_id: @article_review.id)
-        end
+        create_videos
       end
       redirect_to articles_url
       # format.html { redirect_to articles_url, notice: 'This article is new please Wait for review!' }
@@ -73,6 +71,12 @@ class ArticlesController < ApplicationController
 
   private
 
+  def create_videos
+    params[:videos]['link'].each do |v|
+      @article_review.videos.create!(link: v, article_review_id: @article_review.id)
+    end
+  end
+  
   def articles_publish
     ArticleReview.joins(:articles).all.paginated(params[:page])
   end
