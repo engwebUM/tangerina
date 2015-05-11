@@ -8,6 +8,7 @@ class ReviewsController < ApplicationController
   end
 
   def show
+    @videos = Video.where(article_review_id: @article_review.id)
   end
 
   def reject
