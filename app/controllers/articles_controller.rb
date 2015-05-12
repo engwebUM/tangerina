@@ -76,7 +76,7 @@ class ArticlesController < ApplicationController
       @article_review.videos.create!(link: v, article_review_id: @article_review.id)
     end
   end
-  
+
   def articles_publish
     ArticleReview.joins(:articles).all.paginated(params[:page])
   end
