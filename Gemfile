@@ -49,7 +49,7 @@ gem 'bootstrap-sass', '~> 3.3.4'
 gem 'ransack'
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
-
+gem "codeclimate-test-reporter", group: :test, require: nil
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 
