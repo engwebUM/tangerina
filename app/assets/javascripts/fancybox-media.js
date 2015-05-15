@@ -7,7 +7,7 @@
 
 			$(".fancybox").fancybox({
             	type: 'iframe',
-            	afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
+            	onStart : function() {
             		parent.location.reload(true);
  				}
             });
