@@ -38,6 +38,11 @@
                 <%= link_to @article_review.file.url do %>
                   <%= image_tag 'pdf.png' %>
                 <% end %>
+
+                <h5>Videos youtubes ID:</h5>
+                <% @videos.each do |v| %>
+                  <p><%= Video.youtube_id(v.id) %></p>
+                <% end %>
             </h4>
             </div>
             <hr class="hr-comments">
