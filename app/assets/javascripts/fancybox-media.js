@@ -5,7 +5,12 @@
 			 *  Simple image gallery. Uses default settings
 			 */
 
-			$('.fancybox').fancybox();
+			$(".fancybox").fancybox({
+            	type: 'iframe',
+            	afterClose: function () { // USE THIS IT IS YOUR ANSWER THE KEY WORD IS "afterClose"
+            		parent.location.reload(true);
+ 				}
+            });
 
 			/*
 			 *  Different effects
