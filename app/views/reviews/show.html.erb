@@ -8,7 +8,7 @@
     {
       localStorage['firstLoad'] = true;
       window.location.reload();
-    }  
+    }
     else
       localStorage.removeItem('firstLoad');
   }
@@ -54,11 +54,6 @@
             <div class="text-center">
               <h4><strong>Files </strong>
                 <a href="http://www.youtube.com/watch?v=k6mFF3VmVAs" class="fancybox-media">Ghostpoet - Cash and Carry Me Home</a>
-
-                <%= link_to @article_review.file.url do %>
-                  <%= image_tag 'pdf.png' %>
-                <% end %>
-
                 <h5>Videos youtubes ID:</h5>
                 <% @videos.each do |v| %>
                   <p><%= Video.youtube_id(v.id) %></p>
