@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
   def set_search
     @q = ArticleReview.joins(:articles).search(params[:q])
   end
+
+  def authenticate_admin_user!
+    redirect_to sign_in_path unless current_user.try(:admin?)
+  end
 end

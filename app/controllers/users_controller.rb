@@ -34,4 +34,8 @@ class UsersController < Clearance::UsersController
       user.user_type = user_type
     end
   end
+
+  def admin?
+    email && ENV['ADMIN_EMAILS'].to_s.include?(email)
+  end
 end

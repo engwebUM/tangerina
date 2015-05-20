@@ -46,6 +46,7 @@ gem 'tzinfo-data', platforms: [:x64_mingw, :mingw, :mswin]
 
 gem 'bootstrap-sass', '~> 3.3.4'
 
+gem 'activeadmin', '~> 1.0.0.pre1'
 gem 'ransack'
 gem 'will_paginate', '~> 3.0.6'
 gem 'will_paginate-bootstrap'
