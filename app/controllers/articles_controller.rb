@@ -39,14 +39,9 @@ class ArticlesController < ApplicationController
     values_article_review
     # respond_to do |format|
     if @article_review.save
+      create_files if params[:contents].present?
+      create_videos if params[:videos].present?
 
-      if params[:contents].present?
-        create_files
-      end
-
-      if params[:videos].present?
-        create_videos
-      end
       redirect_to articles_url
       # format.html { redirect_to articles_url, notice: 'This article is new please Wait for review!' }
       # format.json { render :show, status: :created, location: @article }

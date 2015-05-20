@@ -8,11 +8,8 @@ class ReviewsController < ApplicationController
   end
 
   def show
-<<<<<<< HEAD
     @contents = Content.where(article_review_id: @article_review.id)
-=======
     @videos = Video.where(article_review_id: @article_review.id)
->>>>>>> 45e856de1fdbaf1f7dd249b64a74c695c2a3f177
   end
 
   def reject
