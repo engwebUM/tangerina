@@ -3,10 +3,11 @@ Rails.application.routes.draw do
   resources :favorites
 
   resources :subscriptions
-
+  resources :contents
   resources :articles do
     resources :comments
     resources :favorites
+
     member do
       get :create_review
       patch :create_review

@@ -21,10 +21,12 @@ class ArticlesController < ApplicationController
   end
 
   def show
+    @files = @publish.contents.all
   end
 
   def new
     @article_review = ArticleReview.new
+    @article_review.contents.build
     @article_review.videos.build
     @themes = Theme.all
   end
@@ -37,9 +39,9 @@ class ArticlesController < ApplicationController
     values_article_review
     # respond_to do |format|
     if @article_review.save
-      if params[:videos].present?
-        create_videos
-      end
+      create_files if params[:contents].present?
+      create_videos if params[:videos].present?
+
       redirect_to articles_url
       # format.html { redirect_to articles_url, notice: 'This article is new please Wait for review!' }
       # format.json { render :show, status: :created, location: @article }
@@ -77,6 +79,12 @@ class ArticlesController < ApplicationController
     end
   end
 
+  def create_files
+    params[:contents]['file'].each do |c|
+      @article_review.contents.create!(file: c, article_review_id: @article_review.id)
+    end
+  end
+
   def articles_publish
     ArticleReview.joins(:articles).all.paginated(params[:page])
   end
@@ -109,6 +117,6 @@ class ArticlesController < ApplicationController
   end
 
   def article_review_params
-    params.require(:article_review).permit(:article_id, :title, :description, :theme_id, :abstract, :user_id, :tag_list, :file, :status, :event, :videos)
+    params.require(:article_review).permit(:article_id, :title, :description, :theme_id, :abstract, :user_id, :tag_list, :status, :event, :videos, :contents)
   end
 end
