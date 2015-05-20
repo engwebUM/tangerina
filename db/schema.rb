@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150511154523) do
+ActiveRecord::Schema.define(version: 20150520155321) do
 
   create_table "article_reviews", force: :cascade do |t|
     t.integer  "article_id"
@@ -107,6 +107,8 @@ ActiveRecord::Schema.define(version: 20150511154523) do
     t.string   "username"
     t.boolean  "reviser",                        default: false
     t.integer  "user_type",                      default: 3
+    t.datetime "confirmed_at"
+    t.boolean  "admin",                          default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email"
@@ -118,4 +120,5 @@ ActiveRecord::Schema.define(version: 20150511154523) do
     t.datetime "created_at",        null: false
     t.datetime "updated_at",        null: false
   end
+
 end
