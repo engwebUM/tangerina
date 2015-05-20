@@ -5,12 +5,7 @@
 			 *  Simple image gallery. Uses default settings
 			 */
 
-			$(".fancybox").fancybox({
-            	type: 'iframe',
-            	onStart : function() {
-            		parent.location.reload(true);
- 				}
-            });
+			$(".fancybox").fancybox();
 
 			/*
 			 *  Different effects
