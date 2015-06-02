@@ -11,4 +11,8 @@ class ApplicationController < ActionController::Base
   def set_search
     @q = ArticleReview.joins(:articles).search(params[:q])
   end
+
+  def authorize
+    redirect_to root_path unless current_user.admin?
+  end
 end
