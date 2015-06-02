@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
 
   namespace :admin do
-  get 'dashboard/index'
+    get '', to: 'dashboard#index', as: '/'
   end
 
   resources :favorites
