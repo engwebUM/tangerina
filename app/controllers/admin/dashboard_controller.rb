@@ -1,6 +1,8 @@
-class Admin::DashboardController < ApplicationController
-  before_filter :authorize
+module Admin
+  class DashboardController < AdminController
+    before_filter :authorize
 
-  def index
+    def index
+    end
   end
 end
