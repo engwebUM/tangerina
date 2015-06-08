@@ -4,6 +4,8 @@ class ApplicationController < ActionController::Base
   before_filter :set_search
   protect_from_forgery with: :exception
 
+  private
+
   def permit_params
     params.require(:user).permit(:username, :email, :password)
   end
