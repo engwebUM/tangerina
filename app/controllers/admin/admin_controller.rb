@@ -1,6 +1,6 @@
 module Admin
   class AdminController < ApplicationController
-    before_filter :authorize
+    before_filter :require_login, :authorize
 
     private
 
