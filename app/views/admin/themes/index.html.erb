@@ -1,7 +1,7 @@
 <p id="notice"><%= notice %></p>
 
 
-<%= form_for(@theme, remote: true) do |f| %>
+<%= form_for(@theme, remote: true, url: admin_themes_path) do |f| %>
 <p>
   <%= f.label :name, "New Theme" %>
   <%= f.text_field :name %>

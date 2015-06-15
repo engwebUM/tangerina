@@ -1,5 +1,6 @@
 module Admin
   class ThemesController < AdminController
+    before_action :set_theme, only: :destroy
     before_filter :authorize
 
     def index
@@ -35,6 +36,5 @@ module Admin
     def theme_params
       params.require(:theme).permit(:name)
     end
-
   end
 end
