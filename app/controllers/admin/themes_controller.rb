@@ -11,16 +11,17 @@ module Admin
     def create
       @theme = Theme.new(theme_params)
       if @theme.save
-        # redirect_to action: :index
-        index
+        flash[:notice] = 'Theme was successfully created'
       else
-        render :new
+        flash[:error] = 'Please try again!'
       end
+      redirect_to admin_themes_url
     end
 
     def destroy
       @theme.destroy
-      redirect_to themes_url
+      flash[:notice] = 'Theme was successfully destroyed'
+      redirect_to admin_themes_url
       # respond_to do |format|
       # format.html { redirect_to themes_url }
       # format.json { head :no_content }
