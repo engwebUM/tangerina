@@ -1,0 +1,20 @@
+
+<h1>Listing Themes</h1>
+<table class="table table-striped">
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Image</th>
+    </tr>
+  </thead>
+  <tbody>
+    <% smart_listing.collection.each do |theme| %>
+      <tr>
+        <%= smart_listing.render(partial: "admin/themes/theme", locals: {theme: theme}) %>
+
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+<%= smart_listing.paginate %>
+<%= smart_listing.pagination_per_page_links %>

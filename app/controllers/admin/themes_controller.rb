@@ -1,11 +1,13 @@
-module Admin
+ module Admin
   class ThemesController < AdminController
+    include SmartListing::Helper::ControllerExtensions
+    helper  SmartListing::Helper
+
     before_action :set_theme, only: :destroy
     before_filter :require_login, :authorize
 
     def index
-      @themes = Theme.all
-      @theme = Theme.new
+      @themes = smart_listing_create(:themes, Theme.all, partial: 'admin/themes/listing')
     end
 
     def create

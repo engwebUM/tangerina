@@ -1,20 +1,3 @@
 <p id="notice"><%= notice %></p>
 
-<%= render partial: 'form' %>
-
-<% if @themes.count %>
-  <h1>Listing Themes</h1>
-
-  <table>
-    <thead>
-      <tr>
-        <th>Name</th>
-        <th colspan="3"></th>
-      </tr>
-    </thead>
-
-    <tbody>
-      <%= render partial: @theme %>
-    </tbody>
-  </table>
-<% end %>
+<%= smart_listing_render(:themes) %>

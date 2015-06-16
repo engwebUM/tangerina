@@ -1,7 +1,3 @@
-<% @themes.each do |theme| %>
-  <tr>
+
     <td><%= theme.name %></td>
     <td><%= image_tag theme.image.url(:small) %></td>
-    <td><%= link_to 'Destroy', [:admin, theme], method: :delete %></td>
-  </tr>
-<% end %>

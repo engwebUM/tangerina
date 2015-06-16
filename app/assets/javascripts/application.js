@@ -16,4 +16,5 @@
 //= require bootstrap
 //= require fileinput.min
 //= require fancybox
+//= require smart_listing
 //= require_tree .
