@@ -1,9 +1,12 @@
-<%= form_for(@theme) do |f| %>
+<td colspan="6">
+<%= form_for(@theme, url: @theme.new_record? ? admin_themes_path : admin_theme_path, remote: true, html: {class: 'form-horizontal'}) do |f| %>
 <p>
   <%= f.label :name, "New Theme" %>
   <%= f.text_field :name %>
   <%= f.file_field :image %>
-  <%= f.submit "Add Theme" %>
+  <%= f.submit "Add Theme", class: 'btn btn-primary' %>
+  <button class="btn btn-link cancel">Cancel</button>
 </p>
 
 <% end %>
+</td>

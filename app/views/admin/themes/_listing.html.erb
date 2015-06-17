@@ -9,11 +9,12 @@
   </thead>
   <tbody>
     <% smart_listing.collection.each do |theme| %>
-      <tr>
-        <%= smart_listing.render(partial: "admin/themes/theme", locals: {theme: theme}) %>
-
+      <tr class="editable" data-id="<%= theme.id %>">
+        <%= smart_listing.render(theme: theme, partial: "admin/themes/theme", locals: {theme: theme}) %>
       </tr>
     <% end %>
+
+    <%= smart_listing.item_new colspan: 6, link: new_admin_theme_path %>
   </tbody>
 </table>
 <%= smart_listing.paginate %>

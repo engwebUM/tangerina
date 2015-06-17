@@ -1,3 +1,8 @@
-
-    <td><%= theme.name %></td>
-    <td><%= image_tag theme.image.url(:small) %></td>
+<td><%= theme.name %></td>
+<td><%= image_tag theme.image.url(:small) %></td>
+<td class="actions">
+  <%= smart_listing_item_actions [
+    { name: :edit, url: edit_admin_theme_path(theme) },
+    { name: :destroy, url: admin_theme_path(theme), confirmation: "Are you sure want delete this?" }
+  ] %>
+</td>
