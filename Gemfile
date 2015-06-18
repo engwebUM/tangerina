@@ -3,16 +3,17 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
-# Use sqlite3 as the database for Active Record
-group :production, :staging do
-  gem 'pg'
-  gem 'rails_12factor'
-end
+# # Use sqlite3 as the database for Active Record
+# group :production, :staging do
+#   gem 'sqlite3'
+#   gem 'rails_12factor'
+# end
+#
+# group :development do
+#   gem 'sqlite3'
+# end
 
-group :development do
-  gem 'sqlite3'
-end
-
+gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -34,7 +35,6 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rubocop', require: false
 gem 'rspec-rails'
 gem "paperclip"
-gem "codeclimate-test-reporter", group: :test
 
 gem 'progressbar'
 

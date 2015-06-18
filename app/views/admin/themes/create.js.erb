@@ -1,1 +1,1 @@
-<%= smart_listing_item :themes, :create, @theme,   @theme.valid? ? "admin/themes/theme" : "admin/themes/form" %>
+<%= smart_listing_item :themes, :create, @theme,   @them.persisted? ? "admin/themes/theme" : "admin/themes/form" %>

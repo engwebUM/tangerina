@@ -1,3 +1,11 @@
+# t.string   "name"
+# t.datetime "created_at",         null: false
+# t.datetime "updated_at",         null: false
+# t.string   "image_file_name"
+# t.string   "image_content_type"
+# t.integer  "image_file_size"
+# t.datetime "image_updated_at"
+
 class Theme < ActiveRecord::Base
   att_url = '/assets/themes/:id/:style/:basename.:extension'
   att_path = ':rails_root/public/assets/themes/:id/:style/:basename.:extension'
@@ -12,4 +20,6 @@ class Theme < ActiveRecord::Base
 
   validates_presence_of :name
   accepts_nested_attributes_for :article_reviews
+
+  scope :like, ->(args) { where "name LIKE '%#{args}%'" }
 end
