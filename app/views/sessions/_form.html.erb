@@ -1,40 +1,17 @@
-
-
-    <div class="row">
-            <div class="col-md-6 portfolio-item">
-              <div class="card card-container">
-              <img id="profile-img" class="profile-img-card" src="/assets/tangerina.png" />
-              <p id="profile-name" class="profile-name-card"></p>
-          <%= form_for :session, url: session_path,:html => {:class => 'form-signin'} do |f| %>
-              <span id="reauth-email" class="reauth-email"></span>
-              <%= f.text_field :email, type: 'email', class: "form-control", placeholder: "Email address", autofocus: true, required: true %>
-              <%= f.password_field :password, class:"form-control", placeholder: "Password", required: true %>
-              <div class="other-links">
-                <%= link_to t('.forgot_password'), new_password_path %>
-              </div>
-              <%= f.submit "Sign In", class: "btn btn-lg btn-block btn-signin" %>
-
-          <% end %>
-
-      </div>
-            </div>
-
-            <div class="col-md-6 portfolio-item">
-              <div class="card card-container">
-
-                <div class="panel-body">
-                    <div class="alert alert-success">
-                        <h5><p>What is Tangerina?</p>
-                          Sharing scientific contents for free and in a comprehensibly way.</h5>
-                    </div>
-
-                    <% if Clearance.configuration.allow_sign_up? %>
-		                  <%= link_to  sign_up_path, class: "btn btn-lg  btn-block btn-signin" do %>
-                        <span>Sign Up</span>
-                      <% end %>
-
-	                  <% end %>
-                </div>
-          </div>
-            </div>
+<div class="row">
+  <div class="col-md-12 portfolio-item">
+    <div class="card card-container">
+      <img id="profile-img" class="profile-img-card" src="/assets/tangerina.png" />
+      <p id="profile-name" class="profile-name-card"></p>
+      <%= form_for :session, url: session_path,:html => {:class => 'form-signin'} do |f| %>
+        <span id="reauth-email" class="reauth-email"></span>
+        <%= f.text_field :email, type: 'email', class: "form-control", placeholder: "Email address", autofocus: true, required: true %>
+        <%= f.password_field :password, class:"form-control", placeholder: "Password", required: true %>
+        <div class="other-links">
+          <%= link_to t('.forgot_password'), new_password_path %>
         </div>
+        <%= f.submit "Sign In", class: "btn btn-lg btn-block btn-signin" %>
+      <% end %>
+    </div>
+  </div>
+</div>

@@ -4,10 +4,6 @@ class ApplicationController < ActionController::Base
   before_filter :set_search
   protect_from_forgery with: :exception
 
-  def url_after_denied_access_when_signed_out
-  	home_index_path
-  end
-
   private
 
   def permit_params
@@ -16,5 +12,13 @@ class ApplicationController < ActionController::Base
 
   def set_search
     @q = ArticleReview.joins(:articles).search(params[:q])
+  end
+
+  def url_after_denied_access_when_signed_out
+  	'/home'
+  end
+
+  def url_after_denied_access_when_signed_in
+     root_path
   end
 end

@@ -3,16 +3,23 @@
       <div class="container">
           <div class="navbar-header">
               <div class="navbar-brand page-scroll">
-                <img id="profile-img" class="profile-img-card" src="/assets/tag1.png" />
-
+                <img src="/assets/tag1.png" />
               </div>
           </div>
 
           <!-- Collect the nav links, forms, and other content for toggling -->
           <div class="collapse navbar-collapse navbar-right navbar-main-collapse">
               <ul class="nav navbar-nav">
-                  <li><button class="btn btn-primary btn-lg round"><a href="#">Register FREE!</a></button></li>
-                  <li><a class="page-scroll" >Login</a></li>
+                  <li>
+                      <%= link_to  sign_up_path, class: "page-controll btn btn-primary btn-lg round" do %>
+                        <span>Register FREE!</span>
+                      <% end %>
+                  </li>
+                  <li>
+                      <%= link_to  sign_in_path, class: "page-controll" do %>
+                        <span>Login</span>
+                      <% end %>
+                  </li>
               </ul>
           </div>
           <!-- /.navbar-collapse -->
