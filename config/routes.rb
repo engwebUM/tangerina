@@ -1,5 +1,7 @@
 Rails.application.routes.draw do
 
+  get '', to: 'home#index', as: '/'
+
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
   end
@@ -38,7 +40,6 @@ Rails.application.routes.draw do
   # delete '/sign_out' => 'clearance/sessions#destroy', as: 'sign_out'
   #get 'sign_up',  to: 'clearance/users#new'
 
-  #get 'home/index'
   get 'tags/:tag', to: 'articles#index', as: :tag
 
   #resources :articles

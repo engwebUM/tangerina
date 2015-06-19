@@ -4,6 +4,10 @@ class ApplicationController < ActionController::Base
   before_filter :set_search
   protect_from_forgery with: :exception
 
+  def url_after_denied_access_when_signed_out
+  	home_index_path
+  end
+
   private
 
   def permit_params
