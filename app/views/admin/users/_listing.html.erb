@@ -1,0 +1,18 @@
+<% unless smart_listing.empty? %>
+  <table class="table table-striped">
+    <thead>
+        <th><%= smart_listing.sortable "Username", :username %></th>
+        <th>Email</th>
+        <th>Created</th>
+    </thead>
+    <tbody>
+      <% smart_listing.collection.each do |o| %>
+        <tr class="editable" data-id="<%= o.id %>">
+          <%= smart_listing.render(object: o, partial: "admin/users/user", locals: {object: o}) %>
+        </tr>
+      <% end %>
+    </tbody>
+  </table>
+  <%= smart_listing.paginate %>
+  <%= smart_listing.pagination_per_page_links %>
+<% end %>

@@ -1,3 +1,13 @@
+# t.datetime "created_at",                                     null: false
+# t.datetime "updated_at",                                     null: false
+# t.string   "email",                                          null: false
+# t.string   "encrypted_password", limit: 128,                 null: false
+# t.string   "confirmation_token", limit: 128
+# t.string   "remember_token",     limit: 128,                 null: false
+# t.string   "username"
+# t.datetime "confirmed_at"
+# t.boolean  "admin",                          default: false
+
 class User < ActiveRecord::Base
   include Clearance::User
 
@@ -12,4 +22,6 @@ class User < ActiveRecord::Base
   def recommend?(article)
     favorites.where(article_id: article).present?
   end
+
+  scope :like, ->(args) { where "username LIKE '%#{args}%'" }
 end
