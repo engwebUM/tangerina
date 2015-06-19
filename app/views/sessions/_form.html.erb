@@ -1,5 +1,4 @@
-<div class="row">
-  <div class="col-md-12 portfolio-item">
+
     <div class="card card-container">
       <img id="profile-img" class="profile-img-card" src="/assets/tangerina.png" />
       <p id="profile-name" class="profile-name-card"></p>
@@ -10,8 +9,8 @@
         <div class="other-links">
           <%= link_to t('.forgot_password'), new_password_path %>
         </div>
-        <%= f.submit "Sign In", class: "btn btn-lg btn-block btn-signin" %>
+        
+        <%= f.submit "Login", class: "btn btn-lg btn-block btn-signin" %>
       <% end %>
+      <p class="text-black">Don't have an account yet? <%= link_to 'Create one', sign_up_path %></p>
     </div>
-  </div>
-</div>
