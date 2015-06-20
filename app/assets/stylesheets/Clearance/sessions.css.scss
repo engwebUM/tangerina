@@ -30,7 +30,9 @@
   padding: 10px 30px;
 }
 
-
+body, html{
+  height: 0;
+}
 
 //  .navbar-search-aligh {
 //   margin-top: 10px;
@@ -54,6 +56,11 @@
  .img-full {
      min-width: 100%;
  }
+
+.text-orange{
+  color: orange;
+//  padding-top: 10%;
+}
 
 
 
@@ -127,15 +134,14 @@
 
   }
 
-  // .card-container2.card {
-  //    /*width: 350px;*/
-  //  /*  padding: 40px 40px;*/
-  //
-  //    position: relative;
-  //    height: 400px;
-  //    width: 400px;
-  //
-  // }
+  .card-container2.card {
+       width: 350px;
+       padding: 40px 40px;
+
+       position: relative;
+      height: 440px;
+
+   }
 
   .create {
     margin-top: 110px;

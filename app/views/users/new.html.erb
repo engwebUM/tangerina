@@ -1,14 +1,14 @@
-<div id="clearance" class="sign-up">
-  <div class="row">
-    <div class="col-md-12 portfolio-item">
+
+
+
       <div class="card card-container2">
           <img id="profile-img" class="profile-img-card" src="/assets/tangerina.png" />
-          <p id="profile-name" class="profile-name-card"></p>
+
+          <h1 class="text-orange">Sign Up <small>It's free!</small></h1>
+
           <%= form_for @user, :html => {:class => 'form-signin'} do |form| %>
             <%= render partial: '/users/form', object: form %>
             <%= form.submit 'Register', class: 'btn btn-lg btn-block btn-signin' %>
           <% end %>
+          <p class="text-black">Already have account? <%= link_to 'Login', sign_in_path %></p>
       </div>
-    </div>
-  </div>
-</div>
