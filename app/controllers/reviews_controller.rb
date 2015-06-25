@@ -18,10 +18,10 @@ class ReviewsController < ApplicationController
   end
 
   def accept
-    ArticleReview.where(article_id: @article_review.article_id, status: 'accept').destroy_all
     @article_review.update(status: 'accept')
     new_article(@article_review)
     get_users_subscriptions(@article_review)
+    ArticleReview.where(article_id: @article_review.article_id, status: 'accept').destroy_all
     redirect_to root_path
   end
 
