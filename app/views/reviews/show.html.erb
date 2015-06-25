@@ -39,12 +39,11 @@
                 <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
                  1 Files
               </p>
-              <i class="icon-calendar"></i> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-              <%= @article_review.date_writted %>
-              | <i class="icon-calendar"></i> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-              <%= @article_review.date_accepted %>
               <p>
-
+                <i class="icon-calendar"></i> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                <%= @article_review.date_writted %>
+                | <i class="icon-calendar"></i> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                <%= @article_review.date_accepted %>
               </p>
               <p>
                 <%= raw @article_review.tag_list.map { |t| link_to content_tag(:span, t, { class: "label label-info"}), tag_path(t) }.join(', ') %>

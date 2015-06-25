@@ -36,6 +36,12 @@
 
                       </p>
                       <p>
+                        <i class="icon-calendar"></i> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                        <%= @publish.date_writted %>
+                        | <i class="icon-calendar"></i> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
+                        <%= @publish.date_accepted %>
+                      </p>
+                      <p>
                         <%= raw @publish.tag_list.map { |t| link_to content_tag(:span, t, { class: "label label-info"}), tag_path(t) }.join(', ') %>
                       </p>
                     </div>
@@ -54,7 +60,7 @@
 
                         <!-- link_to @publish.file.url do
                            image_tag 'pdf.png'
-                         end --> 
+                         end -->
                     </h4>
                     </div>
                     <hr class="hr-comments">
