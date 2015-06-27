@@ -1,16 +1,14 @@
-
-    <div class="card card-container">
-      <img id="profile-img" class="profile-img-card" src="/assets/tangerina.png" />
-      <p id="profile-name" class="profile-name-card"></p>
-      <%= form_for :session, url: session_path,:html => {:class => 'form-signin'} do |f| %>
-        <span id="reauth-email" class="reauth-email"></span>
-        <%= f.text_field :email, type: 'email', class: "form-control", placeholder: "Email address", autofocus: true, required: true %>
-        <%= f.password_field :password, class:"form-control", placeholder: "Password", required: true %>
-        <div class="other-links">
-          <%= link_to t('.forgot_password'), new_password_path %>
-        </div>
-
-        <%= f.submit "Login", class: "btn btn-lg btn-block btn-signin" %>
-      <% end %>
-      <p class="text-black">Don't have an account yet? <%= link_to 'Create one', sign_up_path %></p>
+<div class="card card-container">
+  <img id="profile-img" class="profile-img-card" src="/assets/tangerina.png" />
+  <%= form_for :session, url: session_path, html: { class: 'form-signin' } do |f| %>
+    <span id="reauth-email" class="reauth-email"></span>
+    <%= f.text_field :email, type: 'email', class: "form-control", placeholder: "Email address", autofocus: true, required: true %>
+    <%= f.password_field :password, class:"form-control", placeholder: "Password", required: true %>
+    <div class="other-links">
+      <%= link_to t('.forgot_password'), new_password_path %>
     </div>
+
+    <%= f.submit "Login", class: "btn btn-lg btn-block btn-signin" %>
+  <% end %>
+  <p class="text-black">Don't have an account yet? <%= link_to 'Create one', sign_up_path %></p>
+</div>
