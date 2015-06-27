@@ -1,6 +1,6 @@
 class UsersController < Clearance::UsersController
   before_action :set_user, only: :show
-  autocomplete :user, :username
+  autocomplete :user, :username, scopes: :normal
   def index
     @users = User.all
   end

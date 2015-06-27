@@ -3,5 +3,12 @@
 
 <%= form_for @user do |f| %>
   <%= f.label :username %>
-  <%= f.autocomplete_field :username, users_autocomplete_user_username_path %>
+  <%= f.autocomplete_field :username, users_autocomplete_user_username_path, id_element: '#user_id', multiple: true %>
+<% end %>
+
+<%= form_for [:admin, @reviser] do |f| %>
+  <%= f.hidden_field :user_id, id: "user_id" %>
+  <%= f.label "Theme" %><br>
+  <%= f.select(:theme_id, @themes.collect {|t| [t.name, t.id]}, {prompt: "Select a theme"} ) %>
+  <%= f.submit %>
 <% end %>

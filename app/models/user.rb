@@ -14,4 +14,6 @@ class User < ActiveRecord::Base
   def recommend?(article)
     favorites.where(article_id: article).present?
   end
+
+  scope :normal, -> { where(admin: false) }
 end

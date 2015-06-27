@@ -7,6 +7,7 @@ module Admin
       @revisers = Reviser.all
       @reviser = Reviser.new
       @user = User.new
+      @themes = Theme.all
     end
 
     def show
