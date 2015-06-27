@@ -5,7 +5,7 @@ Rails.application.routes.draw do
   end
 
   resources :favorites
-
+  resources :revisers
   resources :subscriptions
   resources :contents
   resources :articles do
