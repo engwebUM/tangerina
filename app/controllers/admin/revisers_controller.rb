@@ -5,6 +5,8 @@ module Admin
 
     def index
       @revisers = Reviser.all
+      @reviser = Reviser.new
+      @user = User.new
     end
 
     def show

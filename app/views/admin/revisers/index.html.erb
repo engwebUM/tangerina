@@ -1,2 +1,7 @@
-<h1>Revisers#index</h1>
+<h1>Revisers#index2</h1>
 <p>Find me in app/views/revisers/index.html.erb</p>
+
+<%= form_for @user do |f| %>
+  <%= f.label :username %>
+  <%= f.autocomplete_field :username, users_autocomplete_user_username_path %>
+<% end %>
