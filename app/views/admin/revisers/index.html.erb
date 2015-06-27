@@ -12,3 +12,23 @@
   <%= f.select(:theme_id, @themes.collect {|t| [t.name, t.id]}, {prompt: "Select a theme"} ) %>
   <%= f.submit %>
 <% end %>
+
+<table>
+  <thead>
+    <tr>
+      <th>User</th>
+      <th>Theme</th>
+      <th colspan="3"></th>
+    </tr>
+  </thead>
+
+  <tbody>
+    <% @revisers.each do |r| %>
+      <tr>
+        <td><%= r.user.username %></td>
+        <td><%= r.theme.name %></td>
+        <td><%= link_to 'Destroy', [:admin, r], method: :delete %></td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
