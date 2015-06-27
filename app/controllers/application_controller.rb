@@ -15,10 +15,10 @@ class ApplicationController < ActionController::Base
   end
 
   def url_after_denied_access_when_signed_out
-  	'/home'
+    '/home'
   end
 
   def url_after_denied_access_when_signed_in
-     root_path
+    root_path
   end
 end
