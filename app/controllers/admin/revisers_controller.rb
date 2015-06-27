@@ -26,11 +26,8 @@ module Admin
 
     def create
       @reviser = Reviser.new(reviser_params)
-      if @reviser.save
-        redirect_to admin_revisers_url
-      else
-        render :new
-      end
+      @reviser.save
+      redirect_to admin_revisers_url
     end
 
     def update
