@@ -1,5 +1,4 @@
 class UsersController < Clearance::UsersController
-  include ApplicationHelper
   before_action :set_user, only: :show
   def index
     @users = User.all

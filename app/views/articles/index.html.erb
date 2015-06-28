@@ -6,7 +6,7 @@
   
 
   <% @articles.each do |article| %>
-    <%= render 'article', article: article %>
+    <%= render partial: 'shared/article', locals: {article: article} %>
   <% end %>
 
   <div class="pagination">
