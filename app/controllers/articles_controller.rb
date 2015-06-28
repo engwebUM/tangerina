@@ -1,4 +1,5 @@
 class ArticlesController < ApplicationController
+  include ApplicationHelper
   before_action :set_article, only: [:show, :create_review, :edit, :destroy]
   before_action :set_publish, only: [:show, :create_review, :edit]
   before_action :require_login

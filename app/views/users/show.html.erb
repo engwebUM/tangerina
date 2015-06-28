@@ -1,18 +1,20 @@
-Username:<%= simple_format @user.username %>
-Date created: <%= simple_format @user.created_at.to_time.strftime('%m/%d/%Y') %>
-User Clearance: <% if @user.user_type == 1 %>
-            <%= simple_format "Admin" %>
-            <% elsif @user.user_type == 2%>
-              <%= simple_format "Reviewer" %> 
-            <% else %>
-              <%= simple_format "Normal User" %>
-          <% end %>
-Email: <%= simple_format @user.email %>
-
-<% if current_user.id == @user.id %>
-  <%= link_to t('.change_password'), new_password_path %>
-<% end %>
-<p>&nbsp;</p>
-<%= render partial: 'user_posts' %>
-<p>&nbsp;</p>
-<%= render partial: 'user_favorites' %>
+	<ul class="nav nav-tabs">
+        <li class="active"><a data-toggle="tab" href="#profile">Profile</a></li>
+        <li><a data-toggle="tab" href="#posts">Posts</a></li>
+        <li><a data-toggle="tab" href="#favorites">Favorites</a></li>
+        <li><a data-toggle="tab" href="#subscriptions">Subscriptions</a></li>    
+    </ul>
+    <div class="tab-content">
+        <div id="profile" class="tab-pane fade in active">
+            <%= render partial: 'user_profile' %>
+        </div>
+        <div id="posts" class="tab-pane fade">
+            <%= render partial: 'user_posts' %>
+        </div>
+        <div id="favorites" class="tab-pane fade">
+			<%= render partial: 'user_favorites' %>        
+		</div>
+		<div id="subscriptions" class="tab-pane fade">
+			<%= render partial: 'user_subscriptions' %>        
+		</div>
+    </div>

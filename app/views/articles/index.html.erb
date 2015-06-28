@@ -4,7 +4,11 @@
 
   <p>&nbsp;</p>
   
-  <%= render partial: 'article' %>
+
+  <% @articles.each do |article| %>
+    <%= render 'article', article: article %>
+  <% end %>
+
   <div class="pagination">
     <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
   </div>
