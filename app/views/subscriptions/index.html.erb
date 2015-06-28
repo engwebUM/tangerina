@@ -23,7 +23,9 @@
 </div>
 
   <p>&nbsp;</p>
-  <%= render partial: 'articles/article', object: @articles %>
+  <% @articles.each do |article| %>
+    <%= render partial: 'shared/article', locals: {article: article} %>
+  <% end %>
   <div class="pagination">
     <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
   </div>
