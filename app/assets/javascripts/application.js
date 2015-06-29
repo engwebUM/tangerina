@@ -18,4 +18,5 @@
 //= require autocomplete-rails
 //= require fileinput.min
 //= require fancybox
+//= require jquery.easing
 //= require_tree .

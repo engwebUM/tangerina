@@ -1,18 +1,9 @@
-<div id="clearance" class="password-reset">
-  <h2><%= t '.title' %></h2>
-
-  <p><%= t '.description' %></p>
-
-  <%= form_for :password_reset,
-        url: user_password_path(@user, token: @user.confirmation_token),
-        html: { method: :put } do |form| %>
-    <div class="password-field">
-      <%= form.label :password %>
-      <%= form.password_field :password %>
-    </div>
-
-    <div class="submit-field">
-      <%= form.submit %>
-    </div>
+<div class="card card-container">
+  <img id="profile-img" class="profile-img-card" src="/assets/tangerina.png" />
+  <h3 class="text-orange">Change your password.</h3>
+  <%= form_for :password_reset, url: user_password_path(@user, token: @user.confirmation_token), html: {  method: :put, class: 'form-signin' } do |f| %>
+    <%= f.password_field :password, class: "form-control", placeholder: "Password", required: true, autofocus: true %>
+    <%= f.submit class: "btn btn-lg btn-block btn-signin" %>
   <% end %>
+  <p class="text-black">Already have account? <%= link_to 'Login', sign_in_path %></p>
 </div>
