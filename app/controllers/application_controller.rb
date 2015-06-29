@@ -13,4 +13,12 @@ class ApplicationController < ActionController::Base
   def set_search
     @q = ArticleReview.joins(:articles).search(params[:q])
   end
+
+  def url_after_denied_access_when_signed_out
+    '/home'
+  end
+
+  def url_after_denied_access_when_signed_in
+    root_path
+  end
 end

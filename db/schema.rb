@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150625095238) do
+ActiveRecord::Schema.define(version: 20150627031429) do
 
   create_table "article_reviews", force: :cascade do |t|
     t.integer  "article_id"
@@ -24,10 +24,8 @@ ActiveRecord::Schema.define(version: 20150625095238) do
     t.string   "tag_list"
     t.string   "event"
     t.text     "comment"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.date     "date_accepted"
-    t.date     "date_writted"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "articles", force: :cascade do |t|
@@ -57,6 +55,13 @@ ActiveRecord::Schema.define(version: 20150625095238) do
   create_table "favorites", force: :cascade do |t|
     t.integer  "article_id"
     t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "revisers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "theme_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -95,12 +100,8 @@ ActiveRecord::Schema.define(version: 20150625095238) do
 
   create_table "themes", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
-    t.string   "image_file_name"
-    t.string   "image_content_type"
-    t.integer  "image_file_size"
-    t.datetime "image_updated_at"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
   end
 
   create_table "users", force: :cascade do |t|
