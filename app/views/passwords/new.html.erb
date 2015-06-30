@@ -1,16 +1,8 @@
-<div id="clearance" class="password-reset">
-  <h2><%= t '.title' %></h2>
-
-  <p><%= t '.description' %></p>
-
-  <%= form_for :password, url: passwords_path do |form| %>
-    <div class="text-field">
-      <%= form.label :email %>
-      <%= form.text_field :email, type: 'email' %>
-    </div>
-
-    <div class="submit-field">
-      <%= form.submit %>
-    </div>
+<div class="card card-container">
+  <img id="profile-img" class="profile-img-card" src="/assets/tangerina.png" />
+  <%= form_for :password, url: passwords_path, html: { class: 'form-signin' } do |f| %>
+    <%= f.text_field :email, type: 'email', class: "form-control", placeholder: "Email address", required: true, autofocus: true %>
+    <%= f.submit class: "btn btn-lg btn-block btn-signin" %>
   <% end %>
+  <p class="text-black">Already have account? <%= link_to 'Login', sign_in_path %></p>
 </div>

@@ -212,8 +212,8 @@
 				type : 'iframe',
 				url  : '//www.youtube.com/embed/$3'
 			},
-		
-		
+
+
 		},
 
 		beforeLoad : function(opts, obj) {
