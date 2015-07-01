@@ -8,7 +8,6 @@ Rails.application.routes.draw do
     resources :themes
   end
 
-  end
   get 'users/autocomplete_user_username'
   resources :favorites
   resources :subscriptions
