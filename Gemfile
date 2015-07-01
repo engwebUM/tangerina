@@ -25,6 +25,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -36,6 +37,7 @@ gem 'rubocop', require: false
 gem 'rspec-rails'
 gem "paperclip"
 
+gem 'rails4-autocomplete'
 gem 'progressbar'
 
 gem 'coffee-script-source', '~> 1.8.0'

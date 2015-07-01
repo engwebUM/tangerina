@@ -4,11 +4,12 @@ Rails.application.routes.draw do
 
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
+    resources :revisers, only: [:index, :create, :destroy]
     resources :themes
   end
 
+  get 'users/autocomplete_user_username'
   resources :favorites
-
   resources :subscriptions
   resources :contents
   resources :articles do
