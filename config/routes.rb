@@ -5,6 +5,8 @@ Rails.application.routes.draw do
   namespace :admin do
     get '', to: 'dashboard#index', as: '/'
     resources :revisers, only: [:index, :create, :destroy]
+    resources :themes
+  end
 
   end
   get 'users/autocomplete_user_username'
@@ -25,8 +27,6 @@ Rails.application.routes.draw do
     end
 
   end
-
-  resources :themes
 
   resources :passwords, controller: 'clearance/passwords', only: [:create, :new]
   resource :session, controller: 'clearance/sessions', only: [:create]

@@ -13,10 +13,6 @@
 //= require jquery
 //= require jquery_ujs
 //= require turbolinks
-//= require bootstrap
-//= require jquery-ui
-//= require autocomplete-rails
+
 //= require fileinput.min
 //= require fancybox
-//= require jquery.easing
-//= require_tree .
