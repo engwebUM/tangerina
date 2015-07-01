@@ -24,10 +24,8 @@ ActiveRecord::Schema.define(version: 20150627031429) do
     t.string   "tag_list"
     t.string   "event"
     t.text     "comment"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
-    t.date     "date_accepted"
-    t.date     "date_writted"
+    t.datetime "created_at",  null: false
+    t.datetime "updated_at",  null: false
   end
 
   create_table "articles", force: :cascade do |t|
