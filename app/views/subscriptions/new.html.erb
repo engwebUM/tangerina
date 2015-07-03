@@ -1,3 +1,4 @@
+<div class="articles">
 <p id="notice"><%= notice %></p>
   <% if @subscription.errors.any? %>
     <div id="error_explanation">
@@ -5,7 +6,7 @@
       <% @subscription.errors.full_messages.each do |message| %>
         <li><%= message %></li>
       <% end %>
-    
+
       </ul>
     </div>
   <% end %>
@@ -21,4 +22,5 @@
             <% end %>
         </div>
     </div>
+</div>
 </div>

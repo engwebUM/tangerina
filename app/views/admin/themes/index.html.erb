@@ -1,6 +1,8 @@
+<div class="articles">
 <%= smart_listing_controls_for(:themes, {class: "form-inline text-right"}) do %>
 <div class="form-group input-append filter">
     <%= text_field_tag :filter, '', class: "search form-control", placeholder: "Search...", autocomplete: :off %>
 </div>
 <% end %>
 <%= smart_listing_render(:themes) %>
+</div>
