@@ -1,19 +1,6 @@
-<%= form_for(@comment) do |f| %>
-
-
-  <div class="field">
-    <%= f.label :article_id %><br>
-    <%= f.number_field :article_id %>
-  </div>
-  <div class="field">
-    <%= f.label :user_id %><br>
-    <%= f.number_field :user_id %>
-  </div>
-  <div class="field">
-    <%= f.label :body %><br>
-    <%= f.text_area :body %>
-  </div>
-  <div class="actions">
-    <%= f.submit %>
-  </div>
+<div class="form-group">
+  <%= form_for([@article, Comment.new]) do |f| %>
+    <%= f.text_area :body, class: "form-control", rows: 3 %>
+    <%= f.submit class: "btn btn-primary" %>
 <% end %>
+</div>
