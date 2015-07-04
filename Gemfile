@@ -3,16 +3,17 @@ source 'https://rubygems.org'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '4.2.0'
-# Use sqlite3 as the database for Active Record
-group :production, :staging do
-  gem 'pg'
-  gem 'rails_12factor'
-end
+# # Use sqlite3 as the database for Active Record
+# group :production, :staging do
+#   gem 'sqlite3'
+#   gem 'rails_12factor'
+# end
+#
+# group :development do
+#   gem 'sqlite3'
+# end
 
-group :development do
-  gem 'sqlite3'
-end
-
+gem 'sqlite3'
 # Use SCSS for stylesheets
 gem 'sass-rails', '~> 5.0'
 # Use Uglifier as compressor for JavaScript assets
@@ -24,6 +25,7 @@ gem 'coffee-rails', '~> 4.1.0'
 
 # Use jquery as the JavaScript library
 gem 'jquery-rails'
+gem 'jquery-ui-rails'
 # Turbolinks makes following links in your web application faster. Read more: https://github.com/rails/turbolinks
 gem 'turbolinks'
 # Build JSON APIs with ease. Read more: https://github.com/rails/jbuilder
@@ -34,8 +36,8 @@ gem 'sdoc', '~> 0.4.0', group: :doc
 gem 'rubocop', require: false
 gem 'rspec-rails'
 gem "paperclip"
-gem "codeclimate-test-reporter", group: :test
 
+gem 'rails4-autocomplete'
 gem 'progressbar'
 
 gem 'coffee-script-source', '~> 1.8.0'
@@ -45,11 +47,14 @@ gem 'acts-as-taggable-on', '~> 3.4'
 gem 'tzinfo-data', platforms: [:x64_mingw, :mingw, :mswin]
 
 gem 'bootstrap-sass', '~> 3.3.4'
+gem "smart_listing"
 
 gem 'ransack'
-gem 'will_paginate', '~> 3.0.6'
+gem "will_paginate"
 gem 'will_paginate-bootstrap'
-
+gem "codeclimate-test-reporter", group: :test, require: nil
+gem "font-awesome-rails"
+gem 'jquery-easing-rails'
 # Use ActiveModel has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
 

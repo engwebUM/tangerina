@@ -2,19 +2,17 @@
 <html>
 <head>
   <title>Tangerina</title>
-  <%= stylesheet_link_tag    'application', media: 'all', 'data-turbolinks-track' => true %>
-  <%= javascript_include_tag 'application', 'data-turbolinks-track' => true %>
+  <%= stylesheet_link_tag    'application', params[:controller], media: 'all', 'data-turbolinks-track' => true %>
   <%= csrf_meta_tags %>
   <%= favicon_link_tag 'favicon.ico' %>
 </head>
 <body>
 
   <% if signed_in? %>
-    <%= render partial: 'shared/navbar' %>
+    <%= render partial: 'navbar' %>
   <% end %>
 
-  <div class="container">
-   <%= yield %>
-  </div>
+  <%= yield %>
+  <%= javascript_include_tag 'application', params[:controller], 'data-turbolinks-track' => true %>
 </body>
 </html>

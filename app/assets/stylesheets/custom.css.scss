@@ -30,11 +30,13 @@
   padding: 10px 30px;
 }
 
-
-
- .navbar-search-aligh {
-  margin-top: 10px;
+body, html{
+  height: 0;
 }
+
+//  .navbar-search-aligh {
+//   margin-top: 10px;
+// }
 
  .hr-post {
      max-width: 400px;
@@ -55,6 +57,11 @@
      min-width: 100%;
  }
 
+.text-orange{
+  color: orange;
+//  padding-top: 10%;
+}
+
 
 
  .tagline-divider {
@@ -70,11 +77,9 @@
      background: rgba(255,255,255,0.9);
  }
 
- .intro-text {
-     text-transform: uppercase;
-     font-size: 1.25em;
-     font-weight: 400;
-     letter-spacing: 1px;
+ .text-black{
+   padding-top: 10%;
+   color: black;
  }
 
  .img-border {
@@ -97,41 +102,6 @@
    position: absolute;
  }
 
- @media screen and (min-width:768px) {
-
-     .span8{
-       text-align: center;
-     }
-
-     .navbar {
-         border-radius: 0;
-         position:fixed;
-     }
-
-     .nav.navbar-nav.navbar-color li a {
-       color: white;
-     }
-
-     .navbar-inverse {
-         border: none;
-         background: rgba(255, 102, 0,0.7);
-     }
-
-     .navbar .navbar-nav {
-         display: inline-block;
-         float: none;
-         vertical-align: top;
-     }
-
-     .navbar .navbar-collapse {
-         text-align: center;
-         font-size: 1.25em;
-     }
-     .navbar .navbar-header {
-         font-size: 1.25em;
-     }
-
- }
 
 
  @media screen and (min-width:1200px) {
@@ -151,38 +121,34 @@
 
  /* LOGIN */
 
-
+.other-links{
+  padding-bottom: 5%;
+}
 
  .card-container.card {
-     /*width: 350px;*/
-   /*  padding: 40px 40px;*/
-     margin-top:30%;
-     position: relative;
-     height: 365px;
-
+      width: 350px;
+      padding: 40px 40px;
+      position: relative;
   }
 
   .card-container2.card {
-     /*width: 350px;*/
-   /*  padding: 40px 40px;*/
+       width: 350px;
+       padding: 40px 40px;
+       position: relative;
 
-     position: relative;
-     height: 400px;
-     width: 400px;
-
-  }
+   }
 
   .create {
     margin-top: 110px;
   }
 
- .btn {
-     font-weight: 700;
-     height: 36px;
-     user-select: none;
-     cursor: default;
-     margin-top: 40px;
- }
+ // .btn {
+ //     font-weight: 700;
+ //     height: 36px;
+ //     user-select: none;
+ //     cursor: default;
+ //     margin-top: 40px;
+ // }
 
  /*
   * Card component

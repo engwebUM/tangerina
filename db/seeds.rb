@@ -5,5 +5,9 @@
 #
 #   cities = City.create([{ name: 'Chicago' }, { name: 'Copenhagen' }])
 #   Mayor.create(name: 'Emanuel', city: cities.first)
-Theme.create([{name: 'Informatica'}, {name: 'Matematica'}, {name: 'Ciencias'}])
-user = User.create! :username => 'ADMIN', :email => 'admin@admin.com', :password => 'admin', :user_type => 1
+
+User.create(username: 'ADMIN', email: 'admin@admin.com', password: 'admin', admin: true)
+
+Theme.create([{name: 'Informatica', image: File.new("#{Rails.root}/app/assets/images/Informatica.png")},
+            {name: 'Matematica', image: File.new("#{Rails.root}/app/assets/images/Matematica.png")},
+            {name: 'Ciencias', image: File.new("#{Rails.root}/app/assets/images/Ciencias.png")}])

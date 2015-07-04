@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150505235930) do
+ActiveRecord::Schema.define(version: 20150627031429) do
 
   create_table "article_reviews", force: :cascade do |t|
     t.integer  "article_id"
@@ -24,12 +24,10 @@ ActiveRecord::Schema.define(version: 20150505235930) do
     t.string   "tag_list"
     t.string   "event"
     t.text     "comment"
-    t.datetime "created_at",        null: false
-    t.datetime "updated_at",        null: false
-    t.string   "file_file_name"
-    t.string   "file_content_type"
-    t.integer  "file_file_size"
-    t.datetime "file_updated_at"
+    t.datetime "created_at",    null: false
+    t.datetime "updated_at",    null: false
+    t.date     "date_accepted"
+    t.date     "date_writted"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -46,9 +44,26 @@ ActiveRecord::Schema.define(version: 20150505235930) do
     t.datetime "updated_at", null: false
   end
 
+  create_table "contents", force: :cascade do |t|
+    t.string   "file_file_name"
+    t.string   "file_content_type"
+    t.integer  "file_file_size"
+    t.datetime "file_updated_at"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
+    t.integer  "article_review_id"
+  end
+
   create_table "favorites", force: :cascade do |t|
     t.integer  "article_id"
     t.integer  "user_id"
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+  end
+
+  create_table "revisers", force: :cascade do |t|
+    t.integer  "user_id"
+    t.integer  "theme_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -87,8 +102,12 @@ ActiveRecord::Schema.define(version: 20150505235930) do
 
   create_table "themes", force: :cascade do |t|
     t.string   "name"
-    t.datetime "created_at", null: false
-    t.datetime "updated_at", null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
+    t.string   "image_file_name"
+    t.string   "image_content_type"
+    t.integer  "image_file_size"
+    t.datetime "image_updated_at"
   end
 
   create_table "users", force: :cascade do |t|
@@ -99,22 +118,18 @@ ActiveRecord::Schema.define(version: 20150505235930) do
     t.string   "confirmation_token", limit: 128
     t.string   "remember_token",     limit: 128,                 null: false
     t.string   "username"
-    t.boolean  "reviser",                        default: false
-    t.integer  "user_type",                      default: 3
+    t.datetime "confirmed_at"
+    t.boolean  "admin",                          default: false
   end
 
   add_index "users", ["email"], name: "index_users_on_email"
   add_index "users", ["remember_token"], name: "index_users_on_remember_token"
 
-  create_table "versions", force: :cascade do |t|
-    t.string   "item_type",  null: false
-    t.integer  "item_id",    null: false
-    t.string   "event",      null: false
-    t.string   "whodunnit"
-    t.text     "object"
-    t.datetime "created_at"
+  create_table "videos", force: :cascade do |t|
+    t.string   "link"
+    t.integer  "article_review_id"
+    t.datetime "created_at",        null: false
+    t.datetime "updated_at",        null: false
   end
-
-  add_index "versions", ["item_type", "item_id"], name: "index_versions_on_item_type_and_item_id"
 
 end

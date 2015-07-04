@@ -6,15 +6,6 @@
         <hr class="hr-post">
         <h2 class="intro-text text-center"><%= link_to user.username, action: 'show', id: user.id  %></h2>
         <hr class="hr-post">
-        <div class="span8">
-          <% if user.user_type == 1 %>
-            Admin
-            <% elsif user.user_type == 2%>
-              Reviewer 
-            <% else %>
-              Normal User
-          <% end %>
-        </div>
       </div>
     </div>
   </div>

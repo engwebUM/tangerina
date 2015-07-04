@@ -1,0 +1,8 @@
+<td><%= object.name %></td>
+<td><%= image_tag object.image.url(:small) %></td>
+<td class="actions">
+  <%= smart_listing_item_actions [
+    { name: :edit, url: edit_admin_theme_path(object) },
+    { name: :destroy, url: admin_theme_path(object), confirmation: "Are you sure you want to delete this?" }
+  ] %>
+</td>

@@ -1,0 +1,10 @@
+<%= link_to @content.file.url %>
+<%= form_for(@content) do |c| %>
+  <div class="field">
+    <%= c.label :file %><br>
+    <%= c.file_field :file %>
+  </div>
+  <div class="actions">
+    <%= c.submit %>
+  </div>
+<% end %

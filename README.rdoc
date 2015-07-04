@@ -1,28 +1,14 @@
-== README
+{<img src="https://codeclimate.com/repos/5547e7d7e30ba0607d000bcc/badges/a8837ace8c5e80c689c0/gpa.svg" />}[https://codeclimate.com/repos/5547e7d7e30ba0607d000bcc/feed]
+{<img src="https://codeclimate.com/repos/5547e7d7e30ba0607d000bcc/badges/a8837ace8c5e80c689c0/coverage.svg" />}[https://codeclimate.com/repos/5547e7d7e30ba0607d000bcc/coverage]
+{<img src="https://travis-ci.org/engwebUM/tangerina.svg?branch=master" alt="Build Status" />}[https://travis-ci.org/engwebUM/tangerina]
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+@ TANGERINA @
 
-Things you may want to cover:
+Online version: http://tangerina.herokuapp.com/
 
-* Ruby version
+locally, run:
 
-* System dependencies
-
-* Configuration
-
-* Database creation
-
-* Database initialization
-
-* How to run the test suite
-
-* Services (job queues, cache servers, search engines, etc.)
-
-* Deployment instructions
-
-* ...
-
-
-Please feel free to use a different markup language if you do not plan to run
-<tt>rake doc:app</tt>.
+- bundle install
+- rake db:migrate
+- rake db:seed
+- rails s
