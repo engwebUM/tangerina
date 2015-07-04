@@ -1,4 +1,4 @@
-<%= div_for comment, class: "media" do %>
+<%= div_for comment, class: "media clear" do %>
 <a class="pull-left" href="#">
   <img class="media-object" src="http://placehold.it/64x64" alt="">
 </a>
@@ -7,7 +7,9 @@
       <small><%= time_ago_in_words(comment.created_at) %></small>
   </h4>
   <p>
-    <%= h(comment.body) %>
+    <%= best_in_place  [comment.article, comment], :body,  as: :textarea, ok_button: 'Save', cancel_button: 'Cancel', activator: '#comment-'+comment.id.to_s %>
   </p>
+  <a id='comment-<%= comment.id %>' class='edit-comment'>Edit</a>
+  <%= link_to 'Destroy', [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
 </div>
 <% end %>
