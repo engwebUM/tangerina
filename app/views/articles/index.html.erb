@@ -1,17 +1,30 @@
-<div id="articles">
+<!-- <div id="articles">
 
   <%= render partial: 'advanced_search' %>
 
   <p>&nbsp;</p>
-  
+
   <%= render partial: 'article' %>
   <div class="pagination">
     <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
   </div>
-  
+
   <% if @articles.count==0 %>
     <h1 class="no-articles">NO ARTICLES</h1>
 
     <img class="emotion" src="/assets/emotion.png" >
   <% end %>
+</div> -->
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-4">
+    </div>
+
+    <div class="col-md-8 article">
+
+      <%= render partial: 'article' %>
+
+    </div>
+  </div>
 </div>
