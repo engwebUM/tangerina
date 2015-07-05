@@ -1,31 +1,16 @@
-<p id="notice"><%= notice %></p>
+<% @article.comments.each do |comment| %>
+<a class="pull-left" href="#">
+  <img class="media-object" src="http://placehold.it/64x64" alt="">
+</a>
+<div class="media-body">
+  <h4 class="media-heading"><%= h(comment.user.username)  %>
+      <small><%= time_ago_in_words(comment.created_at) %></small>
+  </h4>
+  <p>
+    <%= h(comment.body) %>
+  </p>
+  <%= link_to 'Edit', edit_article_comment_path(comment.article, comment)%>
+  <%= link_to 'Destroy', [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+</div>
 
-<h1>Listing Comments</h1>
-
-<table>
-  <thead>
-    <tr>
-      <th>Article</th>
-      <th>User</th>
-      <th>Body</th>
-      <th colspan="3"></th>
-    </tr>
-  </thead>
-
-  <tbody>
-    <% @comments.each do |comment| %>
-      <tr>
-        <td><%= comment.article_id %></td>
-        <td><%= comment.user_id %></td>
-        <td><%= comment.body %></td>
-        <td><%= link_to 'Show', comment %></td>
-        <td><%= link_to 'Edit', edit_comment_path(comment) %></td>
-        <td><%= link_to 'Destroy', comment, method: :delete, data: { confirm: 'Are you sure?' } %></td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
-
-<br>
-
-<%= link_to 'New Comment', new_comment_path %>
+<% end %>

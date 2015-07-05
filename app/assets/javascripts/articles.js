@@ -3,6 +3,10 @@
 //= require fancybox
 //= require fancybox-media
 
+//= require best_in_place
+//= require best_in_place.jquery-ui
+
+  $(".best_in_place").best_in_place();
 
   $( "#datepicker" ).datepicker({
     dateFormat: "dd-mm-yy"
