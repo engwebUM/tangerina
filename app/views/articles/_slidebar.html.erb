@@ -2,16 +2,24 @@
 <div class="box-style">
   <div class="inner">
     <%= search_form_for @q, url: url_for(controller: :articles) do |f| %>
-        <p class="">
-          <span><%= f.text_field :title_or_description_cont_all, placeholder: '"your search..."' %></span>
-
-        </p>
         <ul class="list-link">
+          <p class="">
+            <span><%= f.text_field :title_or_description_cont_all, placeholder: '"your search..."' %></span>
+
+          </p>
+          <li>
             <% @themes.each do |theme| %>
-          <li><a href="#"><%= check_box_tag 'q[theme_id_in][]', theme.id %><%= theme.name %></a></li>
-          <% end %>
+              <a href="#"><%= check_box_tag 'q[theme_id_in][]', theme.id %><%= theme.name %></a>
+            <% end %>
+          </li>
+          <li>
+            <%= f.label :updated_at_gteq, "Date from:" %>
+            <%= f.text_field :updated_at_gteq, class: 'form-control date', id: 'datepicker' %>
+            <%= f.label :updated_at_lteq, "to:" %>
+            <%= f.text_field :updated_at_lteq, class: 'form-control date', id: 'datepicker' %>
+          </li>
+          <li><a href="#"><%= f.submit 'Search' %></a></li>
         </ul>
-        <li><a href="#"><%= f.submit 'Search' %></a></li>
     <% end %>
   </div>
 </div>
