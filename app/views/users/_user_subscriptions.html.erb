@@ -1,0 +1,6 @@
+<% @subscriptions.each do |subscription| %>
+  <p><%= subscription.subject %>
+  <%= link_to 'Destroy', subscription, method: :delete %></p>
+<% end %>
+
+<%= link_to 'New', new_subscription_path, {class: "btn btn-default btn-lg"}  %>

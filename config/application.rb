@@ -27,7 +27,9 @@ module Tangerina
 	  config.assets.initialize_on_precompile = false
     config.server_static_assets = true
 
-
+    config.generators do |g|
+      g.assets false
+    end
 
   end
 end
