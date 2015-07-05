@@ -1,32 +1,16 @@
-<div class="box-style"> 
-  <div class="inner">
-    <h3 class="title"> <span>Links</span> </h3>
-    <ul class="list-link">
-      <li><a href="#">Competitive Comparison <i class="fa fa-file-picture-o"></i></a></li>
-      <li><a href="#">Sales Literature <i class="fa fa-folder-open-o"></i></a></li>
-      <li><a href="#">Future Services <i class="fa fa-flask"></i></a></li>
-      <li><a href="#">Technology <i class="fa fa-paint-brush"></i></a></li>
-      <li><a href="#">Fulfillment <i class="fa fa-bar-chart-o"></i></a></li>
-    </ul>
-  </div>
-</div>
 
 <div class="box-style">
   <div class="inner">
-    <h3 class="title ">
-      <span>News &amp; Events</span>
-    </h3>
-    <ul class="latest-news">
-      <li><img class="fleft" src="img/thumb/thumb-1.jpg" alt="">
-        <span class="text2">Praesent vestibulum lacus.</span>
-        Aenean nonuy hendrerit mauris. Phasellus porta. Fusce suscipit varius cum sociis natoque penati
-        bus et magnis dis parturient montes <a class="link3" href="#">[...]</a>
-      </li>
-      <li><img class="fright" src="img/thumb/thumb-2.jpg" alt="">
-        <span class="text2">Praesent vestibulum lacus.</span>
-        Aenean nonuy hendrerit maurised blan dit massa. Phasellus porta. Fusce suscipit varius cum sociis natoque penati                 bus et magnis dis parturient montes
-        <a class="link3" href="#">[...]</a>
-      </li>
-    </ul>
+    <%= search_form_for @q, url: url_for(controller: :articles) do |f| %>
+        <p class="">
+          <span><%= f.text_field :title_or_description_cont_all, placeholder: '"your search..."' %>  <%= f.submit 'Search' %></span>
+
+        </p>
+        <ul class="list-link">
+            <% @themes.each do |theme| %>
+          <li><a href="#"><%= check_box_tag 'q[theme_id_in][]', theme.id %><%= theme.name %></i></a></li>
+          <% end %>
+        </ul>
+    <% end %>
   </div>
 </div>
