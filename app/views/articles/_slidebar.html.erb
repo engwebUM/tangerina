@@ -3,14 +3,15 @@
   <div class="inner">
     <%= search_form_for @q, url: url_for(controller: :articles) do |f| %>
         <p class="">
-          <span><%= f.text_field :title_or_description_cont_all, placeholder: '"your search..."' %>  <%= f.submit 'Search' %></span>
+          <span><%= f.text_field :title_or_description_cont_all, placeholder: '"your search..."' %></span>
 
         </p>
         <ul class="list-link">
             <% @themes.each do |theme| %>
-          <li><a href="#"><%= check_box_tag 'q[theme_id_in][]', theme.id %><%= theme.name %></i></a></li>
+          <li><a href="#"><%= check_box_tag 'q[theme_id_in][]', theme.id %><%= theme.name %></a></li>
           <% end %>
         </ul>
+        <li><a href="#"><%= f.submit 'Search' %></a></li>
     <% end %>
   </div>
 </div>

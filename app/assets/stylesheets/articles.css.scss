@@ -9,7 +9,7 @@ a.edit-comment{
 }
 
 .view{
-  width: 220px;
+  width: 130px;
   height: 130px;
   overflow: hidden;
   text-align: center;
@@ -18,7 +18,7 @@ a.edit-comment{
 }
 
 .view .mask, .view .content{
-  width: 220px;
+  width: 130px;
   height: 130px;
   position: absolute;
   overflow: hidden;
@@ -45,7 +45,7 @@ a.edit-comment{
 .view p {
   font-family: Georgia, serif;
   font-style: italic;
-  font-size: 12px;
+  font-size: 8px;
   position: relative;
   color: #fff;
   padding: 10px 20px 20px;
@@ -78,9 +78,7 @@ a.edit-comment{
 
 .view h2{
 	opacity:0;
-  border-bottom: 1px solid rgba(0, 0, 0, 0.3);
   background: transparent;
-  margin: 20px 40px 0px 40px;
   transform: scale(10);
   transition: all 0.3s ease-in-out 0.1s;
 }
@@ -166,7 +164,8 @@ a.edit-comment{
 }
 
 .post-pad{
-  padding: 20px 54px;
+  padding: 15px 85px;
+
 }
 
 .post-holder .entry-title, .post-holder .entry-title a{
