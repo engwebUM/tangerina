@@ -5,6 +5,7 @@
       <tr>
         <th>ID</th>
         <th>Title</th>
+        <th>Theme</th>
         <th>Created</th>
         <th>Author</th>
       </tr>
@@ -15,7 +16,8 @@
       <tr>
         <td><%= link_to v.id, { action: 'show', id: v.id } %></td>
         <td><%= v.title %></td>
-        <td><%= v.created_at %></td>
+        <td><%= v.theme.name %></td>
+        <td><%= v.created_at.strftime("%b %e") %><br><%= v.created_at.strftime("%l:%M %p") %></td>
         <td><%= User.find(v.user_id).username %></td>
        </tr>
       <% end %>
