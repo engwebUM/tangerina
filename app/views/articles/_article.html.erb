@@ -1,44 +1,47 @@
 <% @articles.each do |article| %>
   <article class="post-holder">
     <div class="post-pad">
-      <h3 class="entry-title text-center">
-        <a href="#">Donec tempor libero</a>
-      </h3>
-      <div class="col-md-12 text-center">
-        <i class="fa fa-tags"></i>
-        <a href="#"><span class="label label-warning">bicho</span></a>
-        <a href="#"><span class="label label-warning">bicho</span></a>
-      </div>
+      <h3 class="entry-title text-center"><%= article.title %></h3>
+
 
       <div class="row">
 
-        <%= render partial: 'contents' %>
-
         <div class="ribbon2 ribbon2-orange">
-          <span>24 Dec</span>
+          <span><%= article.articles.first.created_at.strftime("%d %b") %></span>
         </div>
-
-        <div class="col-md-6">
+        <%= files(article) %>
+        <div class="col-md-4">
           <div class="view">
-            <img class="img-responsive" src="assets/1.jpg">
+            <%= image_tag article.theme.image.url(:medium) %>
             <div class="mask">
-              <h2>Praia</h2>
+              <h2><%= article.theme.name %></h2>
             </div>
+          </div>
+
+          <div class="col-md-12">
+            <i class="fa fa-tags"></i>
+            <%= raw article.tag_list.map { |t| link_to content_tag(:span, t, { class: "label label-warning"}), tag_path(t) }.join(' ') %>
           </div>
         </div>
 
-        <div class="col-md-6">
-          <blockquote><p>Facilisis at vero eros et accumsan et iusto odio dignissim.</p></blockquote>
+        <div class="col-md-8">
+
+          <blockquote><p><%= article.description %></p></blockquote>
         </div>
       </div>
     </div>
 
     <div class="post-meta-bot post-meta-links">
       <ul class="clearfix">
-        <li class="post-meta post-view first"><a href="#"><span><i class="fa fa-star"></i>172</span></a></li>
-        <li class="post-meta post-comm"><a href="#"><span><i class="fa fa-comments-o"></i>34</span></a></li>
-        <li class="post-meta post-author"><a href="#"><span><i class="fa fa-user"></i>John Doe</span></a></li>
-        <li class="post-meta post-read last"><a href="#"><i class="fa fa-arrow-circle-right"></i><span>Read More</span></a></li>
+        <li class="post-meta post-view first"><a><span><i class="fa fa-star"></i><%= article.articles.first.favorites.count %></span></a></li>
+        <li class="post-meta post-comm"><a><span><i class="fa fa-comments-o"></i><%= article.articles.first.comments.count %></span></a></li>
+        <li class="post-meta post-author"><a><span><i class="fa fa-user"></i><%= article.user.username %></span></a></li>
+        <li class="post-meta post-read last">
+          <%= link_to controller: :articles, action: 'show', id: article.id do %>
+              <i class="fa fa-arrow-circle-right"></i>
+              <span>Read More</span>
+          <% end %>
+        </li>
       </ul>
     </div>
   </article>

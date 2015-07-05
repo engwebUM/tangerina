@@ -2,15 +2,13 @@
   *= require custom
   *= require fancybox
   *= require fileinput
-  *= require jquery-ui
-  *= require jquery-ui/theme
-  *= require jquery-ui/datepicker
+
 */
 
 
 .view{
-  width: 340px;
-  height: 215px;
+  width: 220px;
+  height: 130px;
   overflow: hidden;
   text-align: center;
   cursor: default;
@@ -18,8 +16,8 @@
 }
 
 .view .mask, .view .content{
-  width: 340px;
-  height: 215px;
+  width: 220px;
+  height: 130px;
   position: absolute;
   overflow: hidden;
   top: 0;
@@ -36,7 +34,7 @@
   color: #fff;
   text-align: center;
   position: relative;
-  font-size: 17px;
+  font-size: 14px;
   padding: 10px;
   background: rgba(0, 0, 0, 0.8);
   margin: 20px 0 0 0;
@@ -133,13 +131,6 @@
   padding: 15px;
 }
 
-.ribbon2:before, .ribbon2:after{
-  content: '';
-  position: absolute;
-  left: -9px;
-  border-left: 10px solid transparent;
-}
-
 .ribbon2 span{
   display: block;
   font-size: 18px;
@@ -149,73 +140,27 @@
   line-height: 20px;
 }
 
-.ribbon2:before{
-  border-top: 27px solid #c9376e;
-  top: 0;
-}
-
-.ribbon2:after{
-  border-bottom: 27px solid #c9376e;
-  bottom: 0;
-}
-
 .ribbon2-orange{
   background-color: #ffb529;
   border-right-color: #d29520;
 }
 
-.ribbon2-orange:before{
-  border-top-color: #ffb529;
-}
-
-.ribbon2-orange:after{
-  border-bottom-color: #ffb529;
-}
-
 .ribbon{
   background: none repeat scroll 0% 0% #EE5190;
   color: #FFFFFF;
-  display: inline-block;
+  border-right: 5px solid #dd6a9c;
   font-size: 18px;
-  font-style: italic;
-  height: 46px;
-  left: -2px;
+  height: 40px;
+  left: 705px;
   line-height: 43px;
-  padding: 0px 5px 0px 10px;
+  padding: 0px 20px 0px 20px;
   position: absolute;
-  z-index: 3;
-}
-
-.ribbon:after{
-  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #EE5190;
-  border-style: solid;
-  border-width: 23px 0px 23px 15px;
-  content: "";
-  height: 0px;
-  position: absolute;
-  right: -15px;
-  top: 0px;
-  width: 0px;
 }
 
 .ribbon.ribbon-orange, .ribbon.ribbon-orange .ribbon-stitches-top{
   background: none repeat scroll 0% 0% #FFB529;
-}
-
-.ribbon.ribbon-orange:after{
-  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #FFB529;
-}
-
-.ribbon.ribbon-orange:before {
-  border-color: rgba(0, 0, 0, 0) #D29520 rgba(0, 0, 0, 0) transparent;
-}
-
-.ribbon.ribbon-orange .ribbon-stitches-top:before{
-  border-color: rgba(0, 0, 0, 0) #FFB529 rgba(0, 0, 0, 0) transparent;
-}
-
-.ribbon.ribbon-orange .ribbon-stitches-top:after{
-  border-color: rgba(0, 0, 0, 0) rgba(0, 0, 0, 0) #FFB529;
+  background-color: #ffb529;
+  border-right-color: #d29520;
 }
 
 .post-pad{
