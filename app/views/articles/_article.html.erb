@@ -18,7 +18,7 @@
             </div>
           </div>
 
-          <div class="col-md-12">
+          <div class="col-sd-12">
             <i class="fa fa-tags"></i>
             <%= raw article.tag_list.map { |t| link_to content_tag(:span, t, { class: "label label-warning"}), tag_path(t) }.join(' ') %>
           </div>
