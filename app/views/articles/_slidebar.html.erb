@@ -13,10 +13,16 @@
             <% end %>
           </li>
           <li>
-            <%= f.label :updated_at_gteq, "Date from:" %>
+            <%= f.label :updated_at_gteq, "Published from:" %>
             <%= f.text_field :updated_at_gteq, class: 'form-control date', id: 'datepicker' %>
             <%= f.label :updated_at_lteq, "to:" %>
-            <%= f.text_field :updated_at_lteq, class: 'form-control date', id: 'datepicker' %>
+            <%= f.text_field :updated_at_lteq, class: 'form-control date', id: 'datepicker2' %>
+          </li>
+          <li>
+            <%= f.label :date_accepted_gteq, "Original article date from:" %>
+            <%= f.text_field :date_accepted_gteq, class: 'form-control date', id: 'datepicker3' %>
+            <%= f.label :date_accepted_lteq, "to:" %>
+            <%= f.text_field :date_accepted_lteq, class: 'form-control date', id: 'datepicker4' %>
           </li>
           <li><a href="#"><%= f.submit 'Search' %></a></li>
         </ul>
