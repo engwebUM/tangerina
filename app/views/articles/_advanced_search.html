@@ -7,12 +7,16 @@
 		  <%= f.text_field :title_or_description_cont_all %>
 		</li>
 		<li>
-          
           <% @themes.each do |theme| %>
             <%= check_box_tag 'q[theme_id_in][]', theme.id %> 
             <%= theme.name %>
           <% end %>
-          
+		</li>
+		<li>
+		  <%= f.label :updated_at_gteq, "Date from:" %>
+		  <%= f.text_field :updated_at_gteq, class: 'form-control date', id: 'datepicker' %>
+		  <%= f.label :updated_at_lteq, "to:" %>
+      <%= f.text_field :updated_at_lteq, class: 'form-control date', id: 'datepicker' %>
 		</li>
 		<li>
 		  <%= f.submit "Search" %>
