@@ -1,6 +1,6 @@
 class ReviewsController < ApplicationController
   before_action :set_article_review, only: [:show, :accept, :reject]
-  before_action :require_login
+  before_action :require_login, :authorized_reviser
 
   def index
     @creates = ArticleReview.creates

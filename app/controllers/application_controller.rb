@@ -6,6 +6,14 @@ class ApplicationController < ActionController::Base
 
   private
 
+  def authorized_reviser
+    redirect_to root_path unless current_user?
+  end
+
+  def current_user?
+    current_user.revisers.present? || current_user.admin?
+  end
+
   def permit_params
     params.require(:user).permit(:username, :email, :password)
   end
