@@ -1,6 +1,5 @@
-<h1>Editing Comment</h1>
 
-<%= render 'form' %>
-
-<%= link_to 'Show', @comment %> |
-<%= link_to 'Back', comments_path %>
+<%= form_for([@article, @comment]) do |f| %>
+  <%= f.text_area :body, class: "form-control", rows: 3 %>
+  <%= f.submit class: "btn btn-primary" %>
+<% end %>

@@ -1,5 +1,5 @@
 
-
+<div class="articles">
         <div class="row">
             <div class="box">
               <div class="theme-icon">
@@ -84,14 +84,7 @@
                     <div class="well">
                       <h4>Leave a Comment:</h4>
 
-                      <%= form_for([@article, Comment.new]) do |f| %>
-
-                       <div class="form-group">
-                           <%= f.text_area :body, class: "form-control", rows: 3 %>
-                       </div>
-                       <%= f.hidden_field :user_id, value: current_user.id %>
-                       <%= f.submit class: "btn btn-primary" %>
-                     <% end %>
+                     <%= render 'comments/form' %>
 
                      <hr class="hr-comments">
                      <div id="comments">
@@ -101,3 +94,4 @@
                 </div>
             </div>
         </div>
+</div>
