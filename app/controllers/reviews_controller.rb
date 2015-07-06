@@ -1,10 +1,11 @@
 class ReviewsController < ApplicationController
   before_action :set_article_review, only: [:show, :accept, :reject]
-  before_action :require_login
+  before_action :require_login, :authorized_reviser
+  before_action :authorized_single_review, only: [:show, :accept, :reject]
 
   def index
-    @creates = ArticleReview.creates
-    @updates = ArticleReview.updates
+    @creates = review_creates
+    @updates = review_updates
   end
 
   def show
@@ -14,6 +15,7 @@ class ReviewsController < ApplicationController
 
   def reject
     @article_review.update(status: 'reject')
+    @article_review.update(review_params)
     redirect_to root_path
   end
 
@@ -26,6 +28,22 @@ class ReviewsController < ApplicationController
   end
 
   private
+
+  def review_creates
+    if current_user.admin?
+      ArticleReview.creates
+    else
+      ArticleReview.creates.revised(current_user.id)
+    end
+  end
+
+  def review_updates
+    if current_user.admin?
+      ArticleReview.updates
+    else
+      ArticleReview.updates.revised(current_user.id)
+    end
+  end
 
   def rescue_article(article_review)
     Article.find(article_review.article_id)
@@ -50,5 +68,17 @@ class ReviewsController < ApplicationController
 
   def set_article_review
     @article_review = ArticleReview.find(params[:id])
+  end
+
+  def review_params
+    params.require(:article_review).permit(:comment)
+  end
+
+  def authorized_single_review
+    redirect_to :back unless auth_current_user?
+  end
+
+  def auth_current_user?
+    ArticleReview.revised(current_user.id).exists?(id: @article_review.id) || current_user.admin?
   end
 end

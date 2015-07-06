@@ -48,7 +48,7 @@ gem 'tzinfo-data', platforms: [:x64_mingw, :mingw, :mswin]
 
 gem 'bootstrap-sass', '~> 3.3.4'
 gem "smart_listing"
-
+gem 'jquery-datatables-rails'
 gem 'ransack'
 gem "will_paginate"
 gem 'will_paginate-bootstrap'
