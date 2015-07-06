@@ -3,8 +3,8 @@ class ReviewsController < ApplicationController
   before_action :require_login, :authorized_reviser
 
   def index
-    @creates = ArticleReview.creates
-    @updates = ArticleReview.updates
+    @creates = review_creates
+    @updates = review_updates
   end
 
   def show
@@ -26,6 +26,22 @@ class ReviewsController < ApplicationController
   end
 
   private
+
+  def review_creates
+    if current_user.admin?
+      ArticleReview.creates
+    else
+      ArticleReview.creates.revised(current_user.id)
+    end
+  end
+
+  def review_updates
+    if current_user.admin?
+      ArticleReview.updates
+    else
+      ArticleReview.updates.revised(current_user.id)
+    end
+  end
 
   def rescue_article(article_review)
     Article.find(article_review.article_id)
