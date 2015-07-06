@@ -21,4 +21,6 @@ class ArticleReview < ActiveRecord::Base
   scope :paginated, ->(page) { paginate(page: page, per_page: 2) }
   scope :tag_page, ->(tag) { tagged_with(tag) }
   scope :search_page, ->(q) { search(q).result }
+  scope :pending, -> { where(status: 'pending') }
+  scope :revised, ->(id) { includes(theme: { revisers: :user }).where(users: { id: id }) }
 end

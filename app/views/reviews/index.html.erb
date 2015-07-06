@@ -1,11 +1,24 @@
-<div class="articles">
-<div class="row">
-  <div class="box">
-<h1>reviews#index</h1>
+<div class="container-body">
+  <div class="container">
+    <div class="row">
+      <div class="col-md-12">
+        <h1 class="text-center orange" style="font-size: 40px;">Reviewers</h1>
+      </div>
+      <div class="col-md-6">
+        <div class="box-style">
+          <div class="inner">
+            <%= render 'create', versions: @creates %>
+          </div>
+        </div>
+      </div>
 
-<%= render 'create', versions: @creates %>
-<%= render 'update', versions: @updates %>
-
-</div>
-</div>
+      <div class="col-md-6">
+        <div class="box-style">
+          <div class="inner">
+            <%= render 'update', versions: @updates %>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
 </div>
