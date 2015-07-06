@@ -20,7 +20,7 @@
           <td><%= v.theme.name %></td>
           <td><%= v.created_at.strftime("%b %e") %><br><%= v.created_at.strftime("%l:%M %p") %></td>
           <td><%= v.updated_at.strftime("%b %e") %><br><%= v.updated_at.strftime("%l:%M %p") %></td>
-          <td><%= User.find(v.user_id).username %></td>
+          <td><%= v.user.username  %></td>
        </tr>
       <% end %>
     </tbody>
