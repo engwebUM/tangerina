@@ -13,6 +13,9 @@ class ArticleReview < ActiveRecord::Base
   accepts_nested_attributes_for :contents
   validates_presence_of :theme_id
 
+  has_attached_file :paper
+  validates_attachment_content_type :paper, content_type: ['application/pdf']
+
   scope :creates, -> { where(event: 'create', status: 'pending') }
   scope :updates, -> { where(event: 'update', status: 'pending') }
   scope :removes, ->(id) { where(article_id: id).destroy_all }
