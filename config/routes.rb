@@ -42,6 +42,7 @@ Rails.application.routes.draw do
 
   get 'tags/:tag', to: 'articles#index', as: :tag
 
+  get 'themes/:theme_id', to: 'articles#index', as: :theme
   #resources :articles
 
   root to: 'articles#index'
