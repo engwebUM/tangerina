@@ -1,6 +1,7 @@
 class ReviewsController < ApplicationController
   before_action :set_article_review, only: [:show, :accept, :reject]
   before_action :require_login, :authorized_reviser
+  before_action :authorized_single_review, only: [:show, :accept, :reject]
 
   def index
     @creates = review_creates
@@ -71,5 +72,9 @@ class ReviewsController < ApplicationController
 
   def review_params
     params.require(:article_review).permit(:comment)
+  end
+
+  def authorized_single_review
+    redirect_to :back unless ArticleReview.revised(current_user.id).exists?(id: @article_review.id)
   end
 end
