@@ -1,0 +1,19 @@
+<!-- Modal -->
+<div class="modal fade" id="myModalNorm" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+  <div class="modal-dialog">
+    <div class="modal-content">
+      <div class="modal-header">
+        <button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span></button>
+        <h4 class="modal-title" id="myModalLabel">Comment to reject article</h4>
+      </div>
+      <div class="modal-body">
+        <%= form_for( @article_review, url: url_for(controller: "reviews", action: 'reject'), role: 'form', html: { multipart: true }) do |f| %>
+          <div class="form-group">
+            <%= f.text_area :comment, class: "form-control", rows: 3, required: true %>
+          </div>
+          <%= f.submit 'Save', class: "btn btn-default" %>
+        <% end %>
+      </div>
+    </div>
+  </div>
+</div>

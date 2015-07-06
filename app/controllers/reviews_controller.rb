@@ -14,6 +14,7 @@ class ReviewsController < ApplicationController
 
   def reject
     @article_review.update(status: 'reject')
+    @article_review.update(review_params)
     redirect_to root_path
   end
 
@@ -66,5 +67,9 @@ class ReviewsController < ApplicationController
 
   def set_article_review
     @article_review = ArticleReview.find(params[:id])
+  end
+
+  def review_params
+    params.require(:article_review).permit(:comment)
   end
 end

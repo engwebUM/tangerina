@@ -72,12 +72,14 @@
                   Accept
                 <% end %>
 
-              <%= link_to  controller: "reviews", action: 'reject' do %>
+              <%= link_to '', data: { toggle: 'modal', target: '#myModalNorm' } do %>
                 <span class="glyphicon glyphicon-remove"></span>
                 Reject
               <% end %>
 
             </p>
+
         </div>
+        <%= render partial: 'comment' %>
     </div>
 </div>
