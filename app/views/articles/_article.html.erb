@@ -11,12 +11,14 @@
         </div>
         <%= files(article) %>
         <div class="col-md-4">
-          <div class="view">
-            <%= image_tag article.theme.image.url(:medium) %>
-            <div class="mask">
-              <h2><%= article.theme.name %></h2>
+          <%= link_to theme_path(article.theme.id) do %>
+            <div class="view">
+              <%= image_tag(article.theme.image.url(:medium)) %>
+              <div class="mask">
+                <h2><%= article.theme.name %></h2>
+              </div>
             </div>
-          </div>
+          <% end %>
 
           <div class="col-sd-12">
             <i class="fa fa-tags"></i>
