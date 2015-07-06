@@ -7,7 +7,7 @@ class UsersController < Clearance::UsersController
 
   def show
     @posts = ArticleReview.where(user_id: @user.id)
-    @favorites = ArticleReview.joins(articles: :favorites).where(user_id: @user.id)
+    @favorites = ArticleReview.favorited(@user.id)
     @subscriptions = Subscription.where(user_id: @user.id)
   end
 

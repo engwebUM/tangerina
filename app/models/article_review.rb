@@ -17,6 +17,7 @@ class ArticleReview < ActiveRecord::Base
   scope :updates, -> { where(event: 'update', status: 'pending') }
   scope :removes, ->(id) { where(article_id: id).destroy_all }
   scope :subscribed, ->(id) { includes(theme: { subscriptions: :user }).where(users: { id: id }).joins(:articles) }
+  scope :favorited, ->(id) { joins(articles: { favorites: :user }).where(users: { id: id }) }
   scope :paginated, ->(page) { paginate(page: page, per_page: 2) }
   scope :tag_page, ->(tag) { tagged_with(tag) }
   scope :search_page, ->(q) { search(q).result }
