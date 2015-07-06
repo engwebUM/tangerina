@@ -75,6 +75,10 @@ class ReviewsController < ApplicationController
   end
 
   def authorized_single_review
-    redirect_to :back unless ArticleReview.revised(current_user.id).exists?(id: @article_review.id)
+    redirect_to :back unless auth_current_user?
+  end
+
+  def auth_current_user?
+    ArticleReview.revised(current_user.id).exists?(id: @article_review.id) || current_user.admin?
   end
 end
