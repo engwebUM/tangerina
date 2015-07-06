@@ -16,6 +16,14 @@
     dateFormat: "dd-mm-yy"
   });
 
+  $( "#datepicker3" ).datepicker({
+    dateFormat: "dd-mm-yy"
+  });
+
+  $( "#datepicker4" ).datepicker({
+    dateFormat: "dd-mm-yy"
+  });
+
   var max_fields = 5;
   var wrapper = $("#input_fields_wrap");
   var add_button = $("#add_field_button");
