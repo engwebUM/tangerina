@@ -5,90 +5,107 @@
         <div class="content bg-base section">
           <header class="page-header">
             <div class="pull-right">
-              <i class="fa fa-heart"></i>
+              <% if !current_user.recommend?(@article.id)  %>
+                  <%= form_for([@article, Favorite.new], html: {  id: 'form_recommend'}) do |f| %>
+                    <%= link_to "javascript:document.getElementById('form_recommend').submit();" do %>
+                      <i class='fa fa-heart-o'></i>
+                    <% end %>
+                  <% end %>
+              <% else %>
+                  <%= link_to Favorite.find_by(article_id: @article.id, user_id: current_user), controller: :favorites, method: :delete do %>
+                    <i class='fa fa-heart'></i>
+                  <% end %>
+              <% end %>
             </div>
             <div class="pull-right">
               <a href="#comments">
-                <span class="comments-count-balloon bg-primary">123<em>Comments</em></span>
+                <span class="comments-count-balloon bg-primary"><%= @article.comments.count %><em>Comments</em></span>
               </a>
             </div>
             <h2 class="page-title full-page-title">
-              Postman will send notifications to your flashy smartphone about popular people and their latest shouts.
+              <%= @publish.title %>
             </h2>
             <div class="entry-meta">
-              <span><strong>by </strong><a href="blog.html">Paulo Guterres, Duarte Duarte</a></span>
-              <br><span><strong>writen </strong><time datetime="2013-07-04T23:26:34+00:00">September 20 2013</time></span>
-              <br><span><strong>accepted </strong><time datetime="2013-07-04T23:26:34+00:00">September 20 2013</time></span>
-              <br><span>In <em>Matemática</em></span>
+              <span><strong>by </strong><a href="blog.html"><%= @publish.authors %></a></span>
+              <br><span><strong>written </strong><time><%= @publish.date_writted.strftime("%B %d %Y") %></time></span>
+              <br><span><strong>accepted </strong><time><%= @publish.date_accepted.strftime("%B %d %Y") %></time></span>
+              <br><span>In <em><%= @publish.theme.name %></em></span>
             </div>
         </header>
 
         <div class="style-single">
             <h3>Description</h3>
             <p>
-              At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+              <%= @publish.description %>
             </p>
             <h3>Abstract</h3>
             <p>
-              At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio. Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus. Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates repudiandae sint et molestiae non recusandae. Itaque earum rerum hic tenetur a sapiente delectus, ut aut reiciendis voluptatibus maiores alias consequatur aut perferendis doloribus asperiores repellat.
+              <%= @publish.abstract %>
             </p>
         </div>
         <div class="style-single">
           <div class="after-entry">
             <hr>
             <aside class="widget">
-              <i class="icon-tags"></i> Tags:
-              <a href="#"> Some</a>
-              <a href="#"> Goes</a>
-              <a href="#"> Here</a>
-              <a href="#"> For</a>
-              <a href="#"> Sure</a>
+              <i class="fa fa-tags"></i>
+              <%= raw @publish.tag_list.map { |t| link_to content_tag(:span, t, { class: "label label-warning"}), tag_path(t) }.join(' ') %>
             </aside>
-
             <hr>
             <aside class="widget">
               <h3>Contents</h3>
               <div class="entries row">
-                <div class="entry type-post style-thumbnail col-sm-3">
-                  <div class="view2">
-                    <figure class="entry-thumbnail">
-                      <img src="/assets/Matematica.png" width="230" height="230" alt="">
-                    </figure>
-                    <div class="mask2">
-                      <h2>Article</h2>
+                <% if @publish.paper.present? %>
+                  <div class="entry type-post style-thumbnail col-sm-3">
+                    <div class="view2">
+                      <figure class="entry-thumbnail">
+                         <%= image_tag @publish.theme.image.url(:medium) %>
+                      </figure>
+                      <div class="mask2">
+                        <h2>Article</h2>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="entry type-post style-thumbnail col-sm-3">
-                  <div class="view2">
-                    <figure class="entry-thumbnail">
-                      <img src="/assets/Matematica.png" width="230" height="230" alt="">
-                    </figure>
-                    <div class="mask2">
-                      <h2>Resumes</h2>
+                <% end %>
+
+                <% if @publish.contents.find_pdf.present? %>
+                  <div class="entry type-post style-thumbnail col-sm-3">
+                    <div class="view2">
+                      <figure class="entry-thumbnail">
+                        <%= image_tag @publish.theme.image.url(:medium) %>
+                      </figure>
+                      <div class="mask2">
+                        <h2>Resumes</h2>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="entry type-post style-thumbnail col-sm-3">
-                  <div class="view2">
-                    <figure class="entry-thumbnail">
-                      <img src="/assets/Matematica.png" width="230" height="230" alt="">
-                    </figure>
-                    <div class="mask2">
-                      <h2>Videos</h2>
+                <% end %>
+
+                <% if @publish.videos.present? %>
+                  <div class="entry type-post style-thumbnail col-sm-3">
+                    <div class="view2">
+                      <figure class="entry-thumbnail">
+                        <%= image_tag @publish.theme.image.url(:medium) %>
+                      </figure>
+                      <div class="mask2">
+                        <h2>Videos</h2>
+                      </div>
                     </div>
                   </div>
-                </div>
-                <div class="entry type-post style-thumbnail col-sm-3">
-                  <div class="view2">
-                    <figure class="entry-thumbnail">
-                      <img src="/assets/Matematica.png" width="130" height="130" alt="">
-                    </figure>
-                    <div class="mask2">
-                      <h2>Images</h2>
+                <% end %>
+
+                <% if @publish.contents.find_images.present? %>.find_pdf.present?
+                  <div class="entry type-post style-thumbnail col-sm-3">
+                    <div class="view2">
+                      <figure class="entry-thumbnail">
+                        <%= image_tag @publish.theme.image.url(:medium) %>
+                      </figure>
+                      <div class="mask2">
+                        <h2>Images</h2>
+                      </div>
                     </div>
                   </div>
-                </div>
+                <% end %>
+
               </div>
             </aside>
 
@@ -98,7 +115,7 @@
                 <img src="/"  width="230" height="230" class="img-circle" alt="">
               </figure>
               <div class="media-body">
-                <h4 class="entry-author-name"><a href="blog.html">Autor</a></h4>
+                <h4 class="entry-author-name"><a href="blog.html"><%= @publish.user.username %></a></h4>
                 <p>
                   Deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
                 </p>

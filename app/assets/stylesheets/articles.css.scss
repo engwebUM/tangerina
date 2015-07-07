@@ -111,12 +111,14 @@
 
 .fa-heart{
   font-size: 30px;
-margin-left: -15px;
-/* margin-bottom: 21px; */
-/* padding-right: 7px; */
-/* float: left; */
-color: orange;
+  margin-left: -15px;
+  color: orange;
 }
+.fa-heart-o{
+  font-size: 30px;
+  margin-left: -15px;
+}
+
 .style-thumbnail .entry-title {
   font-size: 14px;
   line-height: 20px;
@@ -273,23 +275,23 @@ a.edit-comment{
   cursor: pointer;
 }
 
-// .view{
-//   width: 130px;
-//   height: 130px;
-//   overflow: hidden;
-//   text-align: center;
-//   cursor: default;
-//
-// }
-//
-// .view .mask, .view .content{
-//   width: 130px;
-//   height: 130px;
-//   position: absolute;
-//   overflow: hidden;
-//   top: 0;
-//
-// }
+.view{
+  width: 130px;
+  height: 130px;
+  overflow: hidden;
+  text-align: center;
+  cursor: default;
+
+}
+
+.view .mask, .view .content{
+  width: 130px;
+  height: 130px;
+  position: absolute;
+  overflow: hidden;
+  top: 0;
+
+}
 
 .view img{
   display: block;
