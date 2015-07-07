@@ -5,14 +5,19 @@
         <ul class="list-link">
           <p class="">
             <span><%= f.text_field :title_or_description_cont_all, placeholder: 'Search...' %></span>
-
           </p>
           <li>
             <% @themes.each do |theme| %>
               <a href="#"><%= check_box_tag 'q[theme_id_in][]', theme.id %><%= theme.name %></a>
             <% end %>
           </li>
-          <li>Imagem :<%= check_box_tag "q[article_review_contents_file_content_type_e[]]", 'image' %></li>
+          <li>
+            <p class="">
+              Authors
+              <span><%= f.text_field :authors_cont_all, placeholder: 'Authors...' %></span>
+            </p>
+          </li>
+          <li>FALTA FAZER - Imagem :<%= check_box_tag "q[article_review_contents_file_content_type_e[]]", 'image' %></li>
           <li>
             <%= f.label :updated_at_gteq, "Published from:" %>
             <%= f.text_field :updated_at_gteq, class: 'form-control date', id: 'datepicker' %>
