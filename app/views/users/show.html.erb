@@ -1,25 +1,71 @@
-<hr class="hr-post">
-<hr class="hr-post">
-<hr class="hr-post">
-<hr class="hr-post">
-<hr class="hr-post">
-<ul class="nav nav-tabs">
-	<li class="active"><a data-toggle="tab" href="#profile">Profile</a></li>
-	<li><a data-toggle="tab" href="#posts">Posts</a></li>
-	<li><a data-toggle="tab" href="#favorites">Favorites</a></li>
-	<li><a data-toggle="tab" href="#subscriptions">Subscriptions</a></li>    
-</ul>
-<div class="tab-content">
-    <div id="profile" class="tab-pane fade in active">
-      <%= render partial: 'user_profile' %>
-    </div>
-    <div id="posts" class="tab-pane fade">
-      <%= render partial: 'user_posts' %>
-    </div>
-    <div id="favorites" class="tab-pane fade">
-			<%= render partial: 'user_favorites' %>        
-		</div>
-	<div id="subscriptions" class="tab-pane fade">
-		<%= render partial: 'user_subscriptions' %>        
-	</div>
+<div class="container-body">
+  <div class="container">
+		<article class="post-holder">
+			<div class="post-pad">
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="profile-widget profile-widget-info">
+							<div class="panel-body">
+								<div class="col-md-2">
+									<h4>Jenifer Smith</h4>
+									<div class="follow-ava">
+											<img src="http://bootstraptaste.com/theme/niceadmin/img/profile-widget-avatar.jpg">
+									</div>
+									<h6>Administrator</h6>
+								</div>
+									<div class="col-md-10">
+										<div class="bio-graph-heading">
+											Hello I’m Jenifer Smith, a leading expert in interactive and creative design specializing in the mobile medium. My graduation from Massey University with a Bachelor of Design majoring in visual communication.
+										</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+          <div class="col-lg-12">
+            <section class="panel">
+              <header class="panel-heading tab-bg-info">
+                <ul class="nav nav-tabs">
+                  <li class="active">
+                    <a data-toggle="tab" href="#recent-activity">
+                      <i class="icon-home"></i>
+                      Daily Activity
+                    </a>
+                  </li>
+                  <li>
+                    <a data-toggle="tab" href="#profile">
+                      <i class="icon-user"></i>
+                      Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a data-toggle="tab" href="#edit-profile">
+                      <i class="icon-envelope"></i>
+                      Edit Profile
+                    </a>
+                  </li>
+                </ul>
+              </header>
+							<div class="panel-body">
+								<div class="tab-content">
+									<div id="recent-activity" class="tab-pane active">
+										conteudo recent-activity
+									</div>
+									<div id="profile" class="tab-pane">
+										conteudo profile
+									</div>
+									<div id="edit-profile" class="tab-pane">
+										conteudo edit profile
+									</div>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</article>
+  </div>
 </div>
