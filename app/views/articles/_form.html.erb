@@ -28,6 +28,12 @@
             <%= f.text_field :tag_list, class: 'form-control' %>
         </div>
         <% end %>
+
+        <div class="form-group col-lg-12">
+          <%= f.label :authors %><br>
+          <%= f.text_field :authors, class: 'form-control' %>
+        </div>
+
         <div class="col-lg-3"></div>
         <div class="form-group date col-lg-3">
           <%= f.label :date_writted %><br>
@@ -49,6 +55,12 @@
             <%= f.label :abstract %>
             <%= f.text_area :abstract, class: "form-control", rows: 8 %>
         </div>
+
+        <div class="form-group col-lg-12">
+            <%= f.label :paper %>
+            <%= f.file_field :paper, multiple: false %>
+        </div>
+
         <%= f.fields_for :contents do |c| %>
           <div class="form-group col-lg-12 ">
             <%= c.label :contents %>

@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150627031429) do
+ActiveRecord::Schema.define(version: 20150706214946) do
 
   create_table "article_reviews", force: :cascade do |t|
     t.integer  "article_id"
@@ -24,10 +24,15 @@ ActiveRecord::Schema.define(version: 20150627031429) do
     t.string   "tag_list"
     t.string   "event"
     t.text     "comment"
-    t.datetime "created_at",    null: false
-    t.datetime "updated_at",    null: false
+    t.datetime "created_at",         null: false
+    t.datetime "updated_at",         null: false
     t.date     "date_accepted"
     t.date     "date_writted"
+    t.string   "paper_file_name"
+    t.string   "paper_content_type"
+    t.integer  "paper_file_size"
+    t.datetime "paper_updated_at"
+    t.string   "authors"
   end
 
   create_table "articles", force: :cascade do |t|
