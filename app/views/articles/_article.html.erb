@@ -1,8 +1,10 @@
 <% @articles.each do |article| %>
   <article class="post-holder">
     <div class="post-pad">
-      <h3 class="entry-title text-center"><%= article.title %></h3>
-
+      
+      <%= link_to controller: :articles, action: 'show', id: article.id do %>
+        <h3 class="entry-title text-center"><%= article.title %></h3>
+      <% end %>
 
       <div class="row">
 
