@@ -1,9 +1,18 @@
-<p>Username:<%= simple_format @user.username %></p>
-<p>Date created: <%= simple_format @user.created_at.to_time.strftime('%m/%d/%Y') %></p>
-<p>User Clearance: Falta fazer</p>
-<p>Email: <%= simple_format @user.email %></p>
-<p>
-  <% if current_user.id == @user.id %>
-    <%= link_to t('.change_password'), new_password_path %>
-  <% end %>
-</p>
+<div class="bio-row">
+  <p><span>First Name </span>: Jenifer </p>
+</div>
+<div class="bio-row">
+  <p><span>Last Name </span>: Smith</p>
+</div>
+<div class="bio-row">
+  <p><span>Country </span>: United</p>
+</div>
+<div class="bio-row">
+  <p><span>Occupation </span>: UI Designer</p>
+</div>
+<div class="bio-row">
+  <p><span>Email </span>:jenifer@mailname.com</p>
+</div>
+<div class="bio-row">
+  <p><span>Date created</span>: data</p>
+</div>

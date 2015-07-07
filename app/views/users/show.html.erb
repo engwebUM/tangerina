@@ -29,16 +29,35 @@
             <section class="panel">
               <header class="panel-heading tab-bg-info">
                 <ul class="nav nav-tabs">
+
                   <li class="active">
-                    <a data-toggle="tab" href="#recent-activity">
-                      <i class="icon-home"></i>
-                      Daily Activity
-                    </a>
-                  </li>
-                  <li>
                     <a data-toggle="tab" href="#profile">
                       <i class="icon-user"></i>
                       Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a data-toggle="tab" href="#articles-publish">
+                      <i class="icon-home"></i>
+                      Articles publish
+                    </a>
+                  </li>
+                  <li>
+                    <a data-toggle="tab" href="#articles-pending">
+                      <i class="icon-home"></i>
+                      Articles pending
+                    </a>
+                  </li>
+                  <li>
+                    <a data-toggle="tab" href="#articles-favorites">
+                      <i class="icon-home"></i>
+                      Articles favorites
+                    </a>
+                  </li>
+                  <li>
+                    <a data-toggle="tab" href="#subscriptions">
+                      <i class="icon-home"></i>
+                      Subscriptions
                     </a>
                   </li>
                   <li>
@@ -51,14 +70,68 @@
               </header>
 							<div class="panel-body">
 								<div class="tab-content">
-									<div id="recent-activity" class="tab-pane active">
+                  <div id="profile" class="tab-pane active">
+                    <section class="panel">
+                      <div class="panel-body">
+                        <div class="row">
+                          <%= render partial: 'user_profile' %>
+                        </div>
+                      </div>
+                    </section>
+									</div>
+									<div id="articles-publish" class="tab-pane">
+                    <section class="panel">
+                      <div class="panel-body">
+                        <div class="row">
 										conteudo recent-activity
+                        </div>
+                      </div>
+                    </section>
+									</div>
+                  <div id="articles-pending" class="tab-pane">
+                    <section class="panel">
+                      <div class="panel-body">
+                        <div class="row">
+										conteudo pending-activity
+                        </div>
+                      </div>
+                    </section>
+									</div>
+                  <div id="articles-favorites" class="tab-pane">
+                    <section class="panel">
+                      <div class="panel-body">
+                        <div class="row">
+                          <%= render partial: 'user_favorites' %>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                  <div id="subscriptions" class="tab-pane">
+                    <section class="panel">
+                      <div class="panel-body">
+                        <div class="row">
+										     <%= render partial: 'user_subscriptions' %>
+                        </div>
+                      </div>
+                    </section>
 									</div>
 									<div id="profile" class="tab-pane">
-										conteudo profile
+                    <section class="panel">
+                      <div class="panel-body">
+                        <div class="row">
+                          <%= render partial: 'user_profile' %>
+                        </div>
+                      </div>
+                    </section>
 									</div>
 									<div id="edit-profile" class="tab-pane">
-										conteudo edit profile
+                    <section class="panel">
+                      <div class="panel-body">
+                        <div class="row">
+										<%= render partial: 'edit_user' %>
+                    </div>
+                  </div>
+                </section>
 									</div>
 								</div>
 							</div>
