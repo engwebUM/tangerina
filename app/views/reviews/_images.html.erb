@@ -1,0 +1,19 @@
+<% if @article_review.contents.present? %>
+  <div class="entry type-post style-thumbnail col-sm-3">
+    <%= link_to @article_review.contents.first.file.url(:normal),  rel: 'images', class: 'fancybox' do %>
+    <div class="view2">
+      <figure class="entry-thumbnail">
+        <%= image_tag @article_review.theme.image.url(:medium) %>
+      </figure>
+      <div class="mask2">
+        <h2>Images</h2>
+      </div>
+    </div>
+    <% end %>
+    <div class='hidden'>
+    <% @article_review.contents.drop(1).each do |image| %>
+      <%= link_to image, image.file.url(:normal), rel: 'images', class: 'fancybox' %>
+    <% end %>
+    </div>
+  </div>
+<% end %>

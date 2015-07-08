@@ -1,97 +1,114 @@
-
-<div class="articles">
-        <div class="row">
-            <div class="box">
-              <div class="theme-icon">
-                <img src='/assets/<%= @publish.theme.name %>.png' alt="">
-              </div>
-                <div class="col-lg-12 header">
-                    <hr class="hr-post">
-                    <h2 class="intro-text text-center"><%= @publish.title %></h2>
-                    <hr class="hr-post">
-                    <div class="span8">
-                      <p>
-                        <i class="icon-user"></i><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                        <a href="#"><%= @publish.user.username %></a>
-                        | <i class="icon-calendar"></i> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                        <%= @publish.created_at.strftime("%d %b. %Y") %>
-                        | <i class="icon-comment"></i><span class="glyphicon glyphicon-comment" aria-hidden="true"></span>
-                        <%=  %> Comments
-                        | <i class="icon-file"></i>
-                        <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-                         1 Files
-                         | <i class="icon-star"></i>
-                         <%= "#{@article.favorites.count} recommendation".pluralize(@article.favorites.count) %>
-                           <% if !current_user.recommend?(@article.id)  %>
-                               <%= form_for([@article, Favorite.new], html: {  id: 'form_recommend'}) do |f| %>
-                                 <%= link_to "javascript:document.getElementById('form_recommend').submit();" do %>
-                                   <span class="glyphicon glyphicon-star-empty"></span>
-                                 <% end %>
-                               <% end %>
-                           <% else %>
-                               <%= link_to Favorite.find_by(article_id: @article.id, user_id: current_user), controller: :favorites, method: :delete do %>
-                                 <span class="glyphicon glyphicon-star"></span>
-                               <% end %>
-                           <% end %>
-
-                      </p>
-                      <p>
-                        <i class="icon-calendar"></i> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                        <%= @publish.date_writted %>
-                        | <i class="icon-calendar"></i> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                        <%= @publish.date_accepted %>
-                      </p>
-                      <p>
-                        <%= raw @publish.tag_list.map { |t| link_to content_tag(:span, t, { class: "label label-info"}), tag_path(t) }.join(', ') %>
-                      </p>
-                    </div>
-                </div>
-                <div class="col-lg-12">
-
-                    <p><%= simple_format @publish.abstract %></p>
-                    <br>
-                    <div class="text-center">
-                      <h4><strong>Files </strong>
-                        <% @files.each do |f| %>
-                          <!--%= image_tag f.avatar_url %-->
-                          <%= link_to f.file.url %>
-                          <!--%= link_to "Edit Attachment", edit_post_attachment_path(f) %-->
-                        <% end %>
-
-                        <!-- link_to @publish.file.url do
-                           image_tag 'pdf.png'
-                         end -->
-                    </h4>
-                    </div>
-                    <hr class="hr-comments">
-
-                    <% if current_user.id==@publish.user_id %>
-                    <br>
-                    <p class="text-center">
-
-                      <%= link_to edit_article_path(@publish), {class: "btn btn-default btn-lg"} do %>
-                        <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-                        Edit
-                      <% end %>
-
-                      <%= link_to article_path(@publish), class: "btn btn-default btn-lg ",  method: :delete do %>
-                        <span class="glyphicon glyphicon-remove"></span>
-                        Destroy
-                      <% end %>
-                    </p>
+<div class="container-body">
+  <div class="container">
+    <div class="row">
+      <article class="post-holder">
+        <div class="content bg-base section">
+          <header class="page-header">
+            <div class="pull-right">
+              <% if !current_user.recommend?(@article.id)  %>
+                  <%= form_for([@article, Favorite.new], html: {  id: 'form_recommend'}) do |f| %>
+                    <%= link_to "javascript:document.getElementById('form_recommend').submit();" do %>
+                      <i class='fa fa-heart-o'></i>
                     <% end %>
-                    <br>
-                    <div class="well">
-                      <h4>Leave a Comment:</h4>
-
-                     <%= render 'comments/form' %>
-
-                     <hr class="hr-comments">
-                     <div id="comments">
-                       <%= render partial: @article.comments.reverse %>
-                     </div>
-                    </div>
-                </div>
+                  <% end %>
+              <% else %>
+                  <%= link_to Favorite.find_by(article_id: @article.id, user_id: current_user), controller: :favorites, method: :delete do %>
+                    <i class='fa fa-heart'></i>
+                  <% end %>
+              <% end %>
             </div>
+            <div class="pull-right">
+              <a href="#comments">
+                <span class="comments-count-balloon bg-primary"><%= @article.comments.count %><em>Comments</em></span>
+              </a>
+            </div>
+            <h2 class="page-title full-page-title">
+              <%= @publish.title %>
+            </h2>
+            <div class="entry-meta">
+              <span><strong>by </strong><a href="blog.html"><%= @publish.authors %></a></span>
+              <br><span><strong>written </strong><time><%= @publish.date_writted.strftime("%B %d %Y") %></time></span>
+              <br><span><strong>accepted </strong><time><%= @publish.date_accepted.strftime("%B %d %Y") %></time></span>
+              <br><span>In <em><%= @publish.theme.name %></em></span>
+            </div>
+        </header>
+
+        <div class="style-single">
+            <h3>Description</h3>
+            <p><%= @publish.description %></p>
+            <h3>Abstract</h3>
+            <p><%= @publish.abstract %></p>
         </div>
+        <div class="style-single">
+          <div class="after-entry">
+            <hr>
+            <aside class="widget">
+              <i class="fa fa-tags"></i>
+              <%= raw @publish.tag_list.map { |t| link_to content_tag(:span, t, { class: "label label-warning"}), tag_path(t) }.join(' ') %>
+            </aside>
+            <hr>
+            <aside class="widget">
+              <h3>Contents</h3>
+              <div class="entries row">
+
+                <%= render partial: 'paper' %>
+
+                <%= render partial: 'resume' %>
+
+                <%= render partial: 'images' %>
+
+                <%= render partial: 'videos' %>
+
+              </div>
+            </aside>
+
+            <hr>
+            <aside class="widget widget-author media">
+              <figure class="entry-author-avatar media-object avatar pull-left">
+                <% if @publish.user.photo.present? %>
+                  <%= image_tag @publish.user.photo.url(:avatar), class: 'avatar img-circle', alt: 'avatar' %>
+                <% else %>
+                  <%= image_tag '/assets/avatar.png', class: 'avatar img-circle', alt: 'avatar' %>
+                <% end %>
+              </figure>
+              <div class="media-body">
+                <h4 class="entry-author-name">
+                  <%= link_to @publish.user.username, @publish.user %>
+                </h4>
+                <h5 class="orange"><strong><%= @publish.created_at.strftime("%B %d %Y") %></strong></h5>
+                <p><%= @publish.user.about %></p>
+              </div>
+            </aside>
+            <hr>
+          </div>
+
+        </div>
+        <% if current_user.id==@publish.user_id %>
+          <p class="text-center">
+            <%= link_to edit_article_path(@publish), {class: "btn btn-warning btn-lg"} do %>
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+              Edit
+            <% end %>
+
+            <%= link_to article_path(@publish), class: "btn btn-warning btn-lg ",  method: :delete do %>
+              <span class="glyphicon glyphicon-remove"></span>
+              Destroy
+            <% end %>
+          </p>
+        <% end %>
+        <div class="well">
+          <h4>Leave a Comment:</h4>
+
+         <%= render 'comments/form' %>
+
+         <hr class="hr-comments">
+         <div id="comments">
+           <%= render partial: @article.comments.reverse %>
+         </div>
+        </div>
+      </div>
+      </article>
+
+    </div>
+  </div>
 </div>

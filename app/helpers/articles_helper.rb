@@ -32,18 +32,18 @@ module ArticlesHelper
 
   def image(article, data, top)
     data +=
-            if article_contents(article).find_images.present?
+            if article.contents.present?
               top += init_top
               data_html('image', top)
             else
               ''
             end
-    abstract(article, data, top)
+    resume(article, data, top)
   end
 
-  def abstract(article, data, top)
+  def resume(article, data, top)
     data +=
-            if article.abstract.present?
+            if article.resume.present?
               top += init_top
               data_html('quote-right', top)
             else
@@ -65,7 +65,7 @@ module ArticlesHelper
 
   def pdf(article, data, top)
     data +=
-            if article_contents(article).find_pdf.present?
+            if article.paper.present?
               top += init_top
               data_html('file-pdf-o', top)
             else
@@ -80,10 +80,6 @@ module ArticlesHelper
 
   def data_html(what, top)
     "<div class='ribbon ribbon-orange' style=" + "'top: #{top}px;'>" + "<span><i class='fa fa-#{what}'></i></span></div>"
-  end
-
-  def article_contents(article)
-    article.contents
   end
 
   def print_html(data)
