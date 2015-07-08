@@ -14,7 +14,7 @@ class User < ActiveRecord::Base
   accepts_nested_attributes_for :articles
   accepts_nested_attributes_for :revisers
 
-  has_attached_file :photo, styles: { avatar: "100x100>" }, url: att_url, path: att_path
+  has_attached_file :photo, styles: { avatar: '100x100>' }, url: att_url, path: att_path
 
   validates_attachment_content_type :photo, content_type: ['image/jpeg', 'image/png']
 
