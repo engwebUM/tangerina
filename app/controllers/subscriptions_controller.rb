@@ -4,7 +4,6 @@ class SubscriptionsController < ApplicationController
   def index
     @subscriptions = Subscription.where(user_id: current_user.id).paginate(page: params[:page], per_page: 2)
     @ids = find_subscribed_articles(@subscriptions)
-    #byebug;1+1;  
     @articles = ArticleReview.find(@ids)
   end
 
