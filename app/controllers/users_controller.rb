@@ -1,5 +1,5 @@
 class UsersController < Clearance::UsersController
-  before_action :set_user, only: :show
+  before_action :set_user, only: [:show, :edit]
   autocomplete :user, :username, scopes: :normal
   def index
     @users = User.all.paginate(page: params[:page], per_page: 3)
@@ -9,6 +9,14 @@ class UsersController < Clearance::UsersController
     @posts = ArticleReview.where(user_id: @user.id)
     @favorites = ArticleReview.favorited(@user.id)
     @subscriptions = Subscription.where(user_id: @user.id)
+  end
+
+  def edit
+  end
+
+  def update
+    @user.update(user_params)
+    redirect_to @user
   end
 
   private
