@@ -12,6 +12,29 @@
     width: 100%;
 }
 
+.panel-footer{
+  border: none;
+  color: white;
+}
+
+.panel-orange {
+    border-color: orange;
+}
+
+.panel-orange .panel-heading {
+    border-color: orange;
+    color: #fff;
+    background-color: orange;
+}
+
+.panel-orange a {
+    color: orange;
+}
+
+.panel-orange a:hover {
+    color: orange;
+}
+
 
 .panel-red {
     border-color: #d9534f;
