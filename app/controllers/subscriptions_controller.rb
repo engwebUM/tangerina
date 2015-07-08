@@ -4,6 +4,7 @@ class SubscriptionsController < ApplicationController
   def index
     @subscriptions = Subscription.where(user_id: current_user.id).paginate(page: params[:page], per_page: 2)
     @ids = find_subscribed_articles(@subscriptions)
+    #byebug;1+1;  
     @articles = ArticleReview.find(@ids)
   end
 
@@ -50,19 +51,18 @@ class SubscriptionsController < ApplicationController
     subscribed = []
     articles = ArticleReview.all
     subscriptions.each do |sub|
-      subscribed << find_articles(sub.theme_id, sub.subject, articles)
+      subscribed = find_articles(sub.theme_id, sub.subject, articles, subscribed)
     end
     subscribed
   end
 
-  def find_articles(theme, subject, articles)
-    found = []
+  def find_articles(theme, subject, articles, subscribed)
     articles.each do |a|
       if (a.theme_id == theme) && (a.description.include? subject)
-        found << a.id
+        subscribed << a.id
       end
     end
-    found
+    subscribed
   end
 
   def destroy
