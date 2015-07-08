@@ -1,12 +1,11 @@
 class CommentsController < ApplicationController
   before_action :set_article_comment, only: [:edit, :update, :destroy]
+  before_action :set_article, only: [:index, :create]
 
   def index
-    @article = Article.find(params[:id])
   end
 
   def create
-    @article = Article.find(params[:article_id])
     @comment = @article.comments.create(comment_params)
     @comment.user_id = current_user.id if current_user
     if @comment.save
@@ -47,6 +46,10 @@ class CommentsController < ApplicationController
 
   def current_user?
     @comment.user_id == current_user.id
+  end
+
+  def set_article
+    @article = Article.find(params[:article_id])
   end
 
   def set_article_comment

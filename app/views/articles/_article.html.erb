@@ -1,7 +1,7 @@
 <% @articles.each do |article| %>
   <article class="post-holder">
     <div class="post-pad">
-      
+
       <%= link_to controller: :articles, action: 'show', id: article.id do %>
         <h3 class="entry-title text-center"><%= article.title %></h3>
       <% end %>
@@ -14,7 +14,7 @@
         <%= files(article) %>
         <div class="col-md-4">
           <div class="view">
-            <%= image_tag article.theme.image.url(:medium) %>
+            <%= image_tag article.theme.image.url(:small) %>
             <div class="mask">
               <h2><%= article.theme.name %></h2>
             </div>
