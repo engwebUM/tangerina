@@ -58,15 +58,16 @@
         </div>
       </div>
       <p class="text-center">
+        <% if @article_review.status == 'pending' %>
+          <%= link_to controller: "reviews", action: "accept" do %>
+            <span class="glyphicon glyphicon-ok"></span>
+            Accept
+          <% end %>
 
-        <%= link_to controller: "reviews", action: "accept" do %>
-          <span class="glyphicon glyphicon-ok"></span>
-          Accept
+        <%= link_to '', data: { toggle: 'modal', target: '#myModalNorm' } do %>
+          <span class="glyphicon glyphicon-remove"></span>
+          Reject
         <% end %>
-
-      <%= link_to '', data: { toggle: 'modal', target: '#myModalNorm' } do %>
-        <span class="glyphicon glyphicon-remove"></span>
-        Reject
       <% end %>
     </p>
     <%= render partial: 'comment' %>

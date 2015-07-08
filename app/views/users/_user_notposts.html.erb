@@ -16,7 +16,7 @@
       <% @notposts.each do |v| %>
       <tr>
         <td><%= link_to v.id, { controller: 'reviews', action: 'show', id: v.id } %></td>
-        <td><%= link_to v.title, { controller: 'articles', action: 'show', id: v.id } %></td>
+        <td><%= link_to v.title, { controller: 'reviews', action: 'show', id: v.id } %></td>
         <td><%= v.theme.name %></td>
         <td><%= v.created_at.strftime("%b %e") %><br><%= v.created_at.strftime("%l:%M %p") %></td>
         <td><%= v.status %></td>
