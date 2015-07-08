@@ -1,5 +1,5 @@
 
-<nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
+  <nav class="navbar navbar-custom navbar-fixed-top" role="navigation">
       <div class="container">
           <div class="navbar-header">
               <div class="navbar-brand page-scroll">
@@ -12,12 +12,14 @@
               <ul class="nav navbar-nav">
                   <li>
                       <%= link_to  sign_up_path, class: "page-controll btn btn-warning btn-lg round" do %>
-                        <span>Register FREE!</span>
+                        <span>Register for FREE!</span>
                       <% end %>
                   </li>
                   <li>
-                      <%= link_to  sign_in_path, class: "page-controll" do %>
-                        <span class="orange">Login</span>
+                      <%= link_to  sign_in_path, class: "page-controll btn btn-warning btn-lg round" do %>
+
+                          <span>Login</span>
+
                       <% end %>
                   </li>
               </ul>
@@ -33,8 +35,8 @@
           <div class="container">
               <div class="row">
                   <div class="col-md-8 col-md-offset-2">
-                      <h1 class="brand-heading orange">What is Tangerina</h1>
-                      <p class="intro-text"><strong>Sharing scientific contents for free<br> and in a comprehensibly way</strong></p>
+                      <h1 class="brand-heading orange">Tangerina</h1>
+                      <p class="intro-text"><strong>Sharing scientific contents for free<br> and in a comprehensibly way!</strong></p>
                       <a href="#about" class="btn btn-circle page-scroll">
                           <i class="fa fa-angle-double-down animated"></i>
                       </a>
@@ -52,9 +54,11 @@
                     <i class="fa fa-angle-double-up animated"></i>
                 </a>
                   <div class="row">
-               <div class="col-lg-12 text-center">
-                   <h2 class="section-heading">How can Tangerina help you?</h2>
-                   <h3 class="section-subheading text-muted">There are three main problems that Tangerina solves:</h3>
+               <div class="col-lg-12 text-center" >
+                  <div id="rcorners1">
+                    <h2 class="section-heading">How can Tangerina help you?</h2>
+                    <h3 class="section-subheading text-muted">There are three main problems that Tangerina solves:</h3>
+                 </div>
                </div>
            </div>
                <div class="row text-center">
@@ -63,10 +67,11 @@
                            <i class="fa fa-circle fa-stack-2x orange"></i>
                            <i class="fa fa-files-o fa-stack-1x fa-inverse"></i>
                        </span>
-                       <p class="text-muted">
+                       <p class="text-muted" id = "rcorners2">
+                       
                          <strong>Allows</strong> researchers, journalists, investigation centers,
-                         universities, etc. publish their discoveries in a variEty of
-                         formats, allowing <strong>them to reach more people.</strong>
+                         universities, etc. to publish their discoveries in a variety of
+                         formats, allowing <strong>them to reach far more people.</strong>
                        </p>
                    </div>
                    <div class="col-md-4">
@@ -74,7 +79,7 @@
                            <i class="fa fa-circle fa-stack-2x orange"></i>
                            <i class="fa fa-search fa-stack-1x fa-inverse"></i>
                        </span>
-                        <p class="text-muted">
+                        <p class="text-muted" id = "rcorners2">
                           <strong>Allows people to find content</strong>, such as articles,
                           <strong>written in other formats</strong>, allowing them to aquire that knowledge
                           without the need to fully understand the specific jargon.
@@ -85,7 +90,7 @@
                            <i class="fa fa-circle fa-stack-2x orange"></i>
                            <i class="fa fa-smile-o fa-stack-1x fa-inverse"></i>
                        </span>
-                       <p class="text-muted">
+                       <p class="text-muted" id = "rcorners2">
                         <strong>Easier and free access to scientific articles.</strong> Despite existing
                         many websites publish scientific articles, most of them are paid.
                        </p>
