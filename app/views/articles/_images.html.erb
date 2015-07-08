@@ -10,10 +10,10 @@
       </div>
     </div>
     <% end %>
+    <div class='hidden'>
+    <% @publish.contents.find_images.drop(1).each do |image| %>
+      <%= link_to image, image.file.url, rel: 'images', class: 'fancybox' %>
+    <% end %>
+    </div>
   </div>
 <% end %>
-<div class='hidden'>
-<% @publish.contents.find_images.drop(1).each do |image| %>
-  <%= link_to image, image.file.url, rel: 'images', class: 'fancybox' %>
-<% end %>
-</div>
