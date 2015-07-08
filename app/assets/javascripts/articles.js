@@ -60,7 +60,7 @@
   var wrapper = $("#input_fields_wrap");
   var add_button = $("#add_field_button");
 
-  var x = 1;
+  var x = 0;
   $(add_button).click(function(e){
     e.preventDefault();
     if(x < max_fields){
