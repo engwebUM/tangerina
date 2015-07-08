@@ -95,6 +95,13 @@
               Destroy
             <% end %>
           </p>
+        <% elsif current_user.admin? %>
+            <p class="text-center">
+              <%= link_to article_path(@publish), class: "btn btn-warning btn-lg ",  method: :delete do %>
+                <span class="glyphicon glyphicon-remove"></span>
+                Destroy
+              <% end %>
+            </p>
         <% end %>
         <div class="well">
           <h4>Leave a Comment:</h4>
