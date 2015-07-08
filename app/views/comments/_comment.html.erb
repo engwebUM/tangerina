@@ -9,7 +9,15 @@
   <p>
     <%= best_in_place  [comment.article, comment], :body,  as: :textarea, ok_button: 'Save', cancel_button: 'Cancel', activator: '#comment-'+comment.id.to_s %>
   </p>
-  <a id='comment-<%= comment.id %>' class='edit-comment'>Edit</a>
-  <%= link_to 'Destroy', [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?' } %>
+  <% if comment.user == current_user %>
+    <a id='comment-<%= comment.id %>' class='edit-comment'><strong class="glyphicon glyphicon-pencil" aria-hidden="true"></strong></a>
+    <%= link_to [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?' }  do %>
+      <strong class="glyphicon glyphicon-remove" aria-hidden="true"></strong>
+    <% end %>
+  <% elsif current_user.admin? %>
+    <%= link_to [comment.article, comment], method: :delete, data: { confirm: 'Are you sure?' }  do %>
+      <strong class="glyphicon glyphicon-remove" aria-hidden="true"></strong>
+    <% end %>
+  <% end %>
 </div>
 <% end %>
