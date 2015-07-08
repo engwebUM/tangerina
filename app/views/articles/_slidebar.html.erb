@@ -17,7 +17,6 @@
               <span><%= f.text_field :authors_cont_all, placeholder: 'Authors...' %></span>
             </p>
           </li>
-          <li>FALTA FAZER - Imagem :<%= check_box_tag "q[article_review_contents_file_content_type_e[]]", 'image' %></li>
           <li>
             <%= f.label :updated_at_gteq, "Published from:" %>
             <%= f.text_field :updated_at_gteq, class: 'form-control date', id: 'datepicker' %>
