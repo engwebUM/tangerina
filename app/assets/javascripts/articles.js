@@ -10,7 +10,6 @@
 
   $( "#datepicker" ).datepicker({
     dateFormat: "dd-mm-yy",
-    minDate: 0,
     onSelect: function (date) {
       var date2 = $('#datepicker').datepicker('getDate');
       date2.setDate(date2.getDate() + 1);
@@ -35,7 +34,6 @@
 
   $( "#datepicker3" ).datepicker({
     dateFormat: "dd-mm-yy",
-    minDate: 0,
     onSelect: function (date) {
       var date2 = $('#datepicker3').datepicker('getDate');
       date2.setDate(date2.getDate() + 1);
