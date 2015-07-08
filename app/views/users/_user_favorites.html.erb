@@ -1,7 +1,27 @@
-<% @favorites.each do |article| %>
+<% if @favorites.present? %>
+  <table id="versions" class="display">
+    <thead>
+      <tr>
+        <th>ID</th>
+        <th>Title</th>
+        <th>Theme</th>
+        <th>Created</th>
+        <th>Author</th>
+      </tr>
+    </thead>
 
-  <%= link_to article.title, controller: :articles, action: 'show', id: article.id  %>
-  <%= article.updated_at %>
-  <%= article.status %>
-
+    <tbody>
+      <% @favorites.each do |v| %>
+      <tr>
+        <td><%= link_to v.id, { controller: 'articles', action: 'show', id: v.id } %></td>
+        <td><%= link_to v.title, { controller: 'articles', action: 'show', id: v.id } %></td>
+        <td><%= v.theme.name %></td>
+        <td><%= v.created_at.strftime("%b %e") %><br><%= v.created_at.strftime("%l:%M %p") %></td>
+        <td><%= v.user.username %></td>
+       </tr>
+      <% end %>
+    </tbody>
+  </table>
+<% else %>
+  <p>No records</p>
 <% end %>
