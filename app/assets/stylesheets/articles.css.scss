@@ -5,6 +5,9 @@
   *= require jquery-ui/datepicker
 */
 
+.hidden {
+    display: none;
+}
 
 .comments-count-balloon {
   position: relative;
@@ -194,7 +197,7 @@ border-top: 1px dashed #9d9d9d;
   height: 180px;
   overflow: hidden;
   text-align: center;
-  cursor: default;
+  cursor: auto;
 
 }
 

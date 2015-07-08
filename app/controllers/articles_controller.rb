@@ -21,7 +21,7 @@ class ArticlesController < ApplicationController
   end
 
   def show
-    @files = @publish.contents.all
+    @videos = Video.where(article_review_id: @publish.id)
   end
 
   def new

@@ -35,13 +35,9 @@
 
         <div class="style-single">
             <h3>Description</h3>
-            <p>
-              <%= @publish.description %>
-            </p>
+            <p><%= @publish.description %></p>
             <h3>Abstract</h3>
-            <p>
-              <%= @publish.abstract %>
-            </p>
+            <p><%= @publish.abstract %></p>
         </div>
         <div class="style-single">
           <div class="after-entry">
@@ -80,18 +76,7 @@
                   </div>
                 <% end %>
 
-                <% if @publish.videos.present? %>
-                  <div class="entry type-post style-thumbnail col-sm-3">
-                    <div class="view2">
-                      <figure class="entry-thumbnail">
-                        <%= image_tag @publish.theme.image.url(:medium) %>
-                      </figure>
-                      <div class="mask2">
-                        <h2>Videos</h2>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
+                <%= render partial: 'videos' %>
 
                 <% if @publish.contents.find_images.present? %>.find_pdf.present?
                   <div class="entry type-post style-thumbnail col-sm-3">
