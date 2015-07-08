@@ -1,5 +1,6 @@
 <% if @publish.contents.find_images.present? %>
   <div class="entry type-post style-thumbnail col-sm-3">
+    <%= link_to @publish.contents.find_images.first.file.url,  rel: 'images', class: 'fancybox' do %>
     <div class="view2">
       <figure class="entry-thumbnail">
         <%= image_tag @publish.theme.image.url(:medium) %>
@@ -8,9 +9,11 @@
         <h2>Images</h2>
       </div>
     </div>
+    <% end %>
   </div>
 <% end %>
-
-<% @publish.contents.find_images.each do |p| %>
-<p><%= p.file_file_name %></p>
+<div class='hidden'>
+<% @publish.contents.find_images.drop(1).each do |image| %>
+  <%= link_to image, image.file.url, rel: 'images', class: 'fancybox' %>
 <% end %>
+</div>
