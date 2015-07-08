@@ -1,5 +1,5 @@
 
-<% if @posts.present? %>
+<% if @notposts.present? %>
   <table id="versions" class="display">
     <thead>
       <tr>
@@ -7,16 +7,20 @@
         <th>Title</th>
         <th>Theme</th>
         <th>Created</th>
+        <th>Status</th>
+        <th>Comment</th>
       </tr>
     </thead>
 
     <tbody>
-      <% @posts.each do |v| %>
+      <% @notposts.each do |v| %>
       <tr>
-        <td><%= link_to v.id, { controller: 'articles', action: 'show', id: v.id } %></td>
+        <td><%= link_to v.id, { controller: 'reviews', action: 'show', id: v.id } %></td>
         <td><%= link_to v.title, { controller: 'articles', action: 'show', id: v.id } %></td>
         <td><%= v.theme.name %></td>
         <td><%= v.created_at.strftime("%b %e") %><br><%= v.created_at.strftime("%l:%M %p") %></td>
+        <td><%= v.status %></td>
+        <td><%= v.comment %></td>
        </tr>
       <% end %>
     </tbody>

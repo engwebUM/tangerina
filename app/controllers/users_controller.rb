@@ -6,7 +6,8 @@ class UsersController < Clearance::UsersController
   end
 
   def show
-    @posts = ArticleReview.where(user_id: @user.id)
+    @posts = ArticleReview.where(user_id: @user.id, status: 'accept')
+    @notposts = ArticleReview.where(user_id: @user.id).where.not(status: 'accept')
     @favorites = ArticleReview.favorited(@user.id)
     @subscriptions = Subscription.where(user_id: @user.id)
   end
