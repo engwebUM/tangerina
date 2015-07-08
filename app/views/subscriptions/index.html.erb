@@ -27,9 +27,6 @@
 
   <p>&nbsp;</p>
   <%= render partial: 'articles/article', object: @articles %>
-  <div class="pagination">
-    <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
-  </div>
   <% if @articles.count==0 %>
     <h1 class="text-center">NO ARTICLES</h1>
     <p class='text-center'><img class="" src="/assets/emotion.png" ></p>
