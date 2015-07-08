@@ -1,0 +1,55 @@
+.huge {
+    font-size: 30px;
+    padding-top:10%;
+}
+#page-wrapper {
+    position: inherit;
+    margin: 0 0 0 250px;
+    padding: 0 30px;
+    border-left: 1px solid #e7e7e7;
+}
+#wrapper {
+    width: 100%;
+}
+
+.panel-footer{
+  border: none;
+  color: white;
+}
+
+.panel-orange {
+    border-color: orange;
+}
+
+.panel-orange .panel-heading {
+    border-color: orange;
+    color: #fff;
+    background-color: orange;
+}
+
+.panel-orange a {
+    color: orange;
+}
+
+.panel-orange a:hover {
+    color: orange;
+}
+
+
+.panel-red {
+    border-color: #d9534f;
+}
+
+.panel-red .panel-heading {
+    border-color: #d9534f;
+    color: #fff;
+    background-color: #d9534f;
+}
+
+.panel-red a {
+    color: #d9534f;
+}
+
+.panel-red a:hover {
+    color: #b52b27;
+}
