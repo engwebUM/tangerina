@@ -9,8 +9,11 @@
       <div class='span8'>
         <p class='link_recommend'>
             <% @subscriptions.each do |subscription| %>
-              <p><%= subscription.subject %>
-              <%= link_to 'Destroy', subscription, method: :delete %></p>
+              <p>
+                <%= subscription.subject %>
+                <%= Theme.find(subscription.theme_id).name %>
+                <%= link_to 'Destroy', subscription, method: :delete %>
+              </p>
             <% end %>
             <%= link_to 'New', new_subscription_path, {class: "btn btn-default btn-lg"}  %>
         </p>
@@ -24,9 +27,6 @@
 
   <p>&nbsp;</p>
   <%= render partial: 'articles/article', object: @articles %>
-  <div class="pagination">
-    <%= will_paginate @articles, renderer: BootstrapPagination::Rails %>
-  </div>
   <% if @articles.count==0 %>
     <h1 class="text-center">NO ARTICLES</h1>
     <p class='text-center'><img class="" src="/assets/emotion.png" ></p>

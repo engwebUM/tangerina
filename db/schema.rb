@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150708025949) do
+ActiveRecord::Schema.define(version: 20150708063850) do
 
   create_table "article_reviews", force: :cascade do |t|
     t.integer  "article_id"
@@ -131,6 +131,17 @@ ActiveRecord::Schema.define(version: 20150708025949) do
     t.boolean  "admin",                          default: false
     t.boolean  "email_confirmed",                default: false
     t.string   "confirm_token"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "city"
+    t.string   "country"
+    t.string   "occupation"
+    t.text     "about"
+    t.date     "date_birth"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email"
