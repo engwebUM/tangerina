@@ -25,7 +25,6 @@
                   <span class="pull-left">View Details</span>
                   <div class="clearfix"></div>
               </div>
-
           <% end %>
       </div>
     </div>
@@ -43,12 +42,12 @@
                 </div>
             </div>
         </div>
-        <a href="#">
+        <%= link_to admin_articles_url do %>
             <div class="panel-footer" style="background-color: orange;">
                 <span class="pull-left">View Details</span>
                 <div class="clearfix"></div>
             </div>
-        </a>
+        <% end %>
     </div>
   </div>
     <div class="col-md-4">
@@ -64,13 +63,13 @@
                     </div>
                 </div>
             </div>
-            <a href="#">
+            <%= link_to admin_users_url do %>
                 <div class="panel-footer" style="background-color: #d9534f;">
                     <span class="pull-left">View Details</span>
                     <span class="pull-right"><i class="fa fa-arrow-circle-right"></i></span>
                     <div class="clearfix"></div>
                 </div>
-            </a>
+            <% end %>
           </div>
         </div>
     </div>
