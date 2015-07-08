@@ -3,7 +3,13 @@ class SubscriptionsController < ApplicationController
 
   def index
     @subscriptions = Subscription.where(user_id: current_user.id).paginate(page: params[:page], per_page: 2)
-    @articles = ArticleReview.joins(:articles).subscribed(current_user.id).paginate(page: params[:page], per_page: 2)
+
+    #@articles = ArticleReview.joins(:articles).includes(theme: { subscriptions: :user }).where(users: { id: current_user.id } ).joins(:articles)
+
+    @art = ArticleReview.all
+    @articles = find_subscribed_articles(@subscriptions, @art)
+
+
   end
 
   def show
@@ -43,6 +49,24 @@ class SubscriptionsController < ApplicationController
         format.json { render json: @subscription.errors, status: :unprocessable_entity }
       end
     end
+  end
+
+  def find_subscribed_articles(subscriptions, articles)
+    subscribed = []
+    subscriptions.each do |sub|
+      subscribed << find_articles(sub.theme_id, sub.subject, articles)
+    end
+    subscribed
+  end
+
+  def find_articles(theme, subject, articles)
+    found = []
+    articles.each do |a|
+      if (a.theme_id == theme) && (a.description.include? subject)
+        found << a
+      end
+    end
+    found
   end
 
   def destroy
