@@ -11,7 +11,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20150706214946) do
+ActiveRecord::Schema.define(version: 20150708063850) do
 
   create_table "article_reviews", force: :cascade do |t|
     t.integer  "article_id"
@@ -24,8 +24,8 @@ ActiveRecord::Schema.define(version: 20150706214946) do
     t.string   "tag_list"
     t.string   "event"
     t.text     "comment"
-    t.datetime "created_at",         null: false
-    t.datetime "updated_at",         null: false
+    t.datetime "created_at",          null: false
+    t.datetime "updated_at",          null: false
     t.date     "date_accepted"
     t.date     "date_writted"
     t.string   "paper_file_name"
@@ -33,6 +33,10 @@ ActiveRecord::Schema.define(version: 20150706214946) do
     t.integer  "paper_file_size"
     t.datetime "paper_updated_at"
     t.string   "authors"
+    t.string   "resume_file_name"
+    t.string   "resume_content_type"
+    t.integer  "resume_file_size"
+    t.datetime "resume_updated_at"
   end
 
   create_table "articles", force: :cascade do |t|
@@ -125,6 +129,19 @@ ActiveRecord::Schema.define(version: 20150706214946) do
     t.string   "username"
     t.datetime "confirmed_at"
     t.boolean  "admin",                          default: false
+    t.boolean  "email_confirmed",                default: false
+    t.string   "confirm_token"
+    t.string   "first_name"
+    t.string   "last_name"
+    t.string   "city"
+    t.string   "country"
+    t.string   "occupation"
+    t.text     "about"
+    t.date     "date_birth"
+    t.string   "photo_file_name"
+    t.string   "photo_content_type"
+    t.integer  "photo_file_size"
+    t.datetime "photo_updated_at"
   end
 
   add_index "users", ["email"], name: "index_users_on_email"

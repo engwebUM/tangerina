@@ -31,11 +31,10 @@ Rails.application.routes.draw do
   resource :session, controller: 'clearance/sessions', only: [:create]
 
   resources :users, controller: 'users', only: [:create, :index, :show] do
-    resource :password,
-      controller: 'clearance/passwords',
-      only: [:index, :show, :create, :edit, :update]
-  end
+    resource :password, controller: 'clearance/passwords', only: [:index, :show, :create, :edit, :update]
 
+  end
+  resources :users
   #get '/sign_in' => 'clearance/sessions#new', as: 'sign_in'
   #delete '/sign_out' => 'clearance/sessions#destroy', as: 'sign_out'
   #get 'sign_up',  to: 'clearance/users#new'

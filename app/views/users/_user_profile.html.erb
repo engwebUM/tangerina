@@ -1,9 +1,37 @@
-<p>Username:<%= simple_format @user.username %></p>
-<p>Date created: <%= simple_format @user.created_at.to_time.strftime('%m/%d/%Y') %></p>
-<p>User Clearance: Falta fazer</p>
-<p>Email: <%= simple_format @user.email %></p>
-<p>
-  <% if current_user.id == @user.id %>
-    <%= link_to t('.change_password'), new_password_path %>
-  <% end %>
-</p>
+<% if @user.first_name.present? || @user.last_name.present? %>
+  <div class="bio-row">
+    <p><strong>Name </strong><%= @user.first_name %> <%= @user.last_name %> </p>
+  </div>
+<% end %>
+
+<% if @user.date_birth.present? %>
+  <div class="bio-row">
+    <p><strong>Date birth </strong><%= @user.date_birth.strftime("%B %d %Y") %></p>
+  </div>
+<% end %>
+
+<% if @user.country.present? %>
+  <div class="bio-row">
+    <p><strong>Country </strong><%= @user.country %></p>
+  </div>
+<% end %>
+
+<% if @user.city.present? %>
+<div class="bio-row">
+  <p><strong>City </strong><%= @user.city %></p>
+</div>
+<% end %>
+
+<% if @user.occupation.present? %>
+<div class="bio-row">
+  <p><strong>Occupation </strong><%= @user.occupation %></p>
+</div>
+<% end %>
+
+<div class="bio-row">
+  <p><strong>Email </strong><%= @user.email %></p>
+</div>
+
+<div class="bio-row">
+  <p><strong>Date created</strong><%= @user.created_at.strftime("%B %d %Y") %></p>
+</div>

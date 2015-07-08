@@ -15,7 +15,7 @@ class ApplicationController < ActionController::Base
   end
 
   def permit_params
-    params.require(:user).permit(:username, :email, :password)
+    params.require(:user).permit(:username, :email, :password, :first_name, :last_name, :city, :country, :occupation, :about, :date_birth, :photo)
   end
 
   def set_search
