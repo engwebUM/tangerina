@@ -78,18 +78,7 @@
 
                 <%= render partial: 'videos' %>
 
-                <% if @publish.contents.find_images.present? %>.find_pdf.present?
-                  <div class="entry type-post style-thumbnail col-sm-3">
-                    <div class="view2">
-                      <figure class="entry-thumbnail">
-                        <%= image_tag @publish.theme.image.url(:medium) %>
-                      </figure>
-                      <div class="mask2">
-                        <h2>Images</h2>
-                      </div>
-                    </div>
-                  </div>
-                <% end %>
+                <%= render partial: 'images' %>
 
               </div>
             </aside>
