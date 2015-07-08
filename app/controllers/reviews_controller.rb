@@ -9,8 +9,6 @@ class ReviewsController < ApplicationController
   end
 
   def show
-    @contents = Content.where(article_review_id: @article_review.id)
-    @videos = Video.where(article_review_id: @article_review.id)
   end
 
   def reject

@@ -68,7 +68,7 @@
                 <img src="/"  width="230" height="230" class="img-circle" alt="">
               </figure>
               <div class="media-body">
-                <h4 class="entry-author-name"><a href="blog.html"><%= @publish.user.username %></a></h4>
+                <h4 class="entry-author-name"><a href="blog.html"><%= @publish.user.username %></a></h4><h5 class="orange"><strong><%= @publish.created_at.strftime("%B %d %Y") %></strong></h5>
                 <p>
                   Deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
                 </p>

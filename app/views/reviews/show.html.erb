@@ -1,85 +1,74 @@
-<div class="article">
-<div class="row">
-    <div class="box">
-
-      <div class="theme-icon">
-        <img src='/assets/<%= @article_review.theme.name %>.png' alt="">
-      </div>
-      <div class="pull-right">
-        <h5><%= @article_review.event %>
-      </div>
-        <div class="col-lg-12 header">
-            <hr class="hr-post">
-            <h2 class="intro-text text-center"><%= @article_review.title %></h2>
-            <hr class="hr-post">
-            <div class="span8">
-              <p>
-                <i class="icon-user"></i><span class="glyphicon glyphicon-user" aria-hidden="true"></span>
-                <a href="#"><%= @article_review.user.username %></a>
-                | <i class="icon-calendar"></i> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                <%= @article_review.created_at.strftime("%d %b. %Y") %>
-                | <i class="icon-file"></i>
-                <span class="glyphicon glyphicon-file" aria-hidden="true"></span>
-                 1 Files
-              </p>
-              <p>
-                <i class="icon-calendar"></i> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                <%= @article_review.date_writted %>
-                | <i class="icon-calendar"></i> <span class="glyphicon glyphicon-calendar" aria-hidden="true"></span>
-                <%= @article_review.date_accepted %>
-              </p>
-              <p>
-                <%= raw @article_review.tag_list.map { |t| link_to content_tag(:span, t, { class: "label label-info"}), tag_path(t) }.join(', ') %>
-              </p>
+<div class="container-body">
+  <div class="container">
+    <div class="row">
+      <article class="post-holder">
+        <div class="content bg-base section">
+          <header class="page-header">
+            <h2 class="page-title full-page-title">
+              <%= @article_review.title %>
+            </h2>
+            <div class="entry-meta">
+              <span><strong>by </strong><%= @article_review.authors %></span>
+              <br><span><strong>written </strong><time><%= @article_review.date_writted.strftime("%B %d %Y") %></time></span>
+              <br><span><strong>accepted </strong><time><%= @article_review.date_accepted.strftime("%B %d %Y") %></time></span>
+              <br><span>In <em><%= @article_review.theme.name %></em></span>
             </div>
+        </header>
+
+        <div class="style-single">
+            <h3>Description</h3>
+            <p><%= @article_review.description %></p>
+            <h3>Abstract</h3>
+            <p><%= @article_review.abstract %></p>
         </div>
-        <div class="col-lg-12">
-          <h5>Description:</h5>
-          <p><%= @article_review.description %></p>
-          <hr class="hr-comments">
-            <h5>Abstract:</h5>
-            <p><%= simple_format @article_review.abstract %></p>
-            <br>
-            <div class="text-center">
-              <h4><strong>Files </strong>
-                <a href="http://www.youtube.com/watch?v=k6mFF3VmVAs" class="fancybox-media">Ghostpoet - Cash and Carry Me Home</a>
-                <h5>Videos youtubes ID:</h5>
-                <% @videos.each do |v| %>
-                  <p><%= Video.youtube_id(v.id) %></p>
-                <% end %>
-            </h4>
-            </div>
-            <hr class="hr-comments">
-            <p class="text-center">
+        <div class="style-single">
+          <div class="after-entry">
+            <hr>
+            <aside class="widget">
+              <i class="fa fa-tags"></i>
+              <%= raw @article_review.tag_list.map { |t| link_to content_tag(:span, t, { class: "label label-warning"}), tag_path(t) }.join(' ') %>
+            </aside>
+            <hr>
+            <aside class="widget">
+              <h3>Contents</h3>
+              <div class="entries row">
 
+                <%= render partial: 'paper' %>
 
-                  <% @contents.each do |c| %>
+                <%= render partial: 'resume' %>
 
-                    <% if c.file.content_type == 'application/pdf' %>
+                <%= render partial: 'images' %>
 
-                      <%= link_to c.file.url, class: "fancybox fancybox.iframe" do %>
-                        <%= image_tag 'pdf.png' %>
-                      <% end %>
-                    <% end %>
-                  <% end %>
-              </h4>
+                <%= render partial: 'videos' %>
+
               </div>
-              <hr class="hr-comments">
-              <p class="text-center">
+            </aside>
 
-                <%= link_to controller: "reviews", action: "accept" do %>
-                  <span class="glyphicon glyphicon-ok"></span>
-                  Accept
-                <% end %>
-
-              <%= link_to '', data: { toggle: 'modal', target: '#myModalNorm' } do %>
-                <span class="glyphicon glyphicon-remove"></span>
-                Reject
-              <% end %>
-
-            </p>
-
+            <hr>
+            <aside class="widget widget-author media">
+              <div class="media-body">
+                <h4 class="entry-author-name"><a href="blog.html"><%= @article_review.user.username %></a></h4><h5 class="orange"><strong><%= @article_review.created_at.strftime("%B %d %Y") %></strong></h5>
+              </div>
+            </aside>
+            <hr>
+          </div>
         </div>
-        <%= render partial: 'comment' %>
+      </div>
+      <p class="text-center">
+
+        <%= link_to controller: "reviews", action: "accept" do %>
+          <span class="glyphicon glyphicon-ok"></span>
+          Accept
+        <% end %>
+
+      <%= link_to '', data: { toggle: 'modal', target: '#myModalNorm' } do %>
+        <span class="glyphicon glyphicon-remove"></span>
+        Reject
+      <% end %>
+    </p>
+    <%= render partial: 'comment' %>
+      </article>
+
     </div>
+  </div>
 </div>
