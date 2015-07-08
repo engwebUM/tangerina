@@ -1,0 +1,41 @@
+<div class="container-body">
+  <div class="container">
+    <div class="row">
+      <div class="post-holder">
+        <div class="post-pad">
+          <h2>Articles</h2><br>
+          <div class="row">
+            <% if @articles.present? %>
+              <table id="versions" class="display">
+                <thead>
+                  <tr>
+                    <th>ID</th>
+                    <th>Title</th>
+                    <th>Theme</th>
+                    <th>Created</th>
+                    <th>Author</th>
+                    <th>Comments</th>
+                  </tr>
+                </thead>
+
+                <tbody>
+                  <% @articles.reverse.each do |v| %>
+                  <tr>
+                    <td><%= link_to v.article_review.id, { controller: '/articles', action: 'show', id: v.id } %></td>
+                    <td><%= link_to v.article_review.title, { controller: '/articles', action: 'show', id: v.id } %></td>
+                    <td><%= v.article_review.theme.name %></td>
+                    <td><%= v.article_review.created_at.strftime("%b %e") %><br><%= v.created_at.strftime("%l:%M %p") %></td>
+                    <td><%= link_to v.article_review.user.username,  { controller: '/users', action: 'show', id: v.article_review.user.id } %></td>
+                    <td><%= v.comments.count %></td>
+                   </tr>
+                  <% end %>
+                </tbody>
+              </table>
+            <% else %>
+              <p>No records</p>
+            <% end %>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
