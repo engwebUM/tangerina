@@ -65,31 +65,37 @@
             <hr>
             <aside class="widget widget-author media">
               <figure class="entry-author-avatar media-object avatar pull-left">
-                <img src="/"  width="230" height="230" class="img-circle" alt="">
+                <% if @publish.user.photo.present? %>
+                  <%= image_tag @publish.user.photo.url(:avatar), class: 'avatar img-circle', alt: 'avatar' %>
+                <% else %>
+                  <%= image_tag '/assets/avatar.png', class: 'avatar img-circle', alt: 'avatar' %>
+                <% end %>
               </figure>
               <div class="media-body">
-                <h4 class="entry-author-name"><a href="blog.html"><%= @publish.user.username %></a></h4><h5 class="orange"><strong><%= @publish.created_at.strftime("%B %d %Y") %></strong></h5>
-                <p>
-                  Deleniti atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident, similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem rerum facilis est et expedita distinctio.
-                </p>
+                <h4 class="entry-author-name">
+                  <%= link_to @publish.user.username, @publish.user %>
+                </h4>
+                <h5 class="orange"><strong><%= @publish.created_at.strftime("%B %d %Y") %></strong></h5>
+                <p><%= @publish.user.about %></p>
               </div>
             </aside>
             <hr>
           </div>
 
         </div>
-        <p class="text-center">
+        <% if current_user.id==@publish.user_id %>
+          <p class="text-center">
+            <%= link_to edit_article_path(@publish), {class: "btn btn-default btn-lg"} do %>
+              <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
+              Edit
+            <% end %>
 
-          <%= link_to edit_article_path(@publish), {class: "btn btn-default btn-lg"} do %>
-            <span class="glyphicon glyphicon-pencil" aria-hidden="true"></span>
-            Edit
-          <% end %>
-
-          <%= link_to article_path(@publish), class: "btn btn-default btn-lg ",  method: :delete do %>
-            <span class="glyphicon glyphicon-remove"></span>
-            Destroy
-          <% end %>
-        </p>
+            <%= link_to article_path(@publish), class: "btn btn-default btn-lg ",  method: :delete do %>
+              <span class="glyphicon glyphicon-remove"></span>
+              Destroy
+            <% end %>
+          </p>
+        <% end %>
         <div class="well">
           <h4>Leave a Comment:</h4>
 

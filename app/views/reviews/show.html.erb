@@ -47,7 +47,10 @@
             <hr>
             <aside class="widget widget-author media">
               <div class="media-body">
-                <h4 class="entry-author-name"><a href="blog.html"><%= @article_review.user.username %></a></h4><h5 class="orange"><strong><%= @article_review.created_at.strftime("%B %d %Y") %></strong></h5>
+                <h4 class="entry-author-name">
+                  <%= link_to @article_review.user.username, @article_review.user %>
+                </h4>
+                <h5 class="orange"><strong><%= @article_review.created_at.strftime("%B %d %Y") %></strong></h5>
               </div>
             </aside>
             <hr>

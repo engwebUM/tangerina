@@ -70,11 +70,13 @@
 
 <div class='col-lg-12' id='input_fields_wrap'>
   <button id='add_field_button'>Add more videos</button>
+  <% if @publish.present? %>
   <%= f.fields_for :videos do |v| %>
     <div class='form-group'>
       <%= v.label :link %>
       <%= v.text_field :link, name: 'videos[link][]', class: 'form-control' %>
     </div>
+  <% end %>
   <% end %>
 </div>
 

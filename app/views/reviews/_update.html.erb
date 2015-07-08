@@ -16,7 +16,7 @@
       <% versions.reverse.each do |v| %>
       <tr>
           <td><%= link_to v.article_id, { action: 'show', id: v.id } %></td>
-          <td><%= v.title %></td>
+          <td><%= link_to v.title, { action: 'show', id: v.id } %></td>
           <td><%= v.theme.name %></td>
           <td><%= v.created_at.strftime("%b %e") %><br><%= v.created_at.strftime("%l:%M %p") %></td>
           <td><%= v.updated_at.strftime("%b %e") %><br><%= v.updated_at.strftime("%l:%M %p") %></td>
