@@ -1,5 +1,5 @@
 class UsersController < Clearance::UsersController
-  before_action :set_user, only: [:show, :edit]
+  before_action :set_user, only: [:show, :edit, :update]
   autocomplete :user, :username, scopes: :normal
   def index
     @users = User.all.paginate(page: params[:page], per_page: 3)
@@ -16,10 +16,14 @@ class UsersController < Clearance::UsersController
 
   def update
     @user.update(user_params)
-    redirect_to @user
+    redirect_to user_path
   end
 
   private
+
+  def user_params
+    params.require(:user).permit(:email, :password, :username, :first_name, :last_name, :city, :country, :occupation, :about, :date_birth, :photo)
+  end
 
   # rubocop:disable all
   def user_from_params
@@ -32,13 +36,13 @@ class UsersController < Clearance::UsersController
 
   def user_info(email, password, username)
     first_name = user_params.delete(:first_name)
-    last_name = ser_params.delete(:last_name)
-    city = ser_params.delete(:city)
-    country = ser_params.delete(:country)
-    occupation = ser_params.delete(:occupation)
-    about = ser_params.delete(:about)
-    date_birth = ser_params.delete(:date_birth)
-    photo = ser_params.delete(:photo)
+    last_name = user_params.delete(:last_name)
+    city = user_params.delete(:city)
+    country = user_params.delete(:country)
+    occupation = user_params.delete(:occupation)
+    about = user_params.delete(:about)
+    date_birth = user_params.delete(:date_birth)
+    photo = user_params.delete(:photo)
     clearance_configuration(email, password, username, first_name, last_name, city, country, occupation, about, date_birth, photo)
   end
 
