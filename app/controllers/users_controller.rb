@@ -3,6 +3,7 @@ class UsersController < Clearance::UsersController
   autocomplete :user, :username, scopes: :normal
   def index
     @users = User.all.paginate(page: params[:page], per_page: 3)
+    redirect_to current_user
   end
 
   def show
