@@ -6,6 +6,8 @@ Rails.application.routes.draw do
     get '', to: 'dashboard#index', as: '/'
     resources :revisers, only: [:index, :create, :destroy]
     resources :themes
+    resources :users, only: :index
+    resources :articles, only: :index
   end
 
   get 'users/autocomplete_user_username'
