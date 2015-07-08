@@ -1,25 +1,156 @@
-<hr class="hr-post">
-<hr class="hr-post">
-<hr class="hr-post">
-<hr class="hr-post">
-<hr class="hr-post">
-<ul class="nav nav-tabs">
-	<li class="active"><a data-toggle="tab" href="#profile">Profile</a></li>
-	<li><a data-toggle="tab" href="#posts">Posts</a></li>
-	<li><a data-toggle="tab" href="#favorites">Favorites</a></li>
-	<li><a data-toggle="tab" href="#subscriptions">Subscriptions</a></li>    
-</ul>
-<div class="tab-content">
-    <div id="profile" class="tab-pane fade in active">
-      <%= render partial: 'user_profile' %>
-    </div>
-    <div id="posts" class="tab-pane fade">
-      <%= render partial: 'user_posts' %>
-    </div>
-    <div id="favorites" class="tab-pane fade">
-			<%= render partial: 'user_favorites' %>        
-		</div>
-	<div id="subscriptions" class="tab-pane fade">
-		<%= render partial: 'user_subscriptions' %>        
-	</div>
+<div class="container-body">
+  <div class="container">
+		<article class="post-holder">
+			<div class="post-pad">
+
+				<div class="row">
+					<div class="col-md-12">
+						<div class="profile-widget profile-widget-info">
+							<div class="panel-body">
+								<div class="col-md-2">
+									<h4><%= @user.username %></h4>
+									<div class="follow-ava">
+                    <% if @user.photo.present? %>
+                      <%= image_tag @user.photo.url(:avatar), class: 'avatar img-circle', alt: 'avatar' %>
+                    <% else %>
+											<%= image_tag '/assets/avatar.png', class: 'avatar img-circle', alt: 'avatar' %>
+                    <% end %>
+									</div>
+                  <% if @user.admin? %>
+									  <h6>Administrator</h6>
+                  <% elsif @user.revisers.present? %>
+                    <h6>Reviser</h6>
+                  <% end %>
+								</div>
+									<div class="col-md-10">
+										<div class="bio-graph-heading">
+                      <%= @user.about %>
+										</div>
+								</div>
+							</div>
+						</div>
+					</div>
+				</div>
+
+				<div class="row">
+          <div class="col-lg-12">
+            <section class="panel">
+              <header class="panel-heading tab-bg-info">
+                <ul class="nav nav-tabs">
+
+                  <li class="active">
+                    <a data-toggle="tab" href="#profile">
+                      <i class="icon-user"></i>
+                      Profile
+                    </a>
+                  </li>
+                  <li>
+                    <a data-toggle="tab" href="#published-articles">
+                      <i class="icon-home"></i>
+                      Published articles
+                    </a>
+                  </li>
+                  <li>
+                    <a data-toggle="tab" href="#pending-articles">
+                      <i class="icon-home"></i>
+                      Pending articles
+                    </a>
+                  </li>
+                  <li>
+                    <a data-toggle="tab" href="#favorite-articles">
+                      <i class="icon-home"></i>
+                      Favorite articles
+                    </a>
+                  </li>
+                  <li>
+                    <a data-toggle="tab" href="#subscriptions">
+                      <i class="icon-home"></i>
+                      Subscriptions
+                    </a>
+                  </li>
+                  <% if @user.id == current_user.id %>
+                    <li>
+                      <a data-toggle="tab" href="#edit-profile">
+                        <i class="icon-envelope"></i>
+                        Edit Profile
+                      </a>
+                    </li>
+                  <% end %>
+                </ul>
+              </header>
+							<div class="panel-body">
+								<div class="tab-content">
+                  <div id="profile" class="tab-pane active">
+                    <section class="panel">
+                      <div class="panel-body">
+                        <div class="row">
+                          <%= render partial: 'user_profile' %>
+                        </div>
+                      </div>
+                    </section>
+									</div>
+									<div id="published-articles" class="tab-pane">
+                    <section class="panel">
+                      <div class="panel-body">
+                        <div class="row">
+										      <%= render partial: 'user_posts' %>
+                        </div>
+                      </div>
+                    </section>
+									</div>
+                  <div id="pending-articles" class="tab-pane">
+                    <section class="panel">
+                      <div class="panel-body">
+                        <div class="row">
+										      <%= render partial: 'user_notposts' %>
+                        </div>
+                      </div>
+                    </section>
+									</div>
+                  <div id="favorite-articles" class="tab-pane">
+                    <section class="panel">
+                      <div class="panel-body">
+                        <div class="row">
+                          <%= render partial: 'user_favorites' %>
+                        </div>
+                      </div>
+                    </section>
+                  </div>
+                  <div id="subscriptions" class="tab-pane">
+                    <section class="panel">
+                      <div class="panel-body">
+                        <div class="row">
+										     <%= render partial: 'user_subscriptions' %>
+                        </div>
+                      </div>
+                    </section>
+									</div>
+									<div id="profile" class="tab-pane">
+                    <section class="panel">
+                      <div class="panel-body">
+                        <div class="row">
+                          <%= render partial: 'user_profile' %>
+                        </div>
+                      </div>
+                    </section>
+									</div>
+                  <% if @user.id == current_user.id %>
+  									<div id="edit-profile" class="tab-pane">
+                      <section class="panel">
+                        <div class="panel-body">
+                          <div class="row">
+  										      <%= render partial: 'edit_user' %>
+                          </div>
+                        </div>
+                      </section>
+  									</div>
+                  <% end %>
+								</div>
+							</div>
+						</section>
+					</div>
+				</div>
+			</div>
+		</article>
+  </div>
 </div>

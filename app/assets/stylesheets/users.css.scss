@@ -1,0 +1,83 @@
+.bio-row {
+  width: 50%;
+  float: left;
+  margin-bottom: 10px;
+  padding: 0 15px;
+}
+
+.bio-graph-heading {
+  background: orange;
+  color: #fff;
+  text-align: center;
+  font-style: italic;
+  padding: 40px 110px;
+  font-size: 16px;
+  font-weight: 300;
+}
+
+.profile-widget {
+  color: #fff;
+  text-align: center;
+}
+
+.profile-widget-info{
+  background: #BC6E1B;
+}
+
+.panel {
+  border:none;
+  border-radius: 0px;
+  box-shadow: none;
+  margin-bottom: 30px;
+}
+.panel .panel-heading {
+  line-height: 34px;
+  padding: 0 15px;
+  min-height: 34px;
+  border-left: 1px solid #ccc;
+  border-right: 1px solid #ccc;
+  border-radius: 0px;
+  position: relative;
+  box-shadow: inset 0 -2px 0 rgba(0,0,0,.05);
+}
+
+.tab-bg-info {
+  background: #BC6E1B;
+  border-bottom: none;
+}
+
+.tab-bg-info.panel-heading .nav{
+    margin: -10px 15px -11px;
+}
+
+.panel-heading .nav {
+    border: medium none;
+    font-size: 13px;
+    margin: -10px -15px -11px;
+}
+
+
+.panel-heading .nav > li > a,
+.panel-heading .nav > li.active > a, .panel-heading .nav > li.active > a:hover, .panel-heading .nav > li.active > a:focus {
+    border-width: 0;
+    border-radius: 0;
+}
+
+.panel-heading .nav > li > a {
+    color: #fff;
+}
+
+.panel-heading .nav > li.active > a, .panel-heading .nav > li > a:hover {
+    color: #688a7e;
+    background: #fff;
+}
+
+
+.panel .panel-body {
+  border-width: 1px 1px 2px;
+  border-style: solid;
+  border-top: none;
+  border-right-color: #ccc!important;
+  border-bottom-color: #ccc!important;
+  border-left-color: #ccc!important;
+}

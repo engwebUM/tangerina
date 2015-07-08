@@ -1,0 +1,89 @@
+<%= form_for @user do |f| %>
+<div class="col-md-3">
+
+  <div class="text-center">
+    <% if @user.photo.present? %>
+      <%= image_tag @user.photo.url(:avatar), class: 'avatar img-circle', alt: 'avatar' %>
+    <% else %>
+      <%= image_tag '/assets/avatar.png', class: 'avatar img-circle', alt: 'avatar' %>
+    <% end %>
+    <h6>Upload a different photo...</h6>
+    <%= f.file_field :photo,class: 'form-control' %>
+  </div>
+</div>
+<div class="col-md-9 personal-info">
+  <div class="form-group col-lg-12">
+    <%= f.label :first_name, class: 'col-lg-3 control-label' %>
+    <div class="col-lg-8">
+      <%= f.text_field :first_name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group col-lg-12">
+    <%= f.label :last_name, class: 'col-lg-3 control-label' %>
+    <div class="col-lg-8">
+      <%= f.text_field :last_name, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group col-lg-12">
+    <%= f.label :date_birth, class: 'col-lg-3 control-label' %>
+    <div class="col-lg-8">
+      <%= f.text_field :date_birth, class: 'form-control date', id: 'datepicker' %>
+    </div>
+  </div>
+
+  <div class="form-group col-lg-12">
+    <%= f.label :country, class: 'col-lg-3 control-label' %>
+    <div class='col-lg-8'>
+      <%= f.text_field :country, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group col-lg-12">
+    <%= f.label :city, class: 'col-lg-3 control-label' %>
+    <div class='col-lg-8'>
+      <%= f.text_field :city, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class='form-group col-lg-12'>
+    <%= f.label :occupation, class: 'col-lg-3 control-label' %>
+    <div class='col-lg-8'>
+      <%= f.text_field :occupation, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class='form-group col-lg-12'>
+    <%= f.label :about, class: 'col-lg-3 control-label' %>
+    <div class='col-lg-8'>
+      <%= f.text_area :about, class: 'form-control', rows: 2 %>
+    </div>
+  </div>
+
+  <div class="form-group col-lg-12">
+    <%= f.label :email, class: 'col-lg-3 control-label' %>
+    <div class="col-lg-8">
+      <%= f.text_field :email, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group col-lg-12">
+    <%= f.label :username, class: 'col-lg-3 control-label' %>
+    <div class="col-lg-8">
+      <%= f.text_field :username, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group col-lg-12">
+    <%= f.label :password, class: 'col-lg-3 control-label' %>
+    <div class="col-lg-8">
+      <%= f.password_field :password, class: 'form-control' %>
+    </div>
+  </div>
+
+  <div class="form-group col-lg-12 text-center">
+    <%= f.submit 'Save', class: 'btn btn-warning' %>
+  </div>
+</div>
+<% end %>

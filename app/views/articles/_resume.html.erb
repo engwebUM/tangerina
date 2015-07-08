@@ -1,0 +1,14 @@
+<% if @publish.resume.present? %>
+  <div class="entry type-post style-thumbnail col-sm-3">
+    <%= link_to @publish.resume.url, class: 'fancybox fancybox.iframe' do %>
+      <div class="view2">
+        <figure class="entry-thumbnail">
+          <%= image_tag @publish.theme.image.url(:medium) %>
+        </figure>
+        <div class="mask2">
+          <h2>Resume</h2>
+        </div>
+      </div>
+    <% end %>
+  </div>
+<% end %>
