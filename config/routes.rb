@@ -43,7 +43,7 @@ Rails.application.routes.draw do
 
   #resources :articles
 
-  root to: 'articles#index'
+  root to: 'application#home'
 
   resources :reviews do
     member do
