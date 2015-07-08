@@ -1,89 +1,84 @@
+<div class="col-lg-4"></div>
+<div class="form-group col-lg-4 text-center">
+  <%= f.label "Theme" %>
+  <%= f.select(:theme_id, @themes.collect {|t| [t.name, t.id]}, {prompt: "Select a theme"}, {class: "form-control selectpicker" } ) %>
+</div>
+<div class="col-lg-4"></div>
 
+<div class="form-group col-lg-12 text-center">
+  <%= f.label :title %>
+  <%= f.text_field :title, class: "form-control" %>
+</div>
 
-    <div class="row">
-        <div class="form-group col-lg-4">
-            <%= f.label :title %>
-            <%= f.text_field :title, class: "form-control" %>
-        </div>
+<div class="form-group date col-lg-6 text-center">
+  <%= f.label 'Date written' %>
+  <%= f.text_field :date_writted, class: 'form-control date', id: 'datepicker' %>
+</div>
 
-        <div class="form-group col-lg-4">
+<div class="form-group date col-lg-6 text-center">
+  <%= f.label :date_accepted %>
+  <%= f.text_field :date_accepted, class: 'form-control date', id: 'datepicker2'  %>
+</div>
 
-              <%= f.label "Theme" %><br>
-              <%= f.select(:theme_id, @themes.collect {|t| [t.name, t.id]}, {prompt: "Select a theme"}, {class: "form-control selectpicker" } ) %>
+<div class="form-group col-lg-12 text-center">
+  <%= f.label :authors %>
+  <%= f.text_field :authors, class: 'form-control' %>
+</div>
 
-        </div>
+<div class="form-group col-lg-12 text-center">
+  <%= f.label :description %>
+  <%= f.text_area :description, class: "form-control", rows: 2 %>
+</div>
 
-        <% if @publish.present? %>
-        <% @publish.tag_types.each do |tag| %>
-          <div class="form-group col-lg-4">
-            <strong><%= f.label tag.to_s.titleize %></strong><br />
-            <% tag_sym = "#{tag.to_s.singularize}_list".to_sym %>
-            <% tag_list = "#{tag.to_s.singularize}_list" %>
-            <%= f.text_field tag_sym, value: @publish.send(tag_list).to_s, :placeholder => "Comma-separated list of #{tag.to_s}", class: 'form-control' %>
-          </div>
-        <% end %>
-        <% else %>
-        <div class="form-group col-lg-4">
-            <%= f.label :tag_list %><br>
-            <%= f.text_field :tag_list, class: 'form-control' %>
-        </div>
-        <% end %>
+<div class="form-group col-lg-12 text-center">
+  <%= f.label :abstract %>
+  <%= f.text_area :abstract, class: "form-control", rows: 8 %>
+</div>
 
-        <div class="form-group col-lg-12">
-          <%= f.label :authors %><br>
-          <%= f.text_field :authors, class: 'form-control' %>
-        </div>
+<% if @publish.present? %>
+  <% @publish.tag_types.each do |tag| %>
+    <div class="form-group col-lg-12 text-center">
+      <strong><%= f.label tag.to_s.titleize %></strong><br />
+      <% tag_sym = "#{tag.to_s.singularize}_list".to_sym %>
+      <% tag_list = "#{tag.to_s.singularize}_list" %>
+      <%= f.text_field tag_sym, value: @publish.send(tag_list).to_s, :placeholder => "Comma-separated list of #{tag.to_s}", class: 'form-control' %>
+    </div>
+  <% end %>
+<% else %>
+  <div class="form-group col-lg-12 text-center">
+    <%= f.label :tag_list %><br>
+    <%= f.text_field :tag_list, class: 'form-control' %>
+  </div>
+<% end %>
 
-        <div class="col-lg-3"></div>
-        <div class="form-group date col-lg-3">
-          <%= f.label :date_writted %><br>
-          <%= f.text_field :date_writted, class: 'form-control date', id: 'datepicker' %>
-        </div>
+<h3 class="col-lg-12">Contents</h3>
 
-        <div class="form-group date col-lg-3">
-          <%= f.label :date_accepted %><br>
-          <%= f.text_field :date_accepted, class: 'form-control date', id: 'datepicker2'  %>
-        </div>
+<div class="form-group col-lg-12">
+  <%= f.label :paper %>
+  <%= f.file_field :paper, multiple: false %>
+</div>
 
-        <div class="col-lg-3"></div>
-        <div class="clearfix"></div>
-        <div class="form-group col-lg-12">
-            <%= f.label :description %>
-            <%= f.text_area :description, class: "form-control", rows: 2 %>
-        </div>
-        <div class="form-group col-lg-12">
-            <%= f.label :abstract %>
-            <%= f.text_area :abstract, class: "form-control", rows: 8 %>
-        </div>
+<div class="form-group col-lg-12">
+  <%= f.label :resume %>
+  <%= f.file_field :resume, multiple: false %>
+</div>
 
-        <div class="form-group col-lg-12">
-            <%= f.label :paper %>
-            <%= f.file_field :paper, multiple: false %>
-        </div>
+<div class="form-group col-lg-12 ">
+  <%= f.label 'Images' %>
+  <%= f.file_field :file, multiple: true, name: 'contents[file][]', class: 'file', id: 'file-1' %>
+</div>
 
-        <div class="form-group col-lg-12">
-            <%= f.label :resume %>
-            <%= f.file_field :resume, multiple: false %>
-        </div>
+<div class='col-lg-12' id='input_fields_wrap'>
+  <button id='add_field_button'>Add more videos</button>
+  <%= f.fields_for :videos do |v| %>
+    <div class='form-group'>
+      <%= v.label :link %>
+      <%= v.text_field :link, name: 'videos[link][]', class: 'form-control' %>
+    </div>
+  <% end %>
+</div>
 
-        <%= f.fields_for :contents do |c| %>
-          <div class="form-group col-lg-12 ">
-            <%= c.label :contents %>
-            <%= c.file_field :file, multiple: true, name: 'contents[file][]', class: 'file', id: 'file-1' %>
-          </div>
-        <% end %>
-
-        <div class='col-lg-12' id='input_fields_wrap'>
-          <button id='add_field_button'>Add more videos</button>
-          <%= f.fields_for :videos do |v| %>
-            <div class='form-group'>
-              <%= v.label :link %>
-              <%= v.text_field :link, name: 'videos[link][]', class: 'form-control' %>
-            </div>
-          <% end %>
-        </div>
-
-        <div class="form-group col-lg-12 text-center">
-            <%= f.submit "Save", class: "btn btn-default" %>
-        </div>
-      </div>
+<div class="form-group col-lg-12 text-center">
+    <%= f.submit "Save", class: "btn btn-default" %>
+</div>
+<div class="clearfix"></div>
