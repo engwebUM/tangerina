@@ -50,19 +50,18 @@ class SubscriptionsController < ApplicationController
     subscribed = []
     articles = ArticleReview.all
     subscriptions.each do |sub|
-      subscribed << find_articles(sub.theme_id, sub.subject, articles)
+      subscribed = find_articles(sub.theme_id, sub.subject, articles, subscribed)
     end
     subscribed
   end
 
-  def find_articles(theme, subject, articles)
-    found = []
+  def find_articles(theme, subject, articles, subscribed)
     articles.each do |a|
       if (a.theme_id == theme) && (a.description.include? subject)
-        found << a.id
+        subscribed << a.id
       end
     end
-    found
+    subscribed
   end
 
   def destroy
