@@ -6,9 +6,8 @@ class SubscriptionsController < ApplicationController
 
     #@articles = ArticleReview.joins(:articles).includes(theme: { subscriptions: :user }).where(users: { id: current_user.id } ).joins(:articles)
 
-    @art = ArticleReview.all
-    @articles = find_subscribed_articles(@subscriptions, @art).paginate(page: params[:page], per_page: 2)
-
+    @ids = find_subscribed_articles(@subscriptions)
+    @articles = ArticleReview.find(@ids).paginate(page: params[:page], per_page: 2)
 
   end
 
@@ -51,8 +50,9 @@ class SubscriptionsController < ApplicationController
     end
   end
 
-  def find_subscribed_articles(subscriptions, articles)
+  def find_subscribed_articles(subscriptions)
     subscribed = []
+    articles = ArticleReview.all
     subscriptions.each do |sub|
       subscribed << find_articles(sub.theme_id, sub.subject, articles)
     end
@@ -63,7 +63,7 @@ class SubscriptionsController < ApplicationController
     found = []
     articles.each do |a|
       if (a.theme_id == theme) && (a.description.include? subject)
-        found << a
+        found << a.id
       end
     end
     found
