@@ -7,7 +7,7 @@ class SubscriptionsController < ApplicationController
     #@articles = ArticleReview.joins(:articles).includes(theme: { subscriptions: :user }).where(users: { id: current_user.id } ).joins(:articles)
 
     @art = ArticleReview.all
-    @articles = find_subscribed_articles(@subscriptions, @art)
+    @articles = find_subscribed_articles(@subscriptions, @art).paginate(page: params[:page], per_page: 2)
 
 
   end
